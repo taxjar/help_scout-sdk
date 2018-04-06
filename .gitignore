@@ -4,10 +4,11 @@
 /coverage/
 /doc/
 /pkg/
+/spec/cassettes/
 /spec/reports/
 /tmp/
 
-Gemfile.lock
-
-# rspec failure tracking
+.env*
 .rspec_status
+
+Gemfile.lock
