@@ -1,5 +1,30 @@
 # Helpscout
 
+## Progress
+
+| Models | List | Get | Create | Update | Delete |
+| :----- | :--: | :-: | :----: | :----: | :----: |
+| Attachment | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Attachment::Data | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Conversations | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Conversations::Threads | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Conversations::ThreadSource | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Customers | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Notes | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Mailboxes | ✅ | ❌ | ❌ | ❌ | ❌ |
+| Mailboxes::Workflows | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Tags | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Teams | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Teams::Members | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Users | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Workflows | ❌ | ❌ | ❌ | ❌ | ❌ |
+
+| Endpoint | Supported |
+| -------- | :-------: |
+| Reports | ❌ |
+| Search | ❌ |
+| Webhooks | ❌ |
+
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/helpscout`. To experiment with that code, run `bin/console` for an interactive prompt.
 
 TODO: Delete this and the text above, and describe your gem
