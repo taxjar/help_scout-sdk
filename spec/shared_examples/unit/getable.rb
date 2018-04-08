@@ -18,7 +18,7 @@ RSpec.shared_examples 'getable unit' do |url|
 
     it "returns the #{described_class}" do
       expect(subject).to be_a described_class
-      expect(subject.as_json.delete_if { |_, v| v.nil? }).to eq item
+      expect(subject.as_json).to eq item
 
       # expect(subject.id).to eq item['id']
       # expect(subject.name).to eq item['name']

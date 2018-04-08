@@ -39,26 +39,33 @@ module Helpscout
     def initialize(params)
       @id = params['id']
       @type = params['type'] # TODO: Sub-classes
-      @folder_id = params['folderId']
+      @folder_id = params['folderId'] # Need to write integration spec to see
       @is_draft = params['isDraft']
       @number = params['number']
-      @owner = nil # Person
+      @owner = build_person(params['owner'])
       @mailbox = nil # MailboxRef
-      @customer = nil # Person
+      @customer = build_person(params['customer'])
       @thread_count = params['threadCount']
       @status = params['status']
       @subject = params['subject']
       @preview = params['preview']
-      @created_by = nil # Person
+      @created_by = build_person(params['createdBy'])
       @created_at = params['createdAt']
       @modified_at = params['modifiedAt']
       @closed_at = params['closedAt']
-      @closed_by = nil # Person
+      @closed_by = build_person(params['closedBy'])
       @source = params['source']
       @cc = params['cc']
       @bcc = params['bcc']
       @tags = params['tags']
       # @threads = build_threads(params['threads'])
+    end
+
+    private
+
+    def build_person(params)
+      return unless params
+      Helpscout::Person.new(params)
     end
   end
 end

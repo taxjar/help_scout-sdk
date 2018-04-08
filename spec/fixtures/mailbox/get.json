@@ -5,6 +5,7 @@
     "slug": "47204a026903ce6d",
     "email": "help@mymailbox.com",
     "createdAt": "2012-07-23T12:34:12Z",
+    "customFields": null,
     "modifiedAt": "2012-07-24T20:18:33Z",
     "folders": [{
       "id": 1234,

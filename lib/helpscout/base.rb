@@ -26,6 +26,8 @@ module Helpscout
       as_json.to_json
     end
 
+    #TODO: def from_json that decamelizes
+
     private
 
     def camelize(term)
@@ -39,8 +41,11 @@ module Helpscout
     end
 
     def serialized_value(value, type)
-      return value unless value.is_a? Array
-      value.map { |v| v.is_a?(String) ? v : v.send(type) }
+      if value.is_a? Array
+        value.map { |v| v.is_a?(String) ? v : v.send(type) }
+      else
+        value.class < Helpscout::Base ? value.send(type) : value
+      end
     end
   end
 end
