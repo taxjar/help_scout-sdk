@@ -6,6 +6,8 @@ require 'faraday_middleware'
 require 'helpscout/version'
 require 'helpscout/configuration'
 
+require 'helpscout/modules/getable'
+
 require 'helpscout/api'
 require 'helpscout/base'
 require 'helpscout/conversation'

@@ -2,13 +2,9 @@
 
 module Helpscout
   class Conversation < Helpscout::Base
-    class << self
-      # TODO: DRY to Getable
-      def get(id)
-        new Helpscout.api.get(get_path(id))['item']
-      end
-      alias find get
+    extend Getable
 
+    class << self
       def list(mailbox_id: Helpscout.default_mailbox, page: nil)
         Helpscout.api.get(list_path(mailbox_id), page: page)['items']
                  .map { |item| new item }

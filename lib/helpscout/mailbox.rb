@@ -4,12 +4,9 @@ module Helpscout
   class Mailbox < Helpscout::Base
     ROUTE = 'mailboxes'
 
-    class << self
-      def get(id)
-        new Helpscout.api.get(get_path(id))['item']
-      end
-      alias find get
+    extend Getable
 
+    class << self
       # TODO: Make sure folders is init'd correctly when lazy loaded
       def list(page: nil)
         Helpscout.api.get(list_path, page: page)['items'].map { |item| new item }
