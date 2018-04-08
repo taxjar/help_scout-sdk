@@ -37,7 +37,7 @@ RSpec.describe Helpscout::Mailbox do
         .to_return(body: body, headers: { 'Content-Type' => 'application/json' })
     end
 
-    it 'it returns an array of Mailboxes' do
+    it 'returns an array of Mailboxes' do
       expect(subject).to be_a Array
       expect(subject).to all(be_a(Helpscout::Mailbox))
     end
@@ -50,6 +50,22 @@ RSpec.describe Helpscout::Mailbox do
           .to_return(body: body, headers: { 'Content-Type' => 'application/json' })
         subject
       end
+    end
+  end
+
+  describe '#folders' do
+    subject { described_class.new(mailbox).folders }
+    let(:body) { file_fixture('mailbox/folders.json') }
+    let(:mailbox) { JSON.parse(file_fixture('mailbox/get.json'))['item'] }
+
+    before do
+      stub_request(:get, 'https://api.helpscout.net/v1/mailboxes/1234/folders.json')
+        .to_return(body: body, headers: { 'Content-Type' => 'application/json' })
+    end
+
+    it 'returns an Array of Folders' do
+      expect(subject).to be_a Array
+      expect(subject).to all(be_a(Helpscout::Folder))
     end
   end
 end

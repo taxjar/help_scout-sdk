@@ -4,6 +4,7 @@ require 'faraday_middleware'
 require 'helpscout/version'
 require 'helpscout/configuration'
 require 'helpscout/api'
+require 'helpscout/folder'
 require 'helpscout/mailbox'
 
 module Helpscout

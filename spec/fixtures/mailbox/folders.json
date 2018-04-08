@@ -1,0 +1,14 @@
+{
+  "page": 1,
+  "pages": 1,
+  "count": 4,
+  "items": [{
+    "id": 1234,
+    "name": "Mine",
+    "type": "mine",
+    "userId": 4532,
+    "totalCount": 2,
+    "activeCount": 1,
+    "modifiedAt": "2012-07-24T20:18:33Z"
+  }]
+}
