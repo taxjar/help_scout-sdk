@@ -2,7 +2,7 @@
   "item": {
     "id": 291938,
     "type": "email",
-    "folder": "1234",
+    "folderId": "1234",
     "isDraft": "false",
     "number": 349,
     "owner": {
@@ -38,6 +38,7 @@
       "type": "customer"
     },
     "createdAt": "2012-07-23T12:34:12Z",
+    "modifiedAt": null,
     "userModifiedAt": "2012-07-24T20:18:33Z",
     "closedAt": null,
     "closedBy": null,

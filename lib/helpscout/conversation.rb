@@ -39,11 +39,11 @@ module Helpscout
     def initialize(params)
       @id = params['id']
       @type = params['type'] # TODO: Sub-classes
-      @folder_id = params['folderId'] # Need to write integration spec to see
+      @folder_id = params['folderId']
       @is_draft = params['isDraft']
       @number = params['number']
       @owner = build_person(params['owner'])
-      @mailbox = nil # MailboxRef
+      @mailbox = build_mailbox_ref(params['mailbox'])
       @customer = build_person(params['customer'])
       @thread_count = params['threadCount']
       @status = params['status']
@@ -52,6 +52,7 @@ module Helpscout
       @created_by = build_person(params['createdBy'])
       @created_at = params['createdAt']
       @modified_at = params['modifiedAt']
+      @user_modified_at = params['userModifiedAt']
       @closed_at = params['closedAt']
       @closed_by = build_person(params['closedBy'])
       @source = params['source']
@@ -62,6 +63,11 @@ module Helpscout
     end
 
     private
+
+    def build_mailbox_ref(params)
+      return unless params
+      Helpscout::MailboxRef.new(params)
+    end
 
     def build_person(params)
       return unless params

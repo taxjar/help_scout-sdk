@@ -13,6 +13,7 @@ require 'helpscout/base'
 require 'helpscout/conversation'
 require 'helpscout/folder'
 require 'helpscout/mailbox'
+require 'helpscout/mailbox_ref'
 require 'helpscout/person'
 
 module Helpscout
