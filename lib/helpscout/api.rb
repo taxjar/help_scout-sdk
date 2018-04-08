@@ -1,3 +1,6 @@
+# TODO: PERFORM_DELIVERIES option
+# TODO: Error handling
+
 module Helpscout
   class API
     class BadRequest < StandardError; end
@@ -8,7 +11,7 @@ module Helpscout
 
     BASE_URL = 'https://api.helpscout.net/v1/'.freeze
 
-    def get(path, params)
+    def get(path, params = {})
       handle_response(http_action(:get, path, params))
     end
 
@@ -49,7 +52,7 @@ module Helpscout
         raise InternalError, result.body.try(:[], 'error')
       end
 
-      OpenStruct.new(result.body)
+      result.body
     end
 
     def http_action(action, path, params)

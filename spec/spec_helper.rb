@@ -1,8 +1,14 @@
 require 'bundler/setup'
-require 'dotenv/load'
+require 'dotenv'
 require 'helpscout'
 require 'vcr'
 require 'webmock/rspec'
+
+Dotenv.load('.env', '.env.test')
+
+def file_fixture(path)
+  File.read("spec/fixtures/#{path}")
+end
 
 Helpscout.configure do |config|
   config.api_key = ENV.fetch('HELPSCOUT_API_KEY')

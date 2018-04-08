@@ -1,13 +1,45 @@
 RSpec.describe Helpscout::Mailbox do
+  describe '.find' do
+    it 'is an alias for .get' do
+      expect(described_class.method(:find)).to eq described_class.method(:get)
+    end
+  end
+
+  describe '.get' do
+    subject { described_class.get(id) }
+    let(:id) { '1234' }
+    let(:body) { file_fixture('mailbox/get.json') }
+    let(:item) { JSON.parse(body)['item'] }
+
+    before do
+      stub_request(:get, 'https://api.helpscout.net/v1/mailboxes/1234.json')
+        .to_return(body: body, headers: { 'Content-Type' => 'application/json' })
+    end
+
+    it 'returns the Mailbox' do
+      expect(subject).to be_a Helpscout::Mailbox
+      expect(subject.id).to eq item['id']
+      expect(subject.name).to eq item['name']
+      expect(subject.slug).to eq item['slug']
+      expect(subject.email).to eq item['email']
+      expect(subject.created_at).to eq item['createdAt']
+      expect(subject.modified_at).to eq item['modifiedAt']
+      expect(subject.custom_fields).to eq item['customFields']
+    end
+  end
+
   describe '.list' do
     subject { described_class.list }
+    let(:body) { file_fixture('mailbox/list.json') }
 
-    context 'when page nil' do
-      it 'gets first page' do
-        stub_request(:get, 'https://api.helpscout.net/v1/mailboxes.json')
-          .to_return(body: { foo: 'bar' }.to_json, headers: {"Content-Type"=> "application/json"})
-        subject
-      end
+    before do
+      stub_request(:get, 'https://api.helpscout.net/v1/mailboxes.json')
+        .to_return(body: body, headers: { 'Content-Type' => 'application/json' })
+    end
+
+    it 'it returns an array of Mailboxes' do
+      expect(subject).to be_a Array
+      expect(subject).to all(be_a(Helpscout::Mailbox))
     end
 
     context 'when page set' do
@@ -15,7 +47,7 @@ RSpec.describe Helpscout::Mailbox do
 
       it 'gets second page' do
         stub_request(:get, 'https://api.helpscout.net/v1/mailboxes.json?page=2')
-          .to_return(body: { foo: 'bar' }.to_json, headers: {"Content-Type"=> "application/json"})
+          .to_return(body: body, headers: { 'Content-Type' => 'application/json' })
         subject
       end
     end

@@ -1,0 +1,20 @@
+{
+  "page": 1,
+  "pages": 1,
+  "count": 4,
+  "items": [{
+    "id": 1234,
+    "name": "My Mailbox",
+    "slug": "47204a026903ce6d",
+    "email": "help@mymailbox.com",
+    "createdAt": "2012-07-23T12:34:12Z",
+    "modifiedAt": "2012-07-24T20:18:33Z"
+  },{
+    "id": 5678,
+    "name": "My Other Mailbox",
+    "slug": "47204a026903ce6e",
+    "email": "help@mymailbox.com",
+    "createdAt": "2012-07-23T12:34:12Z",
+    "modifiedAt": "2012-07-24T20:18:33Z"
+  }]
+}

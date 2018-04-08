@@ -11,7 +11,8 @@
 | Conversations::ThreadSource | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Customers | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Notes | ❌ | ❌ | ❌ | ❌ | ❌ |
-| Mailboxes | ✅ | ❌ | ❌ | ❌ | ❌ |
+| Mailboxes | ✅ | ✅ | ➖ | ➖ | ➖ |
+| Mailboxes::Folders | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Mailboxes::Workflows | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Tags | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Teams | ❌ | ❌ | ❌ | ❌ | ❌ |
