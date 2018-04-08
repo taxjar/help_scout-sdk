@@ -40,7 +40,7 @@ module Helpscout
 
     def serialized_value(value, type)
       return value unless value.is_a? Array
-      value.map { |v| v.send(type) }
+      value.map { |v| v.is_a?(String) ? v : v.send(type) }
     end
   end
 end

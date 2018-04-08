@@ -4,9 +4,6 @@ require 'shared_examples/unit/listable'
 require 'shared_examples/unit/getable'
 
 RSpec.describe Helpscout::Mailbox do
-  # include_examples 'getable unit', 'https://api.helpscout.net/v1/mailboxes/1234.json' do
-  #   let(:attributes) { %i[id name slug email created_at modified_at custom_fields] }
-  # end
   include_examples 'getable unit', 'https://api.helpscout.net/v1/mailboxes/1234.json'
   include_examples 'listable unit', 'https://api.helpscout.net/v1/mailboxes.json'
 

@@ -16,7 +16,7 @@ RSpec.shared_examples 'getable unit' do |url|
 
     before { stub_request(:get, url).to_return(body: body, headers: headers) }
 
-    it 'returns the Mailbox' do
+    it "returns the #{described_class}" do
       expect(subject).to be_a described_class
       expect(subject.as_json.delete_if { |_, v| v.nil? }).to eq item
 
