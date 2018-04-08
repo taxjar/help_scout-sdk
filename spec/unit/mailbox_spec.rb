@@ -1,36 +1,14 @@
+# frozen_string_literal: true
+
 require 'shared_examples/unit/listable'
+require 'shared_examples/unit/getable'
 
 RSpec.describe Helpscout::Mailbox do
+  # include_examples 'getable unit', 'https://api.helpscout.net/v1/mailboxes/1234.json' do
+  #   let(:attributes) { %i[id name slug email created_at modified_at custom_fields] }
+  # end
+  include_examples 'getable unit', 'https://api.helpscout.net/v1/mailboxes/1234.json'
   include_examples 'listable unit', 'https://api.helpscout.net/v1/mailboxes.json'
-
-  describe '.find' do
-    it 'is an alias for .get' do
-      expect(described_class.method(:find)).to eq described_class.method(:get)
-    end
-  end
-
-  describe '.get' do
-    subject { described_class.get(id) }
-    let(:id) { '1234' }
-    let(:body) { file_fixture('mailbox/get.json') }
-    let(:item) { JSON.parse(body)['item'] }
-
-    before do
-      stub_request(:get, 'https://api.helpscout.net/v1/mailboxes/1234.json')
-        .to_return(body: body, headers: { 'Content-Type' => 'application/json' })
-    end
-
-    it 'returns the Mailbox' do
-      expect(subject).to be_a Helpscout::Mailbox
-      expect(subject.id).to eq item['id']
-      expect(subject.name).to eq item['name']
-      expect(subject.slug).to eq item['slug']
-      expect(subject.email).to eq item['email']
-      expect(subject.created_at).to eq item['createdAt']
-      expect(subject.modified_at).to eq item['modifiedAt']
-      expect(subject.custom_fields).to eq item['customFields']
-    end
-  end
 
   describe '#folders' do
     subject { described_class.new(mailbox).folders }

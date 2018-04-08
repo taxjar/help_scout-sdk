@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 module Helpscout
-  class Folder
+  class Folder < Helpscout::Base
     attr_reader :id, :name, :type, :user_id, :total_count, :active_count,
                 :modified_at
 

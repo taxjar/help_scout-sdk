@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module Helpscout
-  class Mailbox
-    ROUTE = 'mailboxes'.freeze
+  class Mailbox < Helpscout::Base
+    ROUTE = 'mailboxes'
 
     class << self
       def get(id)
@@ -8,6 +10,7 @@ module Helpscout
       end
       alias find get
 
+      # TODO: Make sure folders is init'd correctly when lazy loaded
       def list(page: nil)
         Helpscout.api.get(list_path, page: page)['items'].map { |item| new item }
       end
@@ -34,23 +37,28 @@ module Helpscout
       @created_at = params['createdAt']
       @modified_at = params['modifiedAt']
       @custom_fields = params['custom_fields']
+      @folders = build_folders(params['folders'])
     end
 
     # TODO: def conversations
     # end
 
     def folders
-      Helpscout.api.get(folders_path)['items'].map { |item| new_folder(item) }
+      @folders ||= Helpscout.api.get(folders_path)['items']
     end
 
     private
 
-    def folders_path
-      "#{ROUTE}/#{id}/folders.json"
+    def build_folder(params)
+      Helpscout::Folder.new(params)
     end
 
-    def new_folder(params)
-      Helpscout::Folder.new(params)
+    def build_folders(items)
+      items&.map { |item| build_folder(item) }
+    end
+
+    def folders_path
+      "#{ROUTE}/#{id}/folders.json"
     end
   end
 end

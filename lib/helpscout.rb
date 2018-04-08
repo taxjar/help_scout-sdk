@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'faraday'
 require 'faraday_middleware'
 
@@ -5,6 +7,7 @@ require 'helpscout/version'
 require 'helpscout/configuration'
 
 require 'helpscout/api'
+require 'helpscout/base'
 require 'helpscout/conversation'
 require 'helpscout/folder'
 require 'helpscout/mailbox'

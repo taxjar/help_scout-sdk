@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # TODO: PERFORM_DELIVERIES option
 # TODO: Error handling
 
@@ -9,7 +11,7 @@ module Helpscout
     class InternalError < StandardError; end
     class ThrottleLimitReached < StandardError; end
 
-    BASE_URL = 'https://api.helpscout.net/v1/'.freeze
+    BASE_URL = 'https://api.helpscout.net/v1/'
 
     def get(path, params = {})
       handle_response(http_action(:get, path, params))
@@ -38,6 +40,8 @@ module Helpscout
       end
     end
 
+    # rubocop:disable AbcSize
+    # rubocop:disable MethodLength
     def handle_response(result)
       case result.status
       when 400
@@ -54,6 +58,8 @@ module Helpscout
 
       result.body
     end
+    # rubocop:enable AbcSize
+    # rubocop:enable MethodLength
 
     def http_action(action, path, params)
       client.send(action, path, cleansed_params(params))

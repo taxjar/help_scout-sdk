@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 module Helpscout
-  class Conversation
+  class Conversation < Helpscout::Base
     class << self
       def list(mailbox_id: Helpscout.default_mailbox, page: nil)
         Helpscout.api.get(list_path(mailbox_id), page: page)['items']

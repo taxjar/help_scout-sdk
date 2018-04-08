@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'shared_examples/unit/listable'
 
 RSpec.describe Helpscout::Conversation do
