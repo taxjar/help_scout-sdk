@@ -43,11 +43,14 @@ RSpec.describe Helpscout::Mailbox do
     end
 
     context 'when page set' do
-      subject { described_class.list(2) }
+      subject { described_class.list(page: 2) }
 
-      it 'gets second page' do
+      before do
         stub_request(:get, 'https://api.helpscout.net/v1/mailboxes.json?page=2')
           .to_return(body: body, headers: { 'Content-Type' => 'application/json' })
+      end
+
+      it 'gets second page' do
         subject
       end
     end

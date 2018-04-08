@@ -12,6 +12,7 @@ end
 
 Helpscout.configure do |config|
   config.api_key = ENV.fetch('HELPSCOUT_API_KEY')
+  config.default_mailbox = ENV.fetch('TEST_MAILBOX_ID')
 end
 
 VCR.configure do |config|

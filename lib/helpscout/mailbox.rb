@@ -8,7 +8,7 @@ module Helpscout
       end
       alias find get
 
-      def list(page = nil)
+      def list(page: nil)
         Helpscout.api.get(list_path, page: page)['items'].map { |item| new item }
       end
 
@@ -35,6 +35,9 @@ module Helpscout
       @modified_at = params['modifiedAt']
       @custom_fields = params['custom_fields']
     end
+
+    # TODO: def conversations
+    # end
 
     def folders
       Helpscout.api.get(folders_path)['items'].map { |item| new_folder(item) }

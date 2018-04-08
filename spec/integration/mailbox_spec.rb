@@ -18,7 +18,6 @@ RSpec.describe Helpscout::Mailbox do
       VCR.use_cassette('mailbox/list', record: :once) do
         expect(subject).to be_a Array
         expect(subject).to all(be_a(Helpscout::Mailbox))
-        expect(subject.size).to eq 2
       end
     end
   end
@@ -30,7 +29,6 @@ RSpec.describe Helpscout::Mailbox do
       VCR.use_cassette('mailbox/folders', record: :once) do
         expect(subject).to be_a Array
         expect(subject).to all(be_a(Helpscout::Folder))
-        expect(subject.size).to eq 7
       end
     end
   end

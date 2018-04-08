@@ -7,16 +7,16 @@
 | Attachment | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Attachment::Data | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Conversations | ❌ | ❌ | ❌ | ❌ | ❌ |
-| Conversations::Threads | ❌ | ❌ | ❌ | ❌ | ❌ |
-| Conversations::ThreadSource | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Conversation::Threads | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Conversation::ThreadSource | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Customers | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Notes | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Mailboxes | ✅ | ✅ | ➖ | ➖ | ➖ |
-| Mailboxes::Folders | ❌ | ❌ | ❌ | ❌ | ❌ |
-| Mailboxes::Workflows | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Mailbox::Folders | ✅ | ➖ | ➖ | ➖ | ➖ |
+| Mailbox::Workflows | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Tags | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Teams | ❌ | ❌ | ❌ | ❌ | ❌ |
-| Teams::Members | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Team::Members | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Users | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Workflows | ❌ | ❌ | ❌ | ❌ | ❌ |
 
