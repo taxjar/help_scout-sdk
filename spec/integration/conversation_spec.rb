@@ -1,12 +1,5 @@
-RSpec.describe Helpscout::Conversation do
-  describe '.list' do
-    subject { described_class.list }
+require 'shared_examples/integration/listable'
 
-    it 'returns an Array of Mailboxes' do
-      VCR.use_cassette('conversation/list', record: :once) do
-        expect(subject).to be_a Array
-        expect(subject).to all(be_a(Helpscout::Conversation))
-      end
-    end
-  end
+RSpec.describe Helpscout::Conversation do
+  include_examples 'listable integration'
 end

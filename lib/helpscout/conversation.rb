@@ -27,7 +27,6 @@ module Helpscout
       end
     end
 
-    def initialize(params)
-    end
+    def initialize(params); end
   end
 end

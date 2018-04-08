@@ -41,15 +41,15 @@ module Helpscout
     def handle_response(result)
       case result.status
       when 400
-        raise BadRequest, result.body.try(:[], 'error')
+        raise BadRequest, result.body&.dig('error')
       when 401
-        raise NotAuthorized, result.body.try(:[], 'error')
+        raise NotAuthorized, result.body&.dig('error')
       when 404
-        raise NotFound, result.body.try(:[], 'error')
+        raise NotFound, result.body&.dig('error')
       when 429
-        raise ThrottleLimitReached, result.body.try(:[], 'error')
+        raise ThrottleLimitReached, result.body&.dig('error')
       when 500, 501, 503
-        raise InternalError, result.body.try(:[], 'error')
+        raise InternalError, result.body&.dig('error')
       end
 
       result.body

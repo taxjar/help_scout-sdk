@@ -6,7 +6,7 @@
 | :----- | :--: | :-: | :----: | :----: | :----: |
 | Attachment | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Attachment::Data | ❌ | ❌ | ❌ | ❌ | ❌ |
-| Conversations | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Conversations | ✅ | ❌ | ❌ | ❌ | ❌ |
 | Conversation::Threads | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Conversation::ThreadSource | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Customers | ❌ | ❌ | ❌ | ❌ | ❌ |

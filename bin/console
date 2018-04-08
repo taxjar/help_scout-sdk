@@ -2,10 +2,12 @@
 
 require 'bundler/setup'
 require 'dotenv/load'
+require 'awesome_print'
 require 'helpscout'
 
 Helpscout.configure do |config|
   config.api_key = ENV.fetch('HELPSCOUT_API_KEY')
+  config.default_mailbox = ENV.fetch('HELPSCOUT_DEFAULT_MAILBOX')
 end
 
 require 'irb'

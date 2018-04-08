@@ -1,4 +1,8 @@
+require 'shared_examples/unit/listable'
+
 RSpec.describe Helpscout::Mailbox do
+  include_examples 'listable unit', 'https://api.helpscout.net/v1/mailboxes.json'
+
   describe '.find' do
     it 'is an alias for .get' do
       expect(described_class.method(:find)).to eq described_class.method(:get)
@@ -25,34 +29,6 @@ RSpec.describe Helpscout::Mailbox do
       expect(subject.created_at).to eq item['createdAt']
       expect(subject.modified_at).to eq item['modifiedAt']
       expect(subject.custom_fields).to eq item['customFields']
-    end
-  end
-
-  describe '.list' do
-    subject { described_class.list }
-    let(:body) { file_fixture('mailbox/list.json') }
-
-    before do
-      stub_request(:get, 'https://api.helpscout.net/v1/mailboxes.json')
-        .to_return(body: body, headers: { 'Content-Type' => 'application/json' })
-    end
-
-    it 'returns an array of Mailboxes' do
-      expect(subject).to be_a Array
-      expect(subject).to all(be_a(Helpscout::Mailbox))
-    end
-
-    context 'when page set' do
-      subject { described_class.list(page: 2) }
-
-      before do
-        stub_request(:get, 'https://api.helpscout.net/v1/mailboxes.json?page=2')
-          .to_return(body: body, headers: { 'Content-Type' => 'application/json' })
-      end
-
-      it 'gets second page' do
-        subject
-      end
     end
   end
 

@@ -1,5 +1,9 @@
+require 'shared_examples/integration/listable'
+
 RSpec.describe Helpscout::Mailbox do
   let(:id) { ENV['TEST_MAILBOX_ID'] }
+
+  include_examples 'listable integration'
 
   describe '.get' do
     subject { described_class.get(id) }
@@ -7,17 +11,6 @@ RSpec.describe Helpscout::Mailbox do
     it 'returns a Mailbox' do
       VCR.use_cassette('mailbox/get', record: :once) do
         expect(subject).to be_a Helpscout::Mailbox
-      end
-    end
-  end
-
-  describe '.list' do
-    subject { described_class.list }
-
-    it 'returns an Array of Mailboxes' do
-      VCR.use_cassette('mailbox/list', record: :once) do
-        expect(subject).to be_a Array
-        expect(subject).to all(be_a(Helpscout::Mailbox))
       end
     end
   end

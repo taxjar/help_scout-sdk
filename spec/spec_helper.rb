@@ -10,6 +10,10 @@ def file_fixture(path)
   File.read("spec/fixtures/#{path}")
 end
 
+def model_name
+  described_class.to_s.split('::').last.downcase
+end
+
 Helpscout.configure do |config|
   config.api_key = ENV.fetch('HELPSCOUT_API_KEY')
   config.default_mailbox = ENV.fetch('TEST_MAILBOX_ID')
@@ -21,6 +25,8 @@ VCR.configure do |config|
 end
 
 RSpec.configure do |config|
+  config.order = :random
+
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = '.rspec_status'
 
