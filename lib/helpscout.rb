@@ -15,6 +15,8 @@ require 'helpscout/folder'
 require 'helpscout/mailbox'
 require 'helpscout/mailbox_ref'
 require 'helpscout/person'
+require 'helpscout/source'
+require 'helpscout/thread'
 
 module Helpscout
   class << self

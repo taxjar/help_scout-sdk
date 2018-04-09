@@ -83,6 +83,8 @@
         "type": "web",
         "via": "user"
       },
+      "actionType": null,
+      "actionSourceId": null,
       "type": "message",
       "state": "published",
       "customer": {
@@ -114,7 +116,9 @@
         "width": 160,
         "height": 160,
         "url": "https://secure.helpscout.net/some-url/logo.jpg"
-      }]
+      }],
+      "savedReplyId": null,
+      "createdByCustomer": null
     }],
     "bcc": [
       "bcc1@somewhere.com",

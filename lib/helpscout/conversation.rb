@@ -59,19 +59,30 @@ module Helpscout
       @cc = params['cc']
       @bcc = params['bcc']
       @tags = params['tags']
-      # @threads = build_threads(params['threads'])
+      @threads = build_threads(params['threads'])
     end
 
     private
 
+    # TODO: DRY
     def build_mailbox_ref(params)
       return unless params
       Helpscout::MailboxRef.new(params)
     end
 
+    # TODO: DRY
     def build_person(params)
       return unless params
       Helpscout::Person.new(params)
+    end
+
+    def build_thread(params)
+      return unless params
+      Helpscout::Thread.new(params)
+    end
+
+    def build_threads(items)
+      items&.map { |item| build_thread(item) }
     end
   end
 end

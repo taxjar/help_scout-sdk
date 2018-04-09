@@ -2,9 +2,12 @@
 
 require 'bundler/setup'
 require 'dotenv'
-require 'helpscout'
+
+require 'awesome_print'
 require 'vcr'
 require 'webmock/rspec'
+
+require 'helpscout'
 
 Dotenv.load('.env', '.env.test')
 

@@ -26,7 +26,7 @@ module Helpscout
       as_json.to_json
     end
 
-    #TODO: def from_json that decamelizes
+    # TODO: def from_json that decamelizes
 
     private
 
@@ -42,7 +42,7 @@ module Helpscout
 
     def serialized_value(value, type)
       if value.is_a? Array
-        value.map { |v| v.is_a?(String) ? v : v.send(type) }
+        value.map { |v| serialized_value(v, type) }
       else
         value.class < Helpscout::Base ? value.send(type) : value
       end

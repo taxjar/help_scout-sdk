@@ -47,6 +47,7 @@ module Helpscout
     private
 
     def build_folder(params)
+      return unless params
       Helpscout::Folder.new(params)
     end
 
