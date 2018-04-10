@@ -10,11 +10,11 @@ RSpec.describe Helpscout::Mailbox do
   describe '#folders' do
     subject { described_class.new(mailbox).folders }
     let(:body) { file_fixture('mailbox/folders.json') }
-    let(:mailbox) { JSON.parse(file_fixture('mailbox/get.json'))['item'] }
+    let(:mailbox) { Helpscout::API.from_json(file_fixture('mailbox/get.json'))[:item] }
 
     before do
-      stub_request(:get, 'https://api.helpscout.net/v1/mailboxes/1234/folders.json')
-        .to_return(body: body, headers: { 'Content-Type' => 'application/json' })
+      stub_request(:get, 'https://api.helpscout.net/v1/mailboxes/1234/folders.json').
+        to_return(body: body, headers: { 'Content-Type' => 'application/json' })
     end
 
     it 'returns an Array of Folders' do

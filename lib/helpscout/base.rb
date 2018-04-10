@@ -26,8 +26,6 @@ module Helpscout
       as_json.to_json
     end
 
-    # TODO: def from_json that decamelizes
-
     private
 
     def camelize(term)

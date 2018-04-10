@@ -13,6 +13,50 @@ module Helpscout
 
     BASE_URL = 'https://api.helpscout.net/v1/'
 
+    class << self
+      def from_json(data)
+        deep_underscore(::JSON.parse(data))
+      end
+
+      private
+
+      def deep_underscore(hash)
+        hash.map do |k, v|
+          [
+            deep_underscore_key(k),
+            deep_underscore_value(v)
+          ]
+        end.to_h
+      end
+
+      def deep_underscore_key(key)
+        underscore(key).to_sym
+      end
+
+      def deep_underscore_value(value)
+        case value
+        when Hash
+          deep_underscore(value)
+        when Array
+          if value.any? { |e| e.class < Helpscout::Base }
+            value.map { |v| deep_underscore(v) }
+          else
+            value
+          end
+        else
+          value
+        end
+      end
+
+      def underscore(string)
+        string.gsub(/::/, '/').
+          gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').
+          gsub(/([a-z\d])([A-Z])/, '\1_\2').
+          tr('-', '_').
+          downcase
+      end
+    end
+
     def get(path, params = {})
       handle_response(http_action(:get, path, params))
     end
@@ -35,7 +79,7 @@ module Helpscout
       @client ||= Faraday.new(url: BASE_URL) do |conn|
         conn.request :url_encoded
         conn.basic_auth(Helpscout.api_key, 'X')
-        conn.response(:json, content_type: /\bjson$/)
+        # conn.response(:json, content_type: /\bjson$/)
         conn.adapter(Faraday.default_adapter)
       end
     end
@@ -56,7 +100,7 @@ module Helpscout
         raise InternalError, result.body&.dig('error')
       end
 
-      result.body
+      Helpscout::API.from_json(result.body)
     end
     # rubocop:enable AbcSize
     # rubocop:enable MethodLength

@@ -15,7 +15,7 @@ RSpec.shared_examples 'listable unit' do |url|
 
     context 'when page set' do
       subject { described_class.list(page: 2) }
-      let(:body) { file_fixture('conversation/list.json') }
+      let(:body) { file_fixture("#{model_name}/list.json") }
 
       before { stub_request(:get, "#{url}?page=2").to_return(body: body, headers: headers) }
 

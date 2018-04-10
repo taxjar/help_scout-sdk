@@ -9,7 +9,7 @@ module Helpscout
     class << self
       # TODO: Make sure folders is init'd correctly when lazy loaded
       def list(page: nil)
-        Helpscout.api.get(list_path, page: page)['items'].map { |item| new item }
+        Helpscout.api.get(list_path, page: page)[:items].map { |item| new item }
       end
 
       private
@@ -27,21 +27,21 @@ module Helpscout
                 :custom_fields
 
     def initialize(params)
-      @id = params['id']
-      @name = params['name']
-      @slug = params['slug']
-      @email = params['email']
-      @created_at = params['createdAt']
-      @modified_at = params['modifiedAt']
-      @custom_fields = params['custom_fields']
-      @folders = build_folders(params['folders'])
+      @id = params[:id]
+      @name = params[:name]
+      @slug = params[:slug]
+      @email = params[:email]
+      @created_at = params[:created_at]
+      @modified_at = params[:modified_at]
+      @custom_fields = params[:custom_fields]
+      @folders = build_folders(params[:folders])
     end
 
     # TODO: def conversations
     # end
 
     def folders
-      @folders ||= Helpscout.api.get(folders_path)['items']
+      @folders ||= from_json(Helpscout.api.get(folders_path)[:items])
     end
 
     private

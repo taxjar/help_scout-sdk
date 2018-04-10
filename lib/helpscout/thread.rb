@@ -3,26 +3,26 @@
 module Helpscout
   class Thread < Helpscout::Base
     def initialize(params)
-      @id = params['id']
-      @assigned_to = build_person(params['assignedTo'])
-      @status = params['status']
-      @created_at = params['createdAt']
-      @opened_at = params['openedAt']
-      @created_by = build_person(params['createdBy'])
-      @source = build_source(params['source'])
-      @action_type = params['actionType']
-      @action_source_id = params['actionSourceId']
-      @type = params['type']
-      @state = params['state']
-      @customer = build_person(params['customer'])
-      @from_mailbox = build_mailbox_ref(params['fromMailbox'])
-      @body = params['body']
-      @to = params['to']
-      @cc = params['cc']
-      @bcc = params['bcc']
-      @attachments = params['attachments']
-      @saved_reply_id = params['savedReplyId']
-      @created_by_customer = params['createdByCustomer']
+      @id = params[:id]
+      @assigned_to = build_person(params[:assigned_to])
+      @status = params[:status]
+      @created_at = params[:created_at]
+      @opened_at = params[:opened_at]
+      @created_by = build_person(params[:created_by])
+      @source = build_source(params[:source])
+      @action_type = params[:action_type]
+      @action_source_id = params[:action_source_id]
+      @type = params[:type]
+      @state = params[:state]
+      @customer = build_person(params[:customer])
+      @from_mailbox = build_mailbox_ref(params[:from_mailbox])
+      @body = params[:body]
+      @to = params[:to]
+      @cc = params[:cc]
+      @bcc = params[:bcc]
+      @attachments = params[:attachments]
+      @saved_reply_id = params[:saved_reply_id]
+      @created_by_customer = params[:created_by_customer]
     end
 
     private

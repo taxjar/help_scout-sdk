@@ -4,7 +4,7 @@ require 'shared_examples/integration/getable'
 require 'shared_examples/integration/listable'
 
 RSpec.describe Helpscout::Mailbox do
-  let(:id) { ENV['TEST_MAILBOX_ID'] }
+  let(:id) { ENV.fetch('TEST_MAILBOX_ID') }
 
   include_examples 'getable integration'
   include_examples 'listable integration'

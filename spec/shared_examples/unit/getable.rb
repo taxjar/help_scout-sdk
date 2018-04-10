@@ -12,30 +12,12 @@ RSpec.shared_examples 'getable unit' do |url|
     let(:body) { file_fixture("#{model_name}/get.json") }
     let(:headers) { { 'Content-Type' => 'application/json' } }
     let(:id) { '1234' }
-    let(:item) { JSON.parse(body)['item'] }
+    let(:item) { Helpscout::API.from_json(body)[:item] }
 
     before { stub_request(:get, url).to_return(body: body, headers: headers) }
 
     it "returns the #{described_class}" do
       expect(subject).to be_a described_class
-      expect(subject.as_json).to eq item
-
-      # expect(subject.id).to eq item['id']
-      # expect(subject.name).to eq item['name']
-      # expect(subject.slug).to eq item['slug']
-      # expect(subject.email).to eq item['email']
-      # expect(subject.created_at).to eq item['createdAt']
-      # expect(subject.modified_at).to eq item['modifiedAt']
-      # expect(subject.custom_fields).to eq item['customFields']
-
-      # attributes.each do |attribute|
-      #   expect(subject.send(attribute)).to eq item[attribute_jsonify(attribute)]
-      # end
     end
   end
 end
-
-# TODO: Remove
-# def attribute_jsonify(attribute)
-#   attribute.to_s
-# end

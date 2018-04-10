@@ -6,8 +6,7 @@ module Helpscout
 
     class << self
       def list(mailbox_id: Helpscout.default_mailbox, page: nil)
-        Helpscout.api.get(list_path(mailbox_id), page: page)['items']
-                 .map { |item| new item }
+        Helpscout.api.get(list_path(mailbox_id), page: page)[:items].map { |item| new item }
       end
 
       # TODO: Add the below methods
@@ -19,6 +18,10 @@ module Helpscout
       #
       # def list_for_user
       # end
+
+      def create(params)
+        new(params).save!
+      end
 
       private
 
@@ -37,29 +40,43 @@ module Helpscout
                 :source, :cc, :bcc, :tags
 
     def initialize(params)
-      @id = params['id']
-      @type = params['type'] # TODO: Sub-classes
-      @folder_id = params['folderId']
-      @is_draft = params['isDraft']
-      @number = params['number']
-      @owner = build_person(params['owner'])
-      @mailbox = build_mailbox_ref(params['mailbox'])
-      @customer = build_person(params['customer'])
-      @thread_count = params['threadCount']
-      @status = params['status']
-      @subject = params['subject']
-      @preview = params['preview']
-      @created_by = build_person(params['createdBy'])
-      @created_at = params['createdAt']
-      @modified_at = params['modifiedAt']
-      @user_modified_at = params['userModifiedAt']
-      @closed_at = params['closedAt']
-      @closed_by = build_person(params['closedBy'])
-      @source = params['source']
-      @cc = params['cc']
-      @bcc = params['bcc']
-      @tags = params['tags']
-      @threads = build_threads(params['threads'])
+      @id = params[:id]
+      @type = params[:type] # TODO: Sub-classes
+      @folder_id = params[:folder_id]
+      @is_draft = params[:is_draft]
+      @number = params[:number]
+      @owner = build_person(params[:owner])
+      @mailbox = build_mailbox_ref(params[:mailbox])
+      @customer = build_person(params[:customer])
+      @thread_count = params[:thread_count]
+      @status = params[:status]
+      @subject = params[:subject]
+      @preview = params[:preview]
+      @created_by = build_person(params[:created_by])
+      @created_at = params[:created_at]
+      @modified_at = params[:modified_at]
+      @user_modified_at = params[:user_modified_at]
+      @closed_at = params[:closed_at]
+      @closed_by = build_person(params[:closed_by])
+      @source = params[:source]
+      @cc = params[:cc]
+      @bcc = params[:bcc]
+      @tags = params[:tags]
+      @threads = build_threads(params[:threads])
+    end
+
+    # TODO: populate with data when id is present
+    # def hydate
+    # end
+
+    # TODO: ?
+    # def parse_customer(customer)
+    #   customer.is_a?(Helpscout::Person) ? customer : build_person(customer)
+    # end
+
+    def save!
+      Helpscout.api.post(save_path, to_json)
+      # TODO: optional hydrate
     end
 
     private
@@ -83,6 +100,10 @@ module Helpscout
 
     def build_threads(items)
       items&.map { |item| build_thread(item) }
+    end
+
+    def save_path
+      'conversations.json'
     end
   end
 end

@@ -6,6 +6,8 @@ Metrics/BlockLength:
     - 'Rakefile'
     - '**/*.rake'
     - 'spec/**/*.rb'
+Layout/DotPosition:
+  EnforcedStyle: trailing
 Metrics/LineLength:
   Enabled: False
 Style/Documentation:
