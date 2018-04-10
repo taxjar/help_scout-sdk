@@ -75,7 +75,7 @@ module Helpscout
     # end
 
     def save!
-      Helpscout.api.post(save_path, to_json)
+      Helpscout.api.post(save_path, as_json)
       # TODO: optional hydrate
     end
 
@@ -84,17 +84,20 @@ module Helpscout
     # TODO: DRY
     def build_mailbox_ref(params)
       return unless params
+      return params if params.is_a? Helpscout::MailboxRef
       Helpscout::MailboxRef.new(params)
     end
 
     # TODO: DRY
     def build_person(params)
       return unless params
+      return params if params.is_a? Helpscout::Person
       Helpscout::Person.new(params)
     end
 
     def build_thread(params)
       return unless params
+      return params if params.is_a? Helpscout::Thread
       Helpscout::Thread.new(params)
     end
 

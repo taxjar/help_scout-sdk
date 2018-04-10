@@ -30,11 +30,11 @@ RSpec.describe Helpscout::Conversation do
       )
     end
 
-    # it "returns an empty #{described_class} with id" do
-    #   VCR.use_cassette("#{model_name}/create", record: :once) do
-    #     expect(subject).to be_a described_class
-    #     expect(subject.id).to be
-    #   end
-    # end
+    it "returns an empty #{described_class} with id" do
+      VCR.use_cassette('conversation/create', record: :once) do
+        expect(subject).to be_a described_class
+        expect(subject.id).to be
+      end
+    end
   end
 end

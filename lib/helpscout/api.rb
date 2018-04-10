@@ -73,11 +73,12 @@ module Helpscout
 
     def cleansed_params(params)
       params.delete_if { |_, v| v.nil? }
+      # params
     end
 
     def client
       @client ||= Faraday.new(url: BASE_URL) do |conn|
-        conn.request :url_encoded
+        conn.request :json
         conn.basic_auth(Helpscout.api_key, 'X')
         # conn.response(:json, content_type: /\bjson$/)
         conn.adapter(Faraday.default_adapter)
