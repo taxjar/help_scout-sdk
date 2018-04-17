@@ -20,7 +20,7 @@ module Helpscout
       # end
 
       def create(params)
-        new(params).save!
+        new(params).save!.location
       end
 
       private

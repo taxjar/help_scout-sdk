@@ -2,6 +2,7 @@
 
 # TODO: PERFORM_DELIVERIES option
 # TODO: Error handling
+# TODO: Clean up with ActiveSupport
 
 module Helpscout
   class API

@@ -32,8 +32,7 @@ RSpec.describe Helpscout::Conversation do
 
     it "returns an empty #{described_class} with id" do
       VCR.use_cassette('conversation/create', record: :once) do
-        expect(subject).to be_a described_class
-        expect(subject.id).to be
+        expect(subject).to eq 'https://api.helpscout.net/v1/conversations/558068488.json'
       end
     end
   end

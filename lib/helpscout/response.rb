@@ -2,6 +2,8 @@
 
 module Helpscout
   class Response
+    delegate :headers, to: :response
+
     attr_reader :response
     def initialize(response)
       @response = response
@@ -20,6 +22,10 @@ module Helpscout
 
     def items
       body[:items]
+    end
+
+    def location
+      headers['location']
     end
   end
 end
