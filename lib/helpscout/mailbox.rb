@@ -9,7 +9,7 @@ module Helpscout
     class << self
       # TODO: Make sure folders is init'd correctly when lazy loaded
       def list(page: nil)
-        Helpscout.api.get(list_path, page: page)[:items].map { |item| new item }
+        Helpscout.api.get(list_path, page: page).items.map { |item| new item }
       end
 
       private

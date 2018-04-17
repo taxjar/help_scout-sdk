@@ -101,7 +101,7 @@ module Helpscout
         raise InternalError, result.body&.dig('error')
       end
 
-      Helpscout::API.from_json(result.body)
+      Helpscout::Response.new(result)
     end
     # rubocop:enable AbcSize
     # rubocop:enable MethodLength

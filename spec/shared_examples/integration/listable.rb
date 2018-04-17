@@ -8,6 +8,7 @@ RSpec.shared_examples 'listable integration' do
       VCR.use_cassette("#{model_name}/list", record: :once) do
         expect(subject).to be_a Array
         expect(subject).to all(be_a(described_class))
+        # TODO: Consider testing attributes
       end
     end
   end

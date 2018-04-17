@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'active_support'
+require 'active_support/core_ext'
 require 'json'
 require 'faraday'
 require 'faraday_middleware'
@@ -16,6 +18,7 @@ require 'helpscout/folder'
 require 'helpscout/mailbox'
 require 'helpscout/mailbox_ref'
 require 'helpscout/person'
+require 'helpscout/response'
 require 'helpscout/source'
 require 'helpscout/thread'
 

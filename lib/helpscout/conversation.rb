@@ -6,7 +6,7 @@ module Helpscout
 
     class << self
       def list(mailbox_id: Helpscout.default_mailbox, page: nil)
-        Helpscout.api.get(list_path(mailbox_id), page: page)[:items].map { |item| new item }
+        Helpscout.api.get(list_path(mailbox_id), page: page).items.map { |item| new item }
       end
 
       # TODO: Add the below methods

@@ -32,8 +32,9 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
+  spec.add_dependency 'activesupport'
   spec.add_dependency 'faraday', '~> 0.14'
-  spec.add_dependency 'faraday_middleware', '~> 0.12'
+  spec.add_dependency 'faraday_middleware', '~> 0.12' # TODO: Needed?
   spec.required_ruby_version = '>= 2.3'
 
   spec.add_development_dependency 'awesome_print', '~> 1.8'

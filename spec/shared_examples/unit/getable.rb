@@ -12,7 +12,6 @@ RSpec.shared_examples 'getable unit' do |url|
     let(:body) { file_fixture("#{model_name}/get.json") }
     let(:headers) { { 'Content-Type' => 'application/json' } }
     let(:id) { '1234' }
-    let(:item) { Helpscout::API.from_json(body)[:item] }
 
     before { stub_request(:get, url).to_return(body: body, headers: headers) }
 
