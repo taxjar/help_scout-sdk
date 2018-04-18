@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # TODO: PERFORM_DELIVERIES option
-# TODO: Error handling
+# TODO: Error handling (e.g. Helpscout::Conversation.create(foo: :bar))
 # TODO: Clean up with ActiveSupport
 
 module Helpscout
@@ -81,7 +81,7 @@ module Helpscout
       @client ||= Faraday.new(url: BASE_URL) do |conn|
         conn.request :json
         conn.basic_auth(Helpscout.api_key, 'X')
-        # conn.response(:json, content_type: /\bjson$/)
+        conn.response(:json, content_type: /\bjson$/)
         conn.adapter(Faraday.default_adapter)
       end
     end
@@ -91,7 +91,7 @@ module Helpscout
     def handle_response(result)
       case result.status
       when 400
-        raise BadRequest, result.body&.dig('error')
+        raise BadRequest, result.body&.dig('validationErrors')
       when 401
         raise NotAuthorized, result.body&.dig('error')
       when 404

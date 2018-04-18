@@ -2,6 +2,8 @@
 
 module Helpscout
   class Conversation < Helpscout::Base
+    SAVE_PATH = 'conversations.json'
+
     extend Getable
 
     class << self
@@ -20,7 +22,7 @@ module Helpscout
       # end
 
       def create(params)
-        new(params).save!.location
+        new(params).save.location
       end
 
       private
@@ -34,10 +36,10 @@ module Helpscout
       end
     end
 
-    attr_reader :id, :type, :folder_id, :is_draft, :number, :owner, :mailbox,
-                :customer, :thread_count, :status, :subject, :preview,
-                :created_by, :created_at, :modified_at, :closed_at, :closed_by,
-                :source, :cc, :bcc, :tags
+    attr_accessor :id, :type, :folder_id, :is_draft, :number, :owner, :mailbox,
+                  :customer, :thread_count, :status, :subject, :preview,
+                  :created_by, :created_at, :modified_at, :closed_at, :closed_by,
+                  :source, :cc, :bcc, :tags
 
     def initialize(params)
       @id = params[:id]
@@ -74,9 +76,15 @@ module Helpscout
     #   customer.is_a?(Helpscout::Person) ? customer : build_person(customer)
     # end
 
-    def save!
-      Helpscout.api.post(save_path, as_json)
+    def save
+      Helpscout.api.post(SAVE_PATH, as_json)
       # TODO: optional hydrate
+    end
+
+    def update(params)
+      params.each { |k, v| public_send("#{k}=", v) }
+      Helpscout.api.put("conversations/#{id}.json", as_json)
+      true
     end
 
     private
@@ -103,10 +111,6 @@ module Helpscout
 
     def build_threads(items)
       items&.map { |item| build_thread(item) }
-    end
-
-    def save_path
-      'conversations.json'
     end
   end
 end

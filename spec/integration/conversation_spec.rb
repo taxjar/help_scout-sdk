@@ -36,4 +36,17 @@ RSpec.describe Helpscout::Conversation do
       end
     end
   end
+
+  describe '#update' do
+    let(:params) { { tags: tags } }
+    let(:tags) { ['integration_spec'] }
+
+    it 'updates the conversations tags' do
+      VCR.use_cassette('conversation/update', record: :once) do
+        expect(described_class.get(id).tags).not_to eq tags
+        expect(described_class.get(id).update(params)).to eq true
+        expect(described_class.get(id).tags).to eq tags
+      end
+    end
+  end
 end

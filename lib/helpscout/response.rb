@@ -10,10 +10,7 @@ module Helpscout
     end
 
     def body
-      @body ||= begin
-        JSON.parse(response.body).
-          deep_transform_keys { |key| key.to_s.underscore.to_sym }
-      end
+      @body ||= response.body.deep_transform_keys { |key| key.to_s.underscore.to_sym }
     end
 
     def item

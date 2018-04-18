@@ -6,7 +6,7 @@ RSpec.describe Helpscout::Response do
   describe '#body' do
     subject { described_class.new(response) }
     let(:response) { double('MockFaradayResponse') }
-    let(:body) { file_fixture('response/body.json') }
+    let(:body) { JSON.parse(file_fixture('response/body.json')) }
     let(:deserialized_body) do
       {
         items: [{ created_at: '2018-04-17' }]
