@@ -11,5 +11,10 @@ HelpScout.configure do |config|
   config.default_mailbox = ENV.fetch('HELP_SCOUT_DEFAULT_MAILBOX')
 end
 
-require 'irb'
-IRB.start(__FILE__)
+begin
+  require 'pry'
+  Pry.start
+rescue LoadError
+  require 'irb'
+  IRB.start(__FILE__)
+end
