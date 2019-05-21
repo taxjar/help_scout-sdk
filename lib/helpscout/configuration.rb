@@ -2,6 +2,6 @@
 
 module Helpscout
   class Configuration
-    attr_accessor :api_key, :default_mailbox
+    attr_accessor :access_token, :app_id, :app_secret, :api_key, :default_mailbox
   end
 end

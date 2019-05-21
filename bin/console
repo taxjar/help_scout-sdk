@@ -7,8 +7,10 @@ require 'awesome_print'
 require 'helpscout'
 
 Helpscout.configure do |config|
-  config.api_key = ENV.fetch('HELPSCOUT_API_KEY')
+  config.app_id = ENV.fetch('HELPSCOUT_APP_ID')
+  config.app_secret = ENV.fetch('HELPSCOUT_APP_SECRET')
   config.default_mailbox = ENV.fetch('HELPSCOUT_DEFAULT_MAILBOX')
+  config.access_token = Helpscout::AccessToken.create
 end
 
 begin

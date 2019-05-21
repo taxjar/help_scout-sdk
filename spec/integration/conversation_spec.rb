@@ -16,23 +16,25 @@ RSpec.describe Helpscout::Conversation do
     subject { described_class.create(params) }
     let(:params) do
       {
-        customer: Helpscout::Person.new(email: customer_email),
+        type: "email",
+        customer: { email: customer_email },
         subject: 'Hello World!',
-        mailbox: Helpscout::MailboxRef.new(id: Helpscout.default_mailbox),
+        mailbox_id: Helpscout.default_mailbox,
+        status: "active",
         threads: [thread]
       }
     end
     let(:thread) do
-      Helpscout::Thread.new(
-        type: 'message',
-        created_by: Helpscout::Person.new(type: 'user', id: user_id),
-        body: "Hello World, this is #{user_email}."
-      )
+      {
+        type: "chat",
+        customer: { email: customer_email },
+        text: "A test thread."
+      }
     end
 
     it "returns an empty #{described_class} with id" do
       VCR.use_cassette('conversation/create', record: :once) do
-        expect(subject).to eq 'https://api.helpscout.net/v1/conversations/558068488.json'
+        expect(subject).to eq "https://api.helpscout.net/v2/conversations/859894041"
       end
     end
   end
@@ -41,11 +43,20 @@ RSpec.describe Helpscout::Conversation do
     let(:params) { { tags: tags } }
     let(:tags) { ['integration_spec'] }
 
-    it 'updates the conversations tags' do
-      VCR.use_cassette('conversation/update', record: :once) do
-        expect(described_class.get(id).tags).not_to eq tags
-        expect(described_class.get(id).update(params)).to eq true
-        expect(described_class.get(id).tags).to eq tags
+    it "updates the conversation's subject" do
+      VCR.use_cassette("conversation/update", record: :once) do
+        conversation = described_class.get(id)
+        original_subject = conversation.subject
+        update_params = {
+          op: "replace",
+          path: "/subject",
+          value: original_subject.reverse
+        }
+
+        expect(conversation.update(*update_params.values)).to be true
+        new_subject = described_class.get(id).subject
+
+        expect(new_subject).to eq(update_params[:value])
       end
     end
   end
