@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
 module HelpScout
-  class Mailbox < HelpScout::Base
-    ROUTE = 'v2/mailboxes'
+  class User < HelpScout::Base
+    BASE_URL = "v2/users"
 
     extend Getable
 
     class << self
-      # TODO: Make sure folders is init'd correctly when lazy loaded
       def list(page: nil)
-        HelpScout.api.get(list_path, page: page).embedded[:mailboxes].map { |item| new item }
+        resp = HelpScout.api.get(list_path, page: page)
+
+        resp.embedded[:users].map { |user| new(user) }
       end
 
       private
 
       def get_path(id)
-        "#{ROUTE}/#{id}"
+        "#{BASE_URL}/#{id}"
       end
 
       def list_path
-        "#{ROUTE}"
+        BASE_URL
       end
 
       def parse_item(response)
@@ -29,16 +30,21 @@ module HelpScout
 
     BASIC_ATTRIBUTES = %i[
       id
-      name
-      slug
+      first_name
+      last_name
       email
       created_at
       updated_at
+      role
+      timezone
+      type
+      photoUrl
     ]
+
     attr_reader *BASIC_ATTRIBUTES
     attr_reader :hrefs
 
-    def initialize(params)
+    def initialize(params = {})
       BASIC_ATTRIBUTES.each do |attribute|
         next unless params[attribute]
 
@@ -46,24 +52,6 @@ module HelpScout
       end
 
       @hrefs = HelpScout::Util.map_links(params[:_links])
-    end
-
-    # TODO: def conversations
-    # end
-
-    def fields
-      @fields ||= HelpScout.api.get(fields_path).embedded[:fields]
-    end
-    alias custom_fields fields
-
-    def folders
-      @folders ||= HelpScout::Folder.list(mailbox_id: id)
-    end
-
-    private
-
-    def fields_path
-      hrefs[:fields]
     end
   end
 end

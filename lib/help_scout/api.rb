@@ -12,7 +12,7 @@ module HelpScout
     class InternalError < StandardError; end
     class ThrottleLimitReached < StandardError; end
 
-    BASE_URL = 'https://api.helpscout.net/v1/'
+    BASE_URL = 'https://api.helpscout.net/'
 
     class << self
       def from_json(data)
@@ -62,12 +62,22 @@ module HelpScout
       handle_response(http_action(:get, path, params))
     end
 
+    def patch(path, params)
+      handle_response(http_action(:patch, path, params))
+    end
+
     def post(path, params)
       handle_response(http_action(:post, path, params))
     end
 
     def put(path, params)
       handle_response(http_action(:put, path, params))
+    end
+
+    def reset_connection!
+      @client = nil
+      client
+      true
     end
 
     private
@@ -80,7 +90,7 @@ module HelpScout
     def client
       @client ||= Faraday.new(url: BASE_URL) do |conn|
         conn.request :json
-        conn.basic_auth(HelpScout.api_key, 'X')
+        conn.authorization(:Bearer, HelpScout.access_token.token) if HelpScout.access_token
         conn.response(:json, content_type: /\bjson$/)
         conn.adapter(Faraday.default_adapter)
       end

@@ -1,0 +1,113 @@
+{
+  "_embedded" : {
+    "customers" : [ {
+      "id" : 1,
+      "firstName" : "Vernon",
+      "lastName" : "Bear",
+      "gender" : "Male",
+      "jobTitle" : "CEO and Co-Founder",
+      "location" : "Greater Dallas/FT Worth Area",
+      "organization" : "Acme, Inc",
+      "photoType" : "twitter",
+      "photoUrl" : "http://twitter.com/img/some-avatar.jpg",
+      "age" : "30-35",
+      "createdAt" : "2012-07-23T12:34:12Z",
+      "updatedAt" : "2012-07-24T20:18:33Z",
+      "background" : "I've worked with Vernon before and he's really great.",
+      "_embedded" : {
+        "emails" : [ ],
+        "websites" : [ ],
+        "chats" : [ ],
+        "phones" : [ ],
+        "social_profiles" : [ ]
+      },
+      "_links" : {
+        "address" : {
+          "href" : "..."
+        },
+        "chats" : {
+          "href" : "..."
+        },
+        "emails" : {
+          "href" : "..."
+        },
+        "phones" : {
+          "href" : "..."
+        },
+        "self" : {
+          "href" : "..."
+        },
+        "social-profiles" : {
+          "href" : "..."
+        },
+        "websites" : {
+          "href" : "..."
+        }
+      }
+    }, {
+      "id" : 2,
+      "firstName" : "Vernon",
+      "lastName" : "Bear",
+      "gender" : "Male",
+      "jobTitle" : "CEO and Co-Founder",
+      "location" : "Greater Dallas/FT Worth Area",
+      "organization" : "Acme, Inc",
+      "photoType" : "twitter",
+      "photoUrl" : "http://twitter.com/img/some-avatar.jpg",
+      "age" : "30-35",
+      "createdAt" : "2012-07-23T12:34:12Z",
+      "updatedAt" : "2012-07-24T20:18:33Z",
+      "background" : "I've worked with Vernon before and he's really great.",
+      "_embedded" : {
+        "emails" : [ ],
+        "websites" : [ ],
+        "chats" : [ ],
+        "phones" : [ ],
+        "social_profiles" : [ ]
+      },
+      "_links" : {
+        "address" : {
+          "href" : "..."
+        },
+        "chats" : {
+          "href" : "..."
+        },
+        "emails" : {
+          "href" : "..."
+        },
+        "phones" : {
+          "href" : "..."
+        },
+        "self" : {
+          "href" : "..."
+        },
+        "social-profiles" : {
+          "href" : "..."
+        },
+        "websites" : {
+          "href" : "..."
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "first" : {
+      "href" : "..."
+    },
+    "last" : {
+      "href" : "..."
+    },
+    "page" : {
+      "href" : "..."
+    },
+    "self" : {
+      "href" : "..."
+    }
+  },
+  "page" : {
+    "size" : 50,
+    "totalElements" : 0,
+    "totalPages" : 0,
+    "number" : 0
+  }
+}

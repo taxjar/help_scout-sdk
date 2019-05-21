@@ -11,7 +11,7 @@ RSpec.shared_examples 'getable unit' do |url|
     subject { described_class.get(id) }
     let(:body) { file_fixture("#{model_name}/get.json") }
     let(:headers) { { 'Content-Type' => 'application/json' } }
-    let(:id) { '1234' }
+    let(:id) { '1' }
 
     before { stub_request(:get, url).to_return(body: body, headers: headers) }
 

@@ -13,6 +13,10 @@ module HelpScout
       @body ||= response.body.deep_transform_keys { |key| key.to_s.underscore.to_sym }
     end
 
+    def embedded
+      body[:_embedded]
+    end
+
     def item
       body[:item]
     end

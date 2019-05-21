@@ -4,16 +4,16 @@ require 'shared_examples/unit/listable'
 require 'shared_examples/unit/getable'
 
 RSpec.describe HelpScout::Mailbox do
-  include_examples 'getable unit', 'https://api.helpscout.net/v1/mailboxes/1234.json'
-  include_examples 'listable unit', 'https://api.helpscout.net/v1/mailboxes.json'
+  include_examples 'getable unit', 'https://api.helpscout.net/v2/mailboxes/1'
+  include_examples 'listable unit', 'https://api.helpscout.net/v2/mailboxes'
 
   describe '#folders' do
     subject { described_class.new(mailbox).folders }
     let(:body) { file_fixture('mailbox/folders.json') }
-    let(:mailbox) { HelpScout::API.from_json(file_fixture('mailbox/get.json'))[:item] }
+    let(:mailbox) { HelpScout::API.from_json(file_fixture('mailbox/get.json')) }
 
     before do
-      stub_request(:get, 'https://api.helpscout.net/v1/mailboxes/1234/folders.json').
+      stub_request(:get, 'https://api.helpscout.net/v2/mailboxes/1/folders/').
         to_return(body: body, headers: { 'Content-Type' => 'application/json' })
     end
 

@@ -1,133 +1,88 @@
 {
-  "item": {
-    "id": 291938,
-    "type": "email",
-    "folderId": "1234",
-    "isDraft": "false",
-    "number": 349,
-    "owner": {
-      "id": 1234,
-      "firstName": "Jack",
-      "lastName": "Sprout",
-      "email": "jack.sprout@gmail.com",
-      "phone": null,
-      "type": "user"
+  "id" : 123,
+  "number" : 12,
+  "threads" : 2,
+  "type" : "email",
+  "folderId" : 11,
+  "status" : "closed",
+  "state" : "published",
+  "subject" : "Help",
+  "preview" : "Preview",
+  "mailboxId" : 13,
+  "assignee" : {
+    "id" : 256,
+    "type" : "customer",
+    "first" : "Mr",
+    "last" : "Robot",
+    "email" : "none@nowhere.com"
+  },
+  "createdBy" : {
+    "id" : 12,
+    "type" : "customer",
+    "email" : "bear@acme.com"
+  },
+  "createdAt" : "2012-03-15T22:46:22Z",
+  "closedBy" : 14,
+  "closedAt" : "2012-03-16T14:07:23Z",
+  "userUpdatedAt" : "2012-03-16T14:07:23Z",
+  "customerWaitingSince" : {
+    "time" : "2012-07-24T20:18:33Z",
+    "friendly" : "20 hours ago",
+    "latestReplyFrom" : "customer"
+  },
+  "source" : {
+    "type" : "email",
+    "via" : "customer"
+  },
+  "tags" : [ {
+    "id" : 9150,
+    "color" : "#929499",
+    "tag" : "vip"
+  } ],
+  "cc" : [ "bear@normal.com" ],
+  "bcc" : [ "bear@secret.com" ],
+  "primaryCustomer" : {
+    "id" : 238604,
+    "type" : "customer",
+    "first" : "Rob",
+    "last" : "Robertovic",
+    "email" : "rob@acme.com"
+  },
+  "customFields" : [ {
+    "id" : 8,
+    "name" : "Account Type",
+    "value" : "8518",
+    "text" : "Free"
+  }, {
+    "id" : 6688,
+    "name" : "Account Status",
+    "value" : "33077",
+    "text" : "Trial"
+  } ],
+  "_links" : {
+    "assignee" : {
+      "href" : "..."
     },
-    "mailbox": {
-      "id": 1234,
-      "name": "My Mailbox"
+    "closedBy" : {
+      "href" : "..."
     },
-    "customer": {
-      "id": 29418,
-      "firstName": "Vernon",
-      "lastName": "Bear",
-      "email": "vbear@mywork.com",
-      "phone": "800-555-1212",
-      "type": "customer"
+    "createdByCustomer" : {
+      "href" : "..."
     },
-    "threadCount": 4,
-    "status": "active",
-    "subject": "I need help!",
-    "preview": "Hello, I tried to download the file off your site...",
-    "createdBy": {
-      "id": 29418,
-      "firstName": "Vernon",
-      "lastName": "Bear",
-      "email": "vbear@mywork.com",
-      "phone": null,
-      "type": "customer"
+    "mailbox" : {
+      "href" : "..."
     },
-    "createdAt": "2012-07-23T12:34:12Z",
-    "modifiedAt": null,
-    "userModifiedAt": "2012-07-24T20:18:33Z",
-    "closedAt": null,
-    "closedBy": null,
-    "source": {
-      "type": "email",
-      "via": "customer"
+    "primaryCustomer" : {
+      "href" : "..."
     },
-    "cc": [
-      "cc1@somewhere.com",
-      "cc2@somewhere.com"
-    ],
-    "bcc": [
-      "bcc1@somewhere.com",
-      "bcc2@somewhere.com"
-    ],
-    "tags": [
-      "tag1",
-      "tag2"
-    ],
-    "threads": [{
-      "id": 881881,
-      "assignedTo": {
-        "id": 1234,
-        "firstName": "Jack",
-        "lastName": "Sprout",
-        "email": "jack.sprout@gmail.com",
-        "phone": null,
-        "type": "user"
-      },
-      "status": "active",
-      "createdAt": "2012-07-23T12:34:12Z",
-      "openedAt": "2012-07-23T3:21:43Z",
-      "createdBy": {
-        "id": 1234,
-        "firstName": "Jack",
-        "lastName": "Sprout",
-        "email": "jack.sprout@gmail.com",
-        "phone": null,
-        "type": "user"
-      },
-      "source": {
-        "type": "web",
-        "via": "user"
-      },
-      "actionType": null,
-      "actionSourceId": null,
-      "type": "message",
-      "state": "published",
-      "customer": {
-        "id": 29418,
-        "firstName": "Vernon",
-        "lastName": "Bear",
-        "email": "vbear@mywork.com",
-        "phone": "800-555-1212",
-        "type": "customer"
-      },
-      "fromMailbox": null,
-      "body": "This is what I have to say. Thank you.",
-      "to": [
-        "customer@somewhere.com"
-      ],
-      "cc": [
-        "cc1@somewhere.com",
-        "cc2@somewhere.com"
-      ],
-      "bcc": [
-        "bcc1@somewhere.com",
-        "bcc2@somewhere.com"
-      ],
-      "attachments": [{
-        "id": 12391,
-        "mimeType": "image/jpeg",
-        "filename": "logo.jpg",
-        "size": 22,
-        "width": 160,
-        "height": 160,
-        "url": "https://secure.helpscout.net/some-url/logo.jpg"
-      }],
-      "savedReplyId": null,
-      "createdByCustomer": null
-    }],
-    "bcc": [
-      "bcc1@somewhere.com",
-      "bcc2@somewhere.com"
-    ],
-    "tags": [
-      "tag1",
-      "tag2",
-      "tag3"
-    ]
+    "self" : {
+      "href" : "..."
+    },
+    "threads" : {
+      "href" : "..."
+    },
+    "web" : {
+      "href" : "..."
+    }
   }
 }

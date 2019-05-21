@@ -1,0 +1,57 @@
+{
+  "_embedded" : {
+    "users" : [ {
+      "id" : 1,
+      "firstName" : "Vernon",
+      "lastName" : "Bear",
+      "email" : "bear@acme.com",
+      "role" : "owner",
+      "timezone" : "America/New_York",
+      "photoUrl" : "http://somesite.com/images/avatar.jpg",
+      "createdAt" : "2011-04-01T03:18:33Z",
+      "updatedAt" : "2012-07-24T20:18:33Z",
+      "type" : "user",
+      "_links" : {
+        "self" : {
+          "href" : "https://api.helpscout.net/v2/users/1"
+        }
+      }
+    }, {
+      "id" : 2,
+      "firstName" : "Tom",
+      "lastName" : "Smith",
+      "email" : "tom@acme.com",
+      "role" : "owner",
+      "timezone" : "America/New_York",
+      "photoUrl" : "http://somesite.com/images/avatar.jpg",
+      "createdAt" : "2011-04-01T03:18:33Z",
+      "updatedAt" : "2012-07-24T20:18:33Z",
+      "type" : "user",
+      "_links" : {
+        "self" : {
+          "href" : "https://api.helpscout.net/v2/users/2"
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "first" : {
+      "href" : "https://api.helpscout.net/v2/users?page=1"
+    },
+    "last" : {
+      "href" : "https://api.helpscout.net/v2/users?page=1"
+    },
+    "page" : {
+      "href" : "https://api.helpscout.net/v2/users{?page}"
+    },
+    "self" : {
+      "href" : "https://api.helpscout.net/v2/users?page=1"
+    }
+  },
+  "page" : {
+    "size" : 50,
+    "totalElements" : 1,
+    "totalPages" : 1,
+    "number" : 1
+  }
+}

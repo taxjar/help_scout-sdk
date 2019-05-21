@@ -8,11 +8,19 @@
       "totalCount" : 2,
       "activeCount" : 1,
       "updatedAt" : "2012-07-24T20:18:33Z"
+    }, {
+      "id" : 5678,
+      "name" : "Unassigned",
+      "type" : "open",
+      "userId" : 8976,
+      "totalCount" : 3,
+      "activeCount" : 2,
+      "updatedAt" : "2012-07-24T20:18:33Z"
     } ]
   },
   "_links" : {
     "self" : {
-      "href" : "https://api.helpscout.net/v2/mailboxes/1"
+      "href" : "..."
     }
   },
   "page" : {
