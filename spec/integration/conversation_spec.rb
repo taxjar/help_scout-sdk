@@ -32,29 +32,25 @@ RSpec.describe HelpScout::Conversation do
       }
     end
 
-    it "returns an empty #{described_class} with id" do
-      VCR.use_cassette('conversation/create', record: :once) do
-        expect(subject).to eq 'https://api.helpscout.net/v2/conversations/859894041'
-      end
+    it 'returns the location of the conversation' do
+      expect(subject).to match(%r{\Ahttps://api.helpscout.net/v2/conversations/\d+\Z})
     end
   end
 
   describe '#update' do
     it "updates the conversation's subject" do
-      VCR.use_cassette('conversation/update', record: :once) do
-        conversation = described_class.get(id)
-        original_subject = conversation.subject
-        update_params = {
-          op: 'replace',
-          path: '/subject',
-          value: original_subject.reverse
-        }
+      conversation = described_class.get(id)
+      original_subject = conversation.subject
+      update_params = {
+        op: 'replace',
+        path: '/subject',
+        value: original_subject.reverse
+      }
 
-        expect(conversation.update(*update_params.values)).to be true
-        new_subject = described_class.get(id).subject
+      expect(conversation.update(*update_params.values)).to be true
+      new_subject = described_class.get(id).subject
 
-        expect(new_subject).to eq(update_params[:value])
-      end
+      expect(new_subject).to eq(update_params[:value])
     end
   end
 
@@ -64,11 +60,7 @@ RSpec.describe HelpScout::Conversation do
     subject { conversation.update_tags(tags) }
 
     context 'with an array of tags' do
-      let!(:initial_tags) do
-        VCR.use_cassette('conversation/update_tags/with_tags_initial', record: :once) do
-          tag_array(conversation.tags)
-        end
-      end
+      let!(:initial_tags) { tag_array(conversation.tags) }
       let(:tags) do
         # We reverse any current tags to handle the case where the conversation
         # already has the hard-coded tags applied. We keep the hardcoded tags
@@ -77,30 +69,28 @@ RSpec.describe HelpScout::Conversation do
       end
 
       it "replaces the conversation's tags" do
-        VCR.use_cassette('conversation/update_tags/with_tags', record: :once) do
-          expect(tags).not_to match_array(initial_tags)
+        expect(tags).not_to match_array(initial_tags)
 
-          subject
-          new_tags = tag_array(described_class.get(conversation.id).tags)
+        subject
+        new_tags = tag_array(described_class.get(conversation.id).tags)
 
-          expect(new_tags).to match_array(tags)
-        end
+        expect(new_tags).to match_array(tags)
       end
     end
 
     context 'with an empty array' do
       let(:tags) { [] }
 
+      before { conversation.update_tags(%w[initial_tag]) }
+
       it "clears the conversation's tags" do
-        VCR.use_cassette('conversation/update_tags/with_empty', record: :once) do
-          initial_tags = tag_array(conversation.tags)
-          expect(initial_tags).not_to be_empty
+        initial_tags = tag_array(conversation.tags)
+        expect(initial_tags).not_to be_empty
 
-          subject
-          new_tags = tag_array(described_class.get(conversation.id).tags)
+        subject
+        new_tags = tag_array(described_class.get(conversation.id).tags)
 
-          expect(new_tags).to be_empty
-        end
+        expect(new_tags).to be_empty
       end
     end
 
@@ -108,12 +98,10 @@ RSpec.describe HelpScout::Conversation do
       let(:tags) { nil }
 
       it "clears the conversation's tags" do
-        VCR.use_cassette('conversation/update_tags/with_nil', record: :once) do
-          subject
-          new_tags = tag_array(described_class.get(conversation.id).tags)
+        subject
+        new_tags = tag_array(described_class.get(conversation.id).tags)
 
-          expect(new_tags).to be_empty
-        end
+        expect(new_tags).to be_empty
       end
     end
 
