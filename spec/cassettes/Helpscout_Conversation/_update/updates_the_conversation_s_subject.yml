@@ -27,9 +27,9 @@ http_interactions:
       Content-Type:
       - application/hal+json;charset=UTF-8
       Correlation-Id:
-      - caa9e666-fae6-40c6-bebd-bcac6578b13a#55211258
+      - ec159308-58f3-42b7-827a-2788227a7d8c#19038494
       Date:
-      - Thu, 23 May 2019 18:37:55 GMT
+      - Thu, 23 May 2019 19:07:55 GMT
       Expires:
       - '0'
       Pragma:
@@ -42,26 +42,26 @@ http_interactions:
       X-Ratelimit-Limit-Minute:
       - '400'
       X-Ratelimit-Remaining-Minute:
-      - '398'
+      - '378'
       X-Xss-Protection:
       - 1; mode=block
-      Content-Length:
-      - '1283'
+      Transfer-Encoding:
+      - chunked
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"id":<TEST_CONVERSATION_ID>,"number":14,"threads":1,"type":"email","folderId":2963289,"status":"active","state":"published","subject":"Hello
-        World!","preview":"A test thread.","mailboxId":<TEST_MAILBOX_ID>,"createdBy":{"id":<TEST_CUSTOMER_ID>,"type":"customer","first":"Vernon","last":"Bear","photoUrl":"https://api.helpscout.net/img/some-avatar.jpg","email":"<TEST_CUSTOMER_EMAIL>"},"createdAt":"2019-05-23T18:32:28Z","closedBy":0,"userUpdatedAt":"2019-05-23T18:32:28Z","customerWaitingSince":{"time":"2019-05-23T18:32:28Z","friendly":"5
-        min ago"},"source":{"type":"api","via":"customer"},"tags":[],"cc":[],"bcc":[],"primaryCustomer":{"id":<TEST_CUSTOMER_ID>,"type":"customer","first":"Vernon","last":"Bear","photoUrl":"https://api.helpscout.net/img/some-avatar.jpg","email":"<TEST_CUSTOMER_EMAIL>"},"customFields":[],"_links":{"closedBy":{"href":"https://api.helpscout.net/v2/users/0"},"createdByCustomer":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>"},"mailbox":{"href":"https://api.helpscout.net/v2/mailboxes/<TEST_MAILBOX_ID>"},"primaryCustomer":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>"},"self":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>"},"threads":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads/"},"web":{"href":"https://secure.helpscout.net/conversation/<TEST_CONVERSATION_ID>/14"}}}'
+      string: '{"id":<TEST_CONVERSATION_ID>,"number":14,"threads":1,"type":"email","folderId":2963289,"status":"active","state":"published","subject":"!dlroW
+        olleH","preview":"A test thread.","mailboxId":<TEST_MAILBOX_ID>,"createdBy":{"id":<TEST_CUSTOMER_ID>,"type":"customer","first":"Vernon","last":"Bear","photoUrl":"https://api.helpscout.net/img/some-avatar.jpg","email":"<TEST_CUSTOMER_EMAIL>"},"createdAt":"2019-05-23T18:32:28Z","closedBy":0,"userUpdatedAt":"2019-05-23T18:37:56Z","customerWaitingSince":{"time":"2019-05-23T18:32:28Z","friendly":"35
+        min ago"},"source":{"type":"api","via":"customer"},"tags":[{"id":4742936,"color":"#A5B2BD","tag":"pro"},{"id":4742937,"color":"#A5B2BD","tag":"vip"}],"cc":[],"bcc":[],"primaryCustomer":{"id":<TEST_CUSTOMER_ID>,"type":"customer","first":"Vernon","last":"Bear","photoUrl":"https://api.helpscout.net/img/some-avatar.jpg","email":"<TEST_CUSTOMER_EMAIL>"},"customFields":[],"_links":{"closedBy":{"href":"https://api.helpscout.net/v2/users/0"},"createdByCustomer":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>"},"mailbox":{"href":"https://api.helpscout.net/v2/mailboxes/<TEST_MAILBOX_ID>"},"primaryCustomer":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>"},"self":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>"},"threads":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads/"},"web":{"href":"https://secure.helpscout.net/conversation/<TEST_CONVERSATION_ID>/14"}}}'
     http_version: 
-  recorded_at: Thu, 23 May 2019 18:37:55 GMT
+  recorded_at: Thu, 23 May 2019 19:07:55 GMT
 - request:
     method: patch
     uri: https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>
     body:
       encoding: UTF-8
-      string: '{"op":"replace","path":"/subject","value":"!dlroW olleH"}'
+      string: '{"op":"replace","path":"/subject","value":"Hello World!"}'
     headers:
       Authorization:
       - Bearer <HELPSCOUT_ACCESS_TOKEN>
@@ -85,9 +85,9 @@ http_interactions:
       Content-Type:
       - text/plain; charset=UTF-8
       Correlation-Id:
-      - d48eb0d4-12dd-4181-9b4b-75d29145fd98#39027698
+      - caa9e666-fae6-40c6-bebd-bcac6578b13a#55245991
       Date:
-      - Thu, 23 May 2019 18:37:55 GMT
+      - Thu, 23 May 2019 19:07:55 GMT
       Expires:
       - '0'
       Pragma:
@@ -99,7 +99,7 @@ http_interactions:
       X-Ratelimit-Limit-Minute:
       - '400'
       X-Ratelimit-Remaining-Minute:
-      - '397'
+      - '377'
       X-Xss-Protection:
       - 1; mode=block
       Connection:
@@ -108,7 +108,7 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Thu, 23 May 2019 18:37:55 GMT
+  recorded_at: Thu, 23 May 2019 19:07:55 GMT
 - request:
     method: get
     uri: https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>
@@ -136,9 +136,9 @@ http_interactions:
       Content-Type:
       - application/hal+json;charset=UTF-8
       Correlation-Id:
-      - ec159308-58f3-42b7-827a-2788227a7d8c#19006660
+      - a6ee3949-ec16-4b39-92bc-3600adc3f671#344139528
       Date:
-      - Thu, 23 May 2019 18:37:55 GMT
+      - Thu, 23 May 2019 19:07:56 GMT
       Expires:
       - '0'
       Pragma:
@@ -151,18 +151,18 @@ http_interactions:
       X-Ratelimit-Limit-Minute:
       - '400'
       X-Ratelimit-Remaining-Minute:
-      - '396'
+      - '376'
       X-Xss-Protection:
       - 1; mode=block
-      Content-Length:
-      - '1283'
+      Transfer-Encoding:
+      - chunked
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"id":<TEST_CONVERSATION_ID>,"number":14,"threads":1,"type":"email","folderId":2963289,"status":"active","state":"published","subject":"!dlroW
-        olleH","preview":"A test thread.","mailboxId":<TEST_MAILBOX_ID>,"createdBy":{"id":<TEST_CUSTOMER_ID>,"type":"customer","first":"Vernon","last":"Bear","photoUrl":"https://api.helpscout.net/img/some-avatar.jpg","email":"<TEST_CUSTOMER_EMAIL>"},"createdAt":"2019-05-23T18:32:28Z","closedBy":0,"userUpdatedAt":"2019-05-23T18:37:56Z","customerWaitingSince":{"time":"2019-05-23T18:32:28Z","friendly":"5
-        min ago"},"source":{"type":"api","via":"customer"},"tags":[],"cc":[],"bcc":[],"primaryCustomer":{"id":<TEST_CUSTOMER_ID>,"type":"customer","first":"Vernon","last":"Bear","photoUrl":"https://api.helpscout.net/img/some-avatar.jpg","email":"<TEST_CUSTOMER_EMAIL>"},"customFields":[],"_links":{"closedBy":{"href":"https://api.helpscout.net/v2/users/0"},"createdByCustomer":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>"},"mailbox":{"href":"https://api.helpscout.net/v2/mailboxes/<TEST_MAILBOX_ID>"},"primaryCustomer":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>"},"self":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>"},"threads":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads/"},"web":{"href":"https://secure.helpscout.net/conversation/<TEST_CONVERSATION_ID>/14"}}}'
+      string: '{"id":<TEST_CONVERSATION_ID>,"number":14,"threads":1,"type":"email","folderId":2963289,"status":"active","state":"published","subject":"Hello
+        World!","preview":"A test thread.","mailboxId":<TEST_MAILBOX_ID>,"createdBy":{"id":<TEST_CUSTOMER_ID>,"type":"customer","first":"Vernon","last":"Bear","photoUrl":"https://api.helpscout.net/img/some-avatar.jpg","email":"<TEST_CUSTOMER_EMAIL>"},"createdAt":"2019-05-23T18:32:28Z","closedBy":0,"userUpdatedAt":"2019-05-23T19:07:56Z","customerWaitingSince":{"time":"2019-05-23T18:32:28Z","friendly":"35
+        min ago"},"source":{"type":"api","via":"customer"},"tags":[{"id":4742937,"color":"#A5B2BD","tag":"vip"},{"id":4742936,"color":"#A5B2BD","tag":"pro"}],"cc":[],"bcc":[],"primaryCustomer":{"id":<TEST_CUSTOMER_ID>,"type":"customer","first":"Vernon","last":"Bear","photoUrl":"https://api.helpscout.net/img/some-avatar.jpg","email":"<TEST_CUSTOMER_EMAIL>"},"customFields":[],"_links":{"closedBy":{"href":"https://api.helpscout.net/v2/users/0"},"createdByCustomer":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>"},"mailbox":{"href":"https://api.helpscout.net/v2/mailboxes/<TEST_MAILBOX_ID>"},"primaryCustomer":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>"},"self":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>"},"threads":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads/"},"web":{"href":"https://secure.helpscout.net/conversation/<TEST_CONVERSATION_ID>/14"}}}'
     http_version: 
-  recorded_at: Thu, 23 May 2019 18:37:55 GMT
+  recorded_at: Thu, 23 May 2019 19:07:56 GMT
 recorded_with: VCR 4.0.0

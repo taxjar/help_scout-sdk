@@ -7,7 +7,7 @@ RSpec.describe Helpscout::AccessToken do
   let(:access_token) { described_class.create }
 
   before do
-    stub_request(:post, 'https://api.helpscout.net/v2/oauth2/token.json').
+    stub_request(:post, 'https://api.helpscout.net/v2/oauth2/token').
       to_return(body: body, headers: { 'Content-Type' => 'application/json' })
   end
 
