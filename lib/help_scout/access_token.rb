@@ -1,11 +1,11 @@
 module HelpScout
   class AccessToken
-    ROUTE = 'v2/oauth2/token'
+    BASE_PATH = 'oauth2/token'
 
     class << self
       def create # rubocop:disable Metrics/MethodLength
         response = HelpScout.api.post(
-          create_route,
+          create_path,
           grant_type: 'client_credentials',
           client_id: HelpScout.app_id,
           client_secret: HelpScout.app_secret
@@ -22,8 +22,8 @@ module HelpScout
 
       private
 
-      def create_route
-        "#{ROUTE}.json"
+      def create_path
+        BASE_PATH
       end
     end
 
