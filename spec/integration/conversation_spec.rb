@@ -63,9 +63,9 @@ RSpec.describe HelpScout::Conversation do
 
     subject { conversation.update_tags(tags) }
 
-    context "with an array of tags" do
+    context 'with an array of tags' do
       let!(:initial_tags) do
-        VCR.use_cassette("conversation/update_tags/with_tags_initial", record: :once) do
+        VCR.use_cassette('conversation/update_tags/with_tags_initial', record: :once) do
           tag_array(conversation.tags)
         end
       end
@@ -77,7 +77,7 @@ RSpec.describe HelpScout::Conversation do
       end
 
       it "replaces the conversation's tags" do
-        VCR.use_cassette("conversation/update_tags/with_tags", record: :once) do
+        VCR.use_cassette('conversation/update_tags/with_tags', record: :once) do
           expect(tags).not_to match_array(initial_tags)
 
           subject
@@ -88,11 +88,11 @@ RSpec.describe HelpScout::Conversation do
       end
     end
 
-    context "with an empty array" do
+    context 'with an empty array' do
       let(:tags) { [] }
 
       it "clears the conversation's tags" do
-        VCR.use_cassette("conversation/update_tags/with_empty", record: :once) do
+        VCR.use_cassette('conversation/update_tags/with_empty', record: :once) do
           initial_tags = tag_array(conversation.tags)
           expect(initial_tags).not_to be_empty
 
@@ -104,11 +104,11 @@ RSpec.describe HelpScout::Conversation do
       end
     end
 
-    context "with no arguments" do
+    context 'with no arguments' do
       let(:tags) { nil }
 
       it "clears the conversation's tags" do
-        VCR.use_cassette("conversation/update_tags/with_nil", record: :once) do
+        VCR.use_cassette('conversation/update_tags/with_nil', record: :once) do
           subject
           new_tags = tag_array(described_class.get(conversation.id).tags)
 

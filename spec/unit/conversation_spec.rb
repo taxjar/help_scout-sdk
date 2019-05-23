@@ -54,18 +54,18 @@ RSpec.describe HelpScout::Conversation do
     subject { conversation.update(*update_params.values) }
 
     before do
-      stub_request(:patch, "https://api.helpscout.net/v2/conversations/#{id}")
-        .with(body: update_params.to_json)
-        .to_return(status: 204)
+      stub_request(:patch, "https://api.helpscout.net/v2/conversations/#{id}").
+        with(body: update_params.to_json).
+        to_return(status: 204)
     end
 
-    it "returns true" do
+    it 'returns true' do
       expect(subject).to be true
     end
   end
 
   describe '#update_tags' do
-    let(:id) { "123" }
+    let(:id) { '123' }
     let(:params) do
       {
         id: id,
@@ -77,10 +77,12 @@ RSpec.describe HelpScout::Conversation do
     let(:tags) { %w[vip pro] }
 
     before do
-      stub_request(:put, "https://api.helpscout.net/v2/conversations/#{id}/tags")
-        .with(body: { tags: tags }.to_json)
-        .to_return(status: 204)
+      stub_request(:put, "https://api.helpscout.net/v2/conversations/#{id}/tags").
+        with(body: { tags: tags }.to_json).
+        to_return(status: 204)
     end
+
+    subject { conversation.update_tags(tags) }
 
     it 'returns true' do
       expect(subject).to be true

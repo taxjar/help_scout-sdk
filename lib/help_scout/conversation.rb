@@ -101,5 +101,12 @@ module HelpScout
       HelpScout.api.patch(update_path, op: operation, path: path, value: value)
       true
     end
+
+    def update_tags(new_tags = nil)
+      new_tags ||= []
+      tags_path = URI.parse(hrefs[:self]).path + '/tags'
+      HelpScout.api.put(tags_path, tags: new_tags)
+      true
+    end
   end
 end
