@@ -6,7 +6,7 @@ require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
 
 Bundler::Audit::Task.new
-RSpec::Core::RakeTask.new(:spec) { |t| t.exclude_pattern = '**/integration/*_spec.rb' }
+RSpec::Core::RakeTask.new(:spec)
 RuboCop::RakeTask.new
 
 desc 'Run CI'
