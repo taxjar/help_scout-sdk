@@ -2,7 +2,7 @@
 
 module Helpscout
   class Folder < Helpscout::Base
-    ROUTE = 'v2/mailboxes/%<MAILBOX_ID>/folders/'
+    BASE_PATH = 'mailboxes/%<MAILBOX_ID>/folders/'
 
     class << self
       def list(mailbox_id: Helpscout.default_mailbox, page: nil)
@@ -14,7 +14,7 @@ module Helpscout
       private
 
       def list_path(mailbox_id)
-        ROUTE.sub(/\%<MAILBOX_ID>/, mailbox_id.to_s)
+        BASE_PATH.sub(/\%<MAILBOX_ID>/, mailbox_id.to_s)
       end
     end
 

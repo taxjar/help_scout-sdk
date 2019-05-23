@@ -2,7 +2,7 @@
 
 module Helpscout
   class Mailbox < Helpscout::Base
-    ROUTE = 'v2/mailboxes'
+    BASE_PATH = 'mailboxes'
 
     extend Getable
 
@@ -15,11 +15,11 @@ module Helpscout
       private
 
       def get_path(id)
-        "#{ROUTE}/#{id}"
+        "#{BASE_PATH}/#{id}"
       end
 
       def list_path
-        ROUTE.to_s
+        BASE_PATH
       end
 
       def parse_item(response)

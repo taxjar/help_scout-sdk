@@ -2,13 +2,13 @@
 
 module Helpscout
   class Customer < Helpscout::Base
-    BASE_URL = 'v2/customers'
+    BASE_PATH = 'customers'
 
     extend Getable
 
     class << self
       def get_path(id)
-        "#{BASE_URL}/#{id}"
+        "#{BASE_PATH}/#{id}"
       end
 
       def list(page: nil)
@@ -18,7 +18,7 @@ module Helpscout
       end
 
       def list_path
-        BASE_URL
+        BASE_PATH
       end
 
       def parse_item(response)

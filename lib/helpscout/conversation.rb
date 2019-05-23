@@ -2,7 +2,7 @@
 
 module Helpscout
   class Conversation < Helpscout::Base
-    BASE_URL = 'v2/conversations'
+    BASE_PATH = 'conversations'
 
     extend Getable
 
@@ -32,15 +32,15 @@ module Helpscout
       private
 
       def create_path
-        BASE_URL
+        BASE_PATH
       end
 
       def get_path(id)
-        "#{BASE_URL}/#{id}"
+        "#{BASE_PATH}/#{id}"
       end
 
       def list_path(mailbox_id)
-        "#{BASE_URL}?mailbox=#{mailbox_id}"
+        "#{BASE_PATH}?mailbox=#{mailbox_id}"
       end
 
       def parse_item(response)

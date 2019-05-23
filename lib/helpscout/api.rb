@@ -12,7 +12,7 @@ module Helpscout
     class InternalError < StandardError; end
     class ThrottleLimitReached < StandardError; end
 
-    BASE_URL = 'https://api.helpscout.net/'
+    BASE_URL = 'https://api.helpscout.net/v2/'
 
     class << self
       def from_json(data)
