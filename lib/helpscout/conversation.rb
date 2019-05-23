@@ -41,7 +41,7 @@ module Helpscout
                   :created_by, :created_at, :modified_at, :closed_at, :closed_by,
                   :source, :cc, :bcc, :tags
 
-    def initialize(params)
+    def initialize(params) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       @id = params[:id]
       @type = params[:type] # TODO: Sub-classes
       @folder_id = params[:folder_id]
@@ -93,6 +93,7 @@ module Helpscout
     def build_mailbox_ref(params)
       return unless params
       return params if params.is_a? Helpscout::MailboxRef
+
       Helpscout::MailboxRef.new(params)
     end
 
@@ -100,12 +101,14 @@ module Helpscout
     def build_person(params)
       return unless params
       return params if params.is_a? Helpscout::Person
+
       Helpscout::Person.new(params)
     end
 
     def build_thread(params)
       return unless params
       return params if params.is_a? Helpscout::Thread
+
       Helpscout::Thread.new(params)
     end
 

@@ -2,7 +2,7 @@
 
 module Helpscout
   class Thread < Helpscout::Base
-    def initialize(params)
+    def initialize(params) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       @id = params[:id]
       @assigned_to = build_person(params[:assigned_to])
       @status = params[:status]
@@ -31,6 +31,7 @@ module Helpscout
     def build_mailbox_ref(params)
       return unless params
       return params if params.is_a? Helpscout::MailboxRef
+
       Helpscout::MailboxRef.new(params)
     end
 
@@ -38,12 +39,14 @@ module Helpscout
     def build_person(params)
       return unless params
       return params if params.is_a? Helpscout::Person
+
       Helpscout::Person.new(params)
     end
 
     def build_source(params)
       return unless params
       return params if params.is_a? Helpscout::Source
+
       Helpscout::Source.new(params)
     end
   end
