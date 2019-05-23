@@ -40,9 +40,6 @@ RSpec.describe HelpScout::Conversation do
   end
 
   describe '#update' do
-    let(:params) { { tags: tags } }
-    let(:tags) { ['integration_spec'] }
-
     it "updates the conversation's subject" do
       VCR.use_cassette("conversation/update", record: :once) do
         conversation = described_class.get(id)
@@ -58,6 +55,70 @@ RSpec.describe HelpScout::Conversation do
 
         expect(new_subject).to eq(update_params[:value])
       end
+    end
+  end
+
+  describe '#update_tags' do
+    let(:conversation) { described_class.get(id) }
+
+    subject { conversation.update_tags(tags) }
+
+    context "with an array of tags" do
+      let!(:initial_tags) do
+        VCR.use_cassette("conversation/update_tags/with_tags_initial", record: :once) do
+          tag_array(conversation.tags)
+        end
+      end
+      let(:tags) do
+        # We reverse any current tags to handle the case where the conversation
+        # already has the hard-coded tags applied. We keep the hardcoded tags
+        # in case the conversation has no initial tags.
+        (initial_tags + initial_tags.map(&:reverse) + %w[vip pro]).uniq
+      end
+
+      it "replaces the conversation's tags" do
+        VCR.use_cassette("conversation/update_tags/with_tags", record: :once) do
+          expect(tags).not_to match_array(initial_tags)
+
+          subject
+          new_tags = tag_array(described_class.get(conversation.id).tags)
+
+          expect(new_tags).to match_array(tags)
+        end
+      end
+    end
+
+    context "with an empty array" do
+      let(:tags) { [] }
+
+      it "clears the conversation's tags" do
+        VCR.use_cassette("conversation/update_tags/with_empty", record: :once) do
+          initial_tags = tag_array(conversation.tags)
+          expect(initial_tags).not_to be_empty
+
+          subject
+          new_tags = tag_array(described_class.get(conversation.id).tags)
+
+          expect(new_tags).to be_empty
+        end
+      end
+    end
+
+    context "with no arguments" do
+      let(:tags) { nil }
+
+      it "clears the conversation's tags" do
+        VCR.use_cassette("conversation/update_tags/with_nil", record: :once) do
+          subject
+          new_tags = tag_array(described_class.get(conversation.id).tags)
+
+          expect(new_tags).to be_empty
+        end
+      end
+    end
+
+    def tag_array(tags_json)
+      tags_json.map { |tag| tag[:tag] }
     end
   end
 end
