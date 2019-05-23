@@ -29,6 +29,7 @@ end
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/cassettes'
   config.hook_into :webmock
+  config.configure_rspec_metadata!
 
   config.filter_sensitive_data('<HELPSCOUT_ACCESS_TOKEN>') { Helpscout.access_token.token }
   config.filter_sensitive_data('<HELPSCOUT_APP_ID>') { Helpscout.app_id }
@@ -63,5 +64,10 @@ RSpec.configure do |config|
     VCR.turn_off!
     example.run
     VCR.turn_on!
+  end
+
+  # Auto-tag integration specs to use VCR
+  config.define_derived_metadata(file_path: %r{spec/integration}) do |metadata|
+    metadata[:vcr] = true
   end
 end

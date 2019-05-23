@@ -13,10 +13,8 @@ RSpec.describe Helpscout::Mailbox do
     subject { described_class.get(id).folders }
 
     it 'returns an Array of Folders' do
-      VCR.use_cassette('mailbox/folders', record: :once) do
-        expect(subject).to be_a Array
-        expect(subject).to all(be_a(Helpscout::Folder))
-      end
+      expect(subject).to be_a Array
+      expect(subject).to all(be_a(Helpscout::Folder))
     end
   end
 end
