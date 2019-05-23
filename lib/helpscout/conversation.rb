@@ -2,7 +2,7 @@
 
 module Helpscout
   class Conversation < Helpscout::Base
-    BASE_URL = "v2/conversations"
+    BASE_URL = 'v2/conversations'
 
     extend Getable
 
@@ -72,9 +72,9 @@ module Helpscout
       bcc
       primary_customer
       custom_fields
-    ]
+    ].freeze
 
-    attr_accessor *BASIC_ATTRIBUTES
+    attr_accessor(*BASIC_ATTRIBUTES)
     attr_reader :hrefs
 
     def initialize(params)
@@ -96,9 +96,9 @@ module Helpscout
     #   customer.is_a?(Helpscout::Person) ? customer : build_person(customer)
     # end
 
-    def update(op, path, value = nil)
+    def update(operation, path, value = nil)
       update_path = URI.parse(hrefs[:self]).path
-      Helpscout.api.patch(update_path, op: op, path: path, value: value)
+      Helpscout.api.patch(update_path, op: operation, path: path, value: value)
       true
     end
 

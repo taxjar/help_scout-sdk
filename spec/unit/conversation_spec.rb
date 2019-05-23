@@ -33,7 +33,7 @@ RSpec.describe Helpscout::Conversation do
   end
 
   describe '#update' do
-    let(:id) { "123" }
+    let(:id) { '123' }
     let(:params) do
       {
         id: id,
@@ -42,11 +42,11 @@ RSpec.describe Helpscout::Conversation do
         }
       }
     end
-    let(:new_subject) { "A New Subject" }
+    let(:new_subject) { 'A New Subject' }
     let(:update_params) do
       {
-        "op": "replace",
-        "path": "/subject",
+        "op": 'replace',
+        "path": '/subject',
         "value": new_subject
       }
     end

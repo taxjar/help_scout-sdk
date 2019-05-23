@@ -2,7 +2,7 @@
 
 module Helpscout
   class Customer < Helpscout::Base
-    BASE_URL = "v2/customers"
+    BASE_URL = 'v2/customers'
 
     extend Getable
 
@@ -40,7 +40,7 @@ module Helpscout
       gender
       age
       id
-    ]
+    ].freeze
     EMBEDDED_ATTRIBUTES = %i[
       addresses
       chats
@@ -48,8 +48,8 @@ module Helpscout
       phones
       social_profiles
       websites
-    ]
-    attr_reader *(BASIC_ATTRIBUTES + EMBEDDED_ATTRIBUTES)
+    ].freeze
+    attr_reader(*(BASIC_ATTRIBUTES + EMBEDDED_ATTRIBUTES))
     attr_reader :hrefs
 
     def initialize(params = {})

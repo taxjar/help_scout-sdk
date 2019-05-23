@@ -3,7 +3,7 @@
 module Helpscout
   class Base
     # TODO: Test
-    def to_h(method = :to_h)
+    def to_h(method = :to_h) # rubocop:disable Metrics/MethodLength
       {}.tap do |result|
         instance_variables.each do |var|
           attribute = {
@@ -25,7 +25,7 @@ module Helpscout
       end
     end
 
-    def to_json
+    def to_json(*_args)
       as_json.to_json
     end
   end

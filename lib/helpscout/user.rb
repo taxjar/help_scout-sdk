@@ -2,7 +2,7 @@
 
 module Helpscout
   class User < Helpscout::Base
-    BASE_URL = "v2/users"
+    BASE_URL = 'v2/users'
 
     extend Getable
 
@@ -39,9 +39,9 @@ module Helpscout
       timezone
       type
       photoUrl
-    ]
+    ].freeze
 
-    attr_reader *BASIC_ATTRIBUTES
+    attr_reader(*BASIC_ATTRIBUTES)
     attr_reader :hrefs
 
     def initialize(params = {})

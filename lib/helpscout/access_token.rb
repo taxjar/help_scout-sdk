@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 module Helpscout
   class AccessToken
-    ROUTE = "v2/oauth2/token"
+    ROUTE = 'v2/oauth2/token'
 
     class << self
-      def create
+      def create # rubocop:disable Metrics/MethodLength
         response = Helpscout.api.post(
           create_route,
-          grant_type: "client_credentials",
+          grant_type: 'client_credentials',
           client_id: Helpscout.app_id,
           client_secret: Helpscout.app_secret
         ).body

@@ -16,37 +16,37 @@ RSpec.describe Helpscout::Conversation do
     subject { described_class.create(params) }
     let(:params) do
       {
-        type: "email",
+        type: 'email',
         customer: { email: customer_email },
         subject: 'Hello World!',
         mailbox_id: Helpscout.default_mailbox,
-        status: "active",
+        status: 'active',
         threads: [thread]
       }
     end
     let(:thread) do
       {
-        type: "chat",
+        type: 'chat',
         customer: { email: customer_email },
-        text: "A test thread."
+        text: 'A test thread.'
       }
     end
 
     it "returns an empty #{described_class} with id" do
       VCR.use_cassette('conversation/create', record: :once) do
-        expect(subject).to eq "https://api.helpscout.net/v2/conversations/859894041"
+        expect(subject).to eq 'https://api.helpscout.net/v2/conversations/859894041'
       end
     end
   end
 
   describe '#update' do
     it "updates the conversation's subject" do
-      VCR.use_cassette("conversation/update", record: :once) do
+      VCR.use_cassette('conversation/update', record: :once) do
         conversation = described_class.get(id)
         original_subject = conversation.subject
         update_params = {
-          op: "replace",
-          path: "/subject",
+          op: 'replace',
+          path: '/subject',
           value: original_subject.reverse
         }
 
