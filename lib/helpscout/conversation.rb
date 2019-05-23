@@ -104,7 +104,7 @@ module Helpscout
 
     def update_tags(new_tags = nil)
       new_tags ||= []
-      tags_path = URI.parse(hrefs[:self]).path + "/tags"
+      tags_path = URI.parse(hrefs[:self]).path + '/tags'
       Helpscout.api.put(tags_path, tags: new_tags)
       true
     end
