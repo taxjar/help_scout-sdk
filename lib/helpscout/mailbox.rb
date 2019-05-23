@@ -19,7 +19,7 @@ module Helpscout
       end
 
       def list_path
-        "#{ROUTE}"
+        ROUTE.to_s
       end
 
       def parse_item(response)
@@ -34,8 +34,8 @@ module Helpscout
       email
       created_at
       updated_at
-    ]
-    attr_reader *BASIC_ATTRIBUTES
+    ].freeze
+    attr_reader(*BASIC_ATTRIBUTES)
     attr_reader :hrefs
 
     def initialize(params)

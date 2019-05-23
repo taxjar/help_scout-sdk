@@ -4,18 +4,18 @@ module Helpscout
   module Util
     class << self
       def camelize(term)
-        term = term.to_s.split("_").collect(&:capitalize).join
+        term = term.to_s.split('_').collect(&:capitalize).join
         term[0] = term[0].downcase
         term
       end
 
       def camelize_keys(source)
         source.each_with_object({}) do |(key, value), results|
-          if value.is_a? Hash
-            results[camelize(key)] = camelize_keys(value)
-          else
-            results[camelize(key)] = value
-          end
+          results[camelize(key)] = if value.is_a? Hash
+                                     camelize_keys(value)
+                                   else
+                                     value
+                                   end
         end
       end
 
@@ -24,7 +24,7 @@ module Helpscout
       end
 
       def keyify(term)
-        term.to_s.delete("@")
+        term.to_s.delete('@')
       end
 
       def map_links(links)
