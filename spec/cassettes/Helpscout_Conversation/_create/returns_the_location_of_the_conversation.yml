@@ -31,17 +31,17 @@ http_interactions:
       Content-Type:
       - text/plain; charset=UTF-8
       Correlation-Id:
-      - ec159308-58f3-42b7-827a-2788227a7d8c#19006666
+      - caa9e666-fae6-40c6-bebd-bcac6578b13a#55245940
       Date:
-      - Thu, 23 May 2019 18:37:56 GMT
+      - Thu, 23 May 2019 19:07:53 GMT
       Expires:
       - '0'
       Location:
-      - https://api.helpscout.net/v2/conversations/861079566
+      - https://api.helpscout.net/v2/conversations/861104678
       Pragma:
       - no-cache
       Resource-Id:
-      - '861079566'
+      - '861104678'
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -49,7 +49,7 @@ http_interactions:
       X-Ratelimit-Limit-Minute:
       - '400'
       X-Ratelimit-Remaining-Minute:
-      - '394'
+      - '380'
       X-Xss-Protection:
       - 1; mode=block
       Content-Length:
@@ -60,5 +60,5 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Thu, 23 May 2019 18:37:56 GMT
+  recorded_at: Thu, 23 May 2019 19:07:53 GMT
 recorded_with: VCR 4.0.0

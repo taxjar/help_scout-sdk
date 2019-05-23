@@ -32,6 +32,13 @@ VCR.configure do |config|
   config.configure_rspec_metadata!
 
   config.filter_sensitive_data('<HELP_SCOUT_ACCESS_TOKEN>') { HelpScout.access_token.token }
+  config.filter_sensitive_data('<HELP_SCOUT_ACCESS_TOKEN>') do |interaction|
+    JSON.parse(interaction.response.body)["access_token"] rescue JSON::ParserError
+  end
+  config.filter_sensitive_data('Bearer <HELP_SCOUT_ACCESS_TOKEN>') do |interaction|
+    interaction.request.headers["Authorization"]
+  end
+
   config.filter_sensitive_data('<HELP_SCOUT_APP_ID>') { HelpScout.app_id }
   config.filter_sensitive_data('<HELP_SCOUT_APP_SECRET>') { HelpScout.app_secret }
   config.filter_sensitive_data('<TEST_MAILBOX_ID>') { HelpScout.default_mailbox }
