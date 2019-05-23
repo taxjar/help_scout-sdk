@@ -34,7 +34,7 @@ module Helpscout
         underscore(key).to_sym
       end
 
-      def deep_underscore_value(value)
+      def deep_underscore_value(value) # rubocop:disable Metrics/MethodLength
         case value
         when Hash
           deep_underscore(value)

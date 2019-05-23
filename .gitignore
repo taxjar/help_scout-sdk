@@ -10,5 +10,7 @@
 
 .env*
 .rspec_status
+.ruby-gemset
+.ruby-version
 
 Gemfile.lock

@@ -25,7 +25,7 @@ module Helpscout
       end
     end
 
-    def to_json
+    def to_json(*_args)
       as_json.to_json
     end
   end
