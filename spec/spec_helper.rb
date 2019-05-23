@@ -30,15 +30,15 @@ VCR.configure do |config|
   config.cassette_library_dir = 'spec/cassettes'
   config.hook_into :webmock
 
-  config.filter_sensitive_data("<HELP_SCOUT_ACCESS_TOKEN>") { HelpScout.access_token.token }
-  config.filter_sensitive_data("<HELP_SCOUT_APP_ID>") { HelpScout.app_id }
-  config.filter_sensitive_data("<HELP_SCOUT_APP_SECRET>") { HelpScout.app_secret }
-  config.filter_sensitive_data("<TEST_MAILBOX_ID>") { HelpScout.default_mailbox }
-  config.filter_sensitive_data("<TEST_CONVERSATION_ID>") {ENV["TEST_CONVERSATION_ID"] }
-  config.filter_sensitive_data("<TEST_CUSTOMER_EMAIL>") {ENV["TEST_CUSTOMER_EMAIL"] }
-  config.filter_sensitive_data("<TEST_CUSTOMER_ID>") {ENV["TEST_CUSTOMER_ID"] }
-  config.filter_sensitive_data("<TEST_USER_EMAIL>") { ENV["TEST_USER_EMAIL"] }
-  config.filter_sensitive_data("<TEST_USER_ID>") { ENV["TEST_USER_ID"] }
+  config.filter_sensitive_data('<HELP_SCOUT_ACCESS_TOKEN>') { HelpScout.access_token.token }
+  config.filter_sensitive_data('<HELP_SCOUT_APP_ID>') { HelpScout.app_id }
+  config.filter_sensitive_data('<HELP_SCOUT_APP_SECRET>') { HelpScout.app_secret }
+  config.filter_sensitive_data('<TEST_MAILBOX_ID>') { HelpScout.default_mailbox }
+  config.filter_sensitive_data('<TEST_CONVERSATION_ID>') { ENV['TEST_CONVERSATION_ID'] }
+  config.filter_sensitive_data('<TEST_CUSTOMER_EMAIL>') { ENV['TEST_CUSTOMER_EMAIL'] }
+  config.filter_sensitive_data('<TEST_CUSTOMER_ID>') { ENV['TEST_CUSTOMER_ID'] }
+  config.filter_sensitive_data('<TEST_USER_EMAIL>') { ENV['TEST_USER_EMAIL'] }
+  config.filter_sensitive_data('<TEST_USER_ID>') { ENV['TEST_USER_ID'] }
 end
 
 RSpec.configure do |config|

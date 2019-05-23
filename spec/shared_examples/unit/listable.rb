@@ -18,7 +18,7 @@ RSpec.shared_examples 'listable unit' do |url|
       let(:body) { file_fixture("#{model_name}/list.json") }
 
       before do
-        path = url.include?("?") ? "#{url}&page=2" : "#{url}?page=2"
+        path = url.include?('?') ? "#{url}&page=2" : "#{url}?page=2"
         stub_request(:get, path).to_return(body: body, headers: headers)
       end
 

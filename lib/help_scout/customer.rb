@@ -40,7 +40,7 @@ module HelpScout
       gender
       age
       id
-    ]
+    ].freeze
     EMBEDDED_ATTRIBUTES = %i[
       addresses
       chats
@@ -48,8 +48,8 @@ module HelpScout
       phones
       social_profiles
       websites
-    ]
-    attr_reader *(BASIC_ATTRIBUTES + EMBEDDED_ATTRIBUTES)
+    ].freeze
+    attr_reader(*(BASIC_ATTRIBUTES + EMBEDDED_ATTRIBUTES))
     attr_reader :hrefs
 
     def initialize(params = {})

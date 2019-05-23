@@ -72,9 +72,9 @@ module HelpScout
       bcc
       primary_customer
       custom_fields
-    ]
+    ].freeze
 
-    attr_accessor *BASIC_ATTRIBUTES
+    attr_accessor(*BASIC_ATTRIBUTES)
     attr_reader :hrefs
 
     def initialize(params)
@@ -96,16 +96,9 @@ module HelpScout
     #   customer.is_a?(HelpScout::Person) ? customer : build_person(customer)
     # end
 
-    def update(op, path, value = nil)
+    def update(operation, path, value = nil)
       update_path = URI.parse(hrefs[:self]).path
-      HelpScout.api.patch(update_path, op: op, path: path, value: value)
-      true
-    end
-
-    def update_tags(new_tags = nil)
-      new_tags ||= []
-      tags_path = URI.parse(hrefs[:self]).path + "/tags"
-      Helpscout.api.put(tags_path, tags: new_tags)
+      HelpScout.api.patch(update_path, op: operation, path: path, value: value)
       true
     end
   end

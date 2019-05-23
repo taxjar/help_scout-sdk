@@ -3,7 +3,7 @@
 module HelpScout
   class Base
     # TODO: Test
-    def to_h(method = :to_h)
+    def to_h(method = :to_h) # rubocop:disable Metrics/MethodLength
       {}.tap do |result|
         instance_variables.each do |var|
           attribute = {
