@@ -1,17 +1,30 @@
 AllCops:
   TargetRubyVersion: 2.3
+
 Layout/DotPosition:
   EnforcedStyle: trailing
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+
 Metrics/BlockLength:
   Exclude:
     - '*.gemspec'
     - 'Rakefile'
     - '**/*.rake'
     - 'spec/**/*.rb'
+
+Metrics/ClassLength:
+  Max: 125
+
 Metrics/LineLength:
-  Enabled: False
+  Max: 120
+
 Naming/FileName:
   Exclude:
     - 'lib/help_scout-sdk.rb'
+    - 'spec/**/*_spec.rb'
+
 Style/Documentation:
   Enabled: False

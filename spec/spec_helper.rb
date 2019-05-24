@@ -4,6 +4,8 @@ require 'bundler/setup'
 require 'dotenv'
 
 require 'awesome_print'
+require 'logger'
+require 'pry'
 require 'vcr'
 require 'webmock/rspec'
 
@@ -17,6 +19,10 @@ end
 
 def model_name
   described_class.to_s.split('::').last.downcase
+end
+
+def logger
+  @logger ||= Logger.new($stdout, level: ENV.fetch('LOG_LEVEL', 'INFO'))
 end
 
 HelpScout.configure do |config|
@@ -33,10 +39,14 @@ VCR.configure do |config|
 
   config.filter_sensitive_data('<HELP_SCOUT_ACCESS_TOKEN>') { HelpScout.access_token.token }
   config.filter_sensitive_data('<HELP_SCOUT_ACCESS_TOKEN>') do |interaction|
-    JSON.parse(interaction.response.body)["access_token"] rescue JSON::ParserError
+    begin
+      JSON.parse(interaction.response.body)['access_token']
+    rescue JSON::ParserError => e
+      logger.debug e.message
+    end
   end
   config.filter_sensitive_data('Bearer <HELP_SCOUT_ACCESS_TOKEN>') do |interaction|
-    interaction.request.headers["Authorization"]
+    interaction.request.headers['Authorization']
   end
 
   config.filter_sensitive_data('<HELP_SCOUT_APP_ID>') { HelpScout.app_id }

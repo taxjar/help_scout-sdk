@@ -1,37 +1,30 @@
 module HelpScout
   class AccessToken
-    BASE_PATH = 'oauth2/token'
-
     class << self
-      def create # rubocop:disable Metrics/MethodLength
-        response = HelpScout.api.post(
-          create_path,
-          grant_type: 'client_credentials',
-          client_id: HelpScout.app_id,
-          client_secret: HelpScout.app_secret
-        ).body
+      def create
+        response = HelpScout.api.fetch_access_token
 
-        HelpScout::AccessToken.new(
-          response[:access_token],
-          response[:expires_in]
-        ).tap do |access_token|
-          HelpScout.configure { |c| c.access_token = access_token }
-          HelpScout.api.reset_connection!
-        end
+        update(response.body)
       end
 
-      private
-
-      def create_path
-        BASE_PATH
+      def update(new_token_params)
+        new(new_token_params).tap do |access_token|
+          HelpScout.configuration.access_token = access_token
+          HelpScout.api.access_token = access_token.token
+        end
       end
     end
 
-    attr_reader :expires_in, :token
+    attr_reader :expires_at, :expires_in, :token
 
-    def initialize(access_token, token_expires_in)
-      @token = access_token
-      @expires_in = token_expires_in
+    def initialize(params)
+      @token = params[:access_token]
+      @expires_in = params[:expires_in]
+      @expires_at = Time.now.utc + params[:expires_in]
+    end
+
+    def expired?
+      Time.now.utc > expires_at
     end
   end
 end

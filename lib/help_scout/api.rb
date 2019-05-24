@@ -58,6 +58,37 @@ module HelpScout
       end
     end
 
+    def access_token=(token)
+      return unless token
+
+      client.authorization(:Bearer, token)
+    end
+
+    def access_token
+      return unless (header = client.headers['Authorization'])
+
+      header.slice(/\ABearer (.+)\Z/, 1)
+    end
+
+    def fetch_access_token # rubocop:disable Metrics/MethodLength
+      params = {
+        grant_type: 'client_credentials',
+        client_id: HelpScout.app_id,
+        client_secret: HelpScout.app_secret
+      }
+
+      response = client.post('oauth2/token', params)
+
+      case response.status
+      when 429
+        raise ThrottleLimitReached, response.body&.dig('error')
+      when 500, 501, 503
+        raise InternalError, response.body&.dig('error')
+      end
+
+      HelpScout::Response.new(response)
+    end
+
     def get(path, params = {})
       handle_response(http_action(:get, path, params))
     end
@@ -72,12 +103,6 @@ module HelpScout
 
     def put(path, params)
       handle_response(http_action(:put, path, params))
-    end
-
-    def reset_connection!
-      @client = nil
-      client
-      true
     end
 
     private
@@ -103,9 +128,9 @@ module HelpScout
       when 400
         raise BadRequest, result.body&.dig('validationErrors')
       when 401
-        raise NotAuthorized, result.body&.dig('error')
+        raise NotAuthorized, result.body&.dig('error_description')
       when 404
-        raise NotFound, result.body&.dig('error')
+        raise NotFound, 'Resource Not Found'
       when 429
         raise ThrottleLimitReached, result.body&.dig('error')
       when 500, 501, 503
@@ -118,7 +143,15 @@ module HelpScout
     # rubocop:enable MethodLength
 
     def http_action(action, path, params)
-      client.send(action, path, cleansed_params(params))
+      response = client.send(action, path, cleansed_params(params))
+
+      if response.status == 401 && HelpScout.configuration.automatically_generate_tokens
+        token_response = fetch_access_token
+
+        HelpScout::AccessToken.update(token_response.body) if token_response.success?
+      end
+
+      handle_response(response)
     end
   end
 end
