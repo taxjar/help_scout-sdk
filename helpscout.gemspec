@@ -33,7 +33,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'activesupport'
   spec.add_dependency 'faraday', '~> 0.10'
-  spec.add_dependency 'faraday_middleware', '~> 0.12' # TODO: Needed?
+  spec.add_dependency 'faraday_middleware', '>= 0.10.1', '< 1.0' # TODO: Needed?
   spec.required_ruby_version = '>= 2.3'
 
   spec.add_development_dependency 'awesome_print', '~> 1.8'
