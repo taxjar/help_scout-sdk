@@ -2,7 +2,7 @@
 
 module Helpscout
   class Response
-    delegate :headers, to: :response
+    delegate :headers, :status, :success?, to: :response
 
     attr_reader :response
     def initialize(response)
