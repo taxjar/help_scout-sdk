@@ -61,9 +61,16 @@ end
 
 RSpec.configure do |config|
   config.order = :random
+  Kernel.srand config.seed
+
+  # Default to "doc" formatting for single spec runs
+  config.default_formatter = 'doc' if config.files_to_run.one?
 
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = '.rspec_status'
+
+  # Profile the 3 slowest examples
+  config.profile_examples = 3
 
   # Disable RSpec exposing methods globally on `Module` and `main`
   config.disable_monkey_patching!
