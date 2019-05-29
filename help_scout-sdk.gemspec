@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'help_scout/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'help_scout_sdk'
+  spec.name          = 'help_scout-sdk'
   spec.version       = HelpScout::VERSION
   spec.authors       = ['TaxJar']
   spec.email         = ['support@taxjar.com']
