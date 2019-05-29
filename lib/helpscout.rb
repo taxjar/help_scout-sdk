@@ -11,8 +11,9 @@ require 'helpscout/configuration'
 
 require 'helpscout/modules/getable'
 
-require 'helpscout/access_token'
 require 'helpscout/api'
+require 'helpscout/api/access_token'
+require 'helpscout/api/client'
 require 'helpscout/base'
 require 'helpscout/conversation'
 require 'helpscout/customer'

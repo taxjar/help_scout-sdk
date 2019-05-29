@@ -58,33 +58,13 @@ module Helpscout
       end
     end
 
-    # TODO: Move AccessToken Inside Namespace and move these methods
     attr_writer :access_token
     def initialize
-      @access_token = Helpscout.configuration.access_token
+      @access_token = Helpscout.configuration.access_token # TODO: Do this once after configure
     end
 
     def access_token
-      @access_token ||= Helpscout::AccessToken.new(fetch_access_token)
-    end
-
-    def fetch_access_token # rubocop:disable Metrics/MethodLength
-      params = {
-        grant_type: 'client_credentials',
-        client_id: Helpscout.app_id,
-        client_secret: Helpscout.app_secret
-      }
-
-      response = client(skip_authorization: true).post('oauth2/token', params)
-
-      case response.status
-      when 429
-        raise ThrottleLimitReached, response.body&.dig('error')
-      when 500, 501, 503
-        raise InternalError, response.body&.dig('error')
-      end
-
-      Helpscout::Response.new(response).body
+      @access_token ||= Helpscout::API::AccessToken.create
     end
 
     def get(path, params = {})
@@ -107,17 +87,6 @@ module Helpscout
 
     def cleansed_params(params)
       params.delete_if { |_, v| v.nil? }
-      # params
-    end
-
-    # TODO: Extract into class
-    def client(skip_authorization: false)
-      Faraday.new(url: BASE_URL) do |conn|
-        conn.request :json
-        conn.authorization(:Bearer, access_token.value) unless skip_authorization
-        conn.response(:json, content_type: /\bjson$/)
-        conn.adapter(Faraday.default_adapter)
-      end
     end
 
     # rubocop:disable AbcSize
@@ -142,11 +111,12 @@ module Helpscout
     # rubocop:enable MethodLength
 
     def http_action(action, path, params)
-      response = client.send(action, path, cleansed_params(params))
+      connection = Helpscout::API::Client.new.connection
+      response = connection.send(action, path, cleansed_params(params))
 
       if response.status == 401 && Helpscout.configuration.automatically_generate_tokens
-        Helpscout::AccessToken.refresh!
-        response = client.send(action, path, cleansed_params(params))
+        Helpscout::API::AccessToken.create
+        response = connection.send(action, path, cleansed_params(params))
       end
 
       handle_response(response)
