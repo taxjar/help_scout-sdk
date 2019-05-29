@@ -28,15 +28,15 @@ require 'helpscout/util'
 
 module Helpscout
   class << self
-    attr_accessor :configuration
+    attr_writer :configuration
   end
 
   def self.access_token
-    configuration.access_token
+    api.access_token
   end
 
   def self.api
-    Helpscout::API.new
+    @api ||= Helpscout::API.new
   end
 
   def self.api_key
@@ -51,8 +51,11 @@ module Helpscout
     configuration.app_secret
   end
 
+  def self.configuration
+    @configuration ||= Configuration.new
+  end
+
   def self.configure
-    self.configuration ||= Configuration.new
     yield(configuration)
   end
 

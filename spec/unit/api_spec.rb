@@ -5,6 +5,18 @@ RSpec.describe Helpscout::API do
   let(:client) { api.send(:client) }
 
   describe '#access_token=' do
+    let(:response) do
+      {
+        body: { access_token: 'foo', expires_in: 7200 }.to_json,
+        headers: { 'Content-Type' => 'application/json' },
+        status: 200
+      }
+    end
+
+    before do
+      stub_request(:post, 'https://api.helpscout.net/v2/oauth2/token').to_return(response)
+    end
+
     subject { api.access_token = new_token }
 
     context 'when a value is provided' do
@@ -18,8 +30,8 @@ RSpec.describe Helpscout::API do
     context 'when no value is provided' do
       let(:new_token) { nil }
 
-      it 'does not set the Authorization header' do
-        expect { subject }.not_to change { api.access_token }
+      it 'sets the Authorization header' do
+        expect { subject }.to change { api.access_token }
       end
     end
   end

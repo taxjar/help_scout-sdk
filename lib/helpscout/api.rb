@@ -58,16 +58,14 @@ module Helpscout
       end
     end
 
-    def access_token=(token)
-      return unless token
-
-      client.authorization(:Bearer, token)
+    # TODO: Move AccessToken Inside Namespace and move these methods
+    attr_writer :access_token
+    def initialize
+      @access_token = Helpscout.configuration.access_token
     end
 
     def access_token
-      return unless (header = client.headers['Authorization'])
-
-      header.slice(/\ABearer (.+)\Z/, 1)
+      @access_token ||= Helpscout::AccessToken.new(fetch_access_token)
     end
 
     def fetch_access_token # rubocop:disable Metrics/MethodLength
@@ -77,7 +75,7 @@ module Helpscout
         client_secret: Helpscout.app_secret
       }
 
-      response = client.post('oauth2/token', params)
+      response = client(skip_authorization: true).post('oauth2/token', params)
 
       case response.status
       when 429
@@ -86,23 +84,23 @@ module Helpscout
         raise InternalError, response.body&.dig('error')
       end
 
-      Helpscout::Response.new(response)
+      Helpscout::Response.new(response).body
     end
 
     def get(path, params = {})
-      handle_response(http_action(:get, path, params))
+      http_action(:get, path, params)
     end
 
     def patch(path, params)
-      handle_response(http_action(:patch, path, params))
+      http_action(:patch, path, params)
     end
 
     def post(path, params)
-      handle_response(http_action(:post, path, params))
+      http_action(:post, path, params)
     end
 
     def put(path, params)
-      handle_response(http_action(:put, path, params))
+      http_action(:put, path, params)
     end
 
     private
@@ -112,10 +110,11 @@ module Helpscout
       # params
     end
 
-    def client
-      @client ||= Faraday.new(url: BASE_URL) do |conn|
+    # TODO: Extract into class
+    def client(skip_authorization: false)
+      Faraday.new(url: BASE_URL) do |conn|
         conn.request :json
-        conn.authorization(:Bearer, Helpscout.access_token.token) if Helpscout.access_token
+        conn.authorization(:Bearer, access_token.value) unless skip_authorization
         conn.response(:json, content_type: /\bjson$/)
         conn.adapter(Faraday.default_adapter)
       end
@@ -146,9 +145,8 @@ module Helpscout
       response = client.send(action, path, cleansed_params(params))
 
       if response.status == 401 && Helpscout.configuration.automatically_generate_tokens
-        token_response = fetch_access_token
-
-        Helpscout::AccessToken.update(token_response.body) if token_response.success?
+        Helpscout::AccessToken.refresh!
+        response = client.send(action, path, cleansed_params(params))
       end
 
       handle_response(response)

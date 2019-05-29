@@ -44,7 +44,7 @@ RSpec.describe Helpscout::AccessToken do
   end
 
   describe '#token' do
-    subject { access_token.token }
+    subject { access_token.value }
 
     it { is_expected.to eq(access_token_params[:access_token]) }
   end

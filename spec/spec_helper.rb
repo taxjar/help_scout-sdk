@@ -4,6 +4,7 @@ require 'bundler/setup'
 require 'dotenv'
 
 require 'awesome_print'
+require 'byebug'
 require 'logger'
 require 'pry'
 require 'vcr'
@@ -28,7 +29,7 @@ end
 Helpscout.configure do |config|
   config.app_id = ENV.fetch('HELPSCOUT_APP_ID')
   config.app_secret = ENV.fetch('HELPSCOUT_APP_SECRET')
-  config.access_token = ENV.fetch('HELPSCOUT_ACCESS_TOKEN') { Helpscout::AccessToken.create }
+  config.access_token = ENV.fetch('HELPSCOUT_ACCESS_TOKEN', nil)
   config.default_mailbox = ENV.fetch('TEST_MAILBOX_ID')
 end
 
@@ -37,7 +38,7 @@ VCR.configure do |config|
   config.hook_into :webmock
   config.configure_rspec_metadata!
 
-  config.filter_sensitive_data('<HELPSCOUT_ACCESS_TOKEN>') { Helpscout.access_token.token }
+  config.filter_sensitive_data('<HELPSCOUT_ACCESS_TOKEN>') { Helpscout.access_token.value }
   config.filter_sensitive_data('<HELPSCOUT_ACCESS_TOKEN>') do |interaction|
     begin
       JSON.parse(interaction.response.body)['access_token']
