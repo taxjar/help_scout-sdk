@@ -20,8 +20,7 @@ And then execute:
 
 | Models                     | List | Get  | Create  | Update | Delete  |
 | :------------------------- | :--: | :--: | :-----: | :----: | :-----: |
-| Attachment                 |   ❌  |  ❌  |    ❌   |    ❌   |    ❌   |
-| Attachment::Data           |   ❌  |  ❌  |    ❌   |    ❌   |    ❌   |
+| Attachment                 |   ❌  |  ❌  |    ✅   |    ❌   |    ❌   |
 | Conversations              |   ✅  |  ✅  |    ✅   |    ✅   |    ❌   |
 | Conversation::Threads      |   ❌  |  ❌  |    ❌   |    ❌   |    ❌   |
 | Conversation::ThreadSource |   ❌  |  ❌  |    ❌   |    ❌   |    ❌   |

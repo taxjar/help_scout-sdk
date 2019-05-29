@@ -31,6 +31,12 @@ module HelpScout
         links.map { |k, v| [k, v[:href]] }.to_h
       end
 
+      def parse_path(path_template, replacements)
+        placeholders = Regexp.union(replacements.keys)
+
+        path_template.gsub(placeholders) { |match_text| replacements[match_text] }
+      end
+
       def serialized_value(value, type)
         if value.is_a? Array
           value.map { |v| serialized_value(v, type) }

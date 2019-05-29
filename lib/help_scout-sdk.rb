@@ -14,6 +14,9 @@ require 'help_scout/modules/getable'
 require 'help_scout/access_token'
 require 'help_scout/api'
 require 'help_scout/base'
+require 'help_scout/util'
+
+require 'help_scout/attachment'
 require 'help_scout/conversation'
 require 'help_scout/customer'
 require 'help_scout/folder'
@@ -24,7 +27,6 @@ require 'help_scout/response'
 require 'help_scout/source'
 require 'help_scout/thread'
 require 'help_scout/user'
-require 'help_scout/util'
 
 module HelpScout
   class << self

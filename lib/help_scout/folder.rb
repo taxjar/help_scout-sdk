@@ -14,7 +14,11 @@ module HelpScout
       private
 
       def list_path(mailbox_id)
-        BASE_PATH.sub(/\%<MAILBOX_ID>/, mailbox_id.to_s)
+        replacements = {
+          '%<MAILBOX_ID>' => mailbox_id
+        }
+
+        HelpScout::Util.parse_path(BASE_PATH, replacements)
       end
     end
 

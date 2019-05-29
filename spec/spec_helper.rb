@@ -13,6 +13,10 @@ require 'help_scout-sdk'
 
 Dotenv.load('.env', '.env.test')
 
+def api_path(path_part)
+  'https://api.helpscout.net/v2/' + path_part
+end
+
 def file_fixture(path)
   File.read("spec/fixtures/#{path}")
 end
