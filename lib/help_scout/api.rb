@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 # TODO: PERFORM_DELIVERIES option
-# TODO: Error handling (e.g. Helpscout::Conversation.create(foo: :bar))
+# TODO: Error handling (e.g. HelpScout::Conversation.create(foo: :bar))
 # TODO: Clean up with ActiveSupport
 
-module Helpscout
+module HelpScout
   class API
     class BadRequest < StandardError; end
     class NotAuthorized < StandardError; end
@@ -39,7 +39,7 @@ module Helpscout
         when Hash
           deep_underscore(value)
         when Array
-          if value.any? { |e| e.class < Helpscout::Base }
+          if value.any? { |e| e.class < HelpScout::Base }
             value.map { |v| deep_underscore(v) }
           else
             value
@@ -80,7 +80,7 @@ module Helpscout
     def client
       @client ||= Faraday.new(url: BASE_URL) do |conn|
         conn.request :json
-        conn.basic_auth(Helpscout.api_key, 'X')
+        conn.basic_auth(HelpScout.api_key, 'X')
         conn.response(:json, content_type: /\bjson$/)
         conn.adapter(Faraday.default_adapter)
       end
@@ -102,7 +102,7 @@ module Helpscout
         raise InternalError, result.body&.dig('error')
       end
 
-      Helpscout::Response.new(result)
+      HelpScout::Response.new(result)
     end
     # rubocop:enable AbcSize
     # rubocop:enable MethodLength

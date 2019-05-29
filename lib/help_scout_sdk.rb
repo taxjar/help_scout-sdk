@@ -6,29 +6,29 @@ require 'json'
 require 'faraday'
 require 'faraday_middleware'
 
-require 'helpscout/version'
-require 'helpscout/configuration'
+require 'help_scout/version'
+require 'help_scout/configuration'
 
-require 'helpscout/modules/getable'
+require 'help_scout/modules/getable'
 
-require 'helpscout/api'
-require 'helpscout/base'
-require 'helpscout/conversation'
-require 'helpscout/folder'
-require 'helpscout/mailbox'
-require 'helpscout/mailbox_ref'
-require 'helpscout/person'
-require 'helpscout/response'
-require 'helpscout/source'
-require 'helpscout/thread'
+require 'help_scout/api'
+require 'help_scout/base'
+require 'help_scout/conversation'
+require 'help_scout/folder'
+require 'help_scout/mailbox'
+require 'help_scout/mailbox_ref'
+require 'help_scout/person'
+require 'help_scout/response'
+require 'help_scout/source'
+require 'help_scout/thread'
 
-module Helpscout
+module HelpScout
   class << self
     attr_accessor :configuration
   end
 
   def self.api
-    Helpscout::API.new
+    HelpScout::API.new
   end
 
   def self.api_key

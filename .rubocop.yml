@@ -2,7 +2,7 @@ AllCops:
   TargetRubyVersion: 2.3
 Metrics/BlockLength:
   Exclude:
-    - 'helpscout.gemspec'
+    - 'help_scout_sdk.gemspec'
     - 'Rakefile'
     - '**/*.rake'
     - 'spec/**/*.rb'

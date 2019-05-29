@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-module Helpscout
-  class Conversation < Helpscout::Base
+module HelpScout
+  class Conversation < HelpScout::Base
     SAVE_PATH = 'conversations.json'
 
     extend Getable
 
     class << self
-      def list(mailbox_id: Helpscout.default_mailbox, page: nil)
-        Helpscout.api.get(list_path(mailbox_id), page: page).items.map { |item| new item }
+      def list(mailbox_id: HelpScout.default_mailbox, page: nil)
+        HelpScout.api.get(list_path(mailbox_id), page: page).items.map { |item| new item }
       end
 
       # TODO: Add the below methods
@@ -73,17 +73,17 @@ module Helpscout
 
     # TODO: ?
     # def parse_customer(customer)
-    #   customer.is_a?(Helpscout::Person) ? customer : build_person(customer)
+    #   customer.is_a?(HelpScout::Person) ? customer : build_person(customer)
     # end
 
     def save
-      Helpscout.api.post(SAVE_PATH, as_json)
+      HelpScout.api.post(SAVE_PATH, as_json)
       # TODO: optional hydrate
     end
 
     def update(params)
       params.each { |k, v| public_send("#{k}=", v) }
-      Helpscout.api.put("conversations/#{id}.json", as_json)
+      HelpScout.api.put("conversations/#{id}.json", as_json)
       true
     end
 
@@ -92,24 +92,24 @@ module Helpscout
     # TODO: DRY
     def build_mailbox_ref(params)
       return unless params
-      return params if params.is_a? Helpscout::MailboxRef
+      return params if params.is_a? HelpScout::MailboxRef
 
-      Helpscout::MailboxRef.new(params)
+      HelpScout::MailboxRef.new(params)
     end
 
     # TODO: DRY
     def build_person(params)
       return unless params
-      return params if params.is_a? Helpscout::Person
+      return params if params.is_a? HelpScout::Person
 
-      Helpscout::Person.new(params)
+      HelpScout::Person.new(params)
     end
 
     def build_thread(params)
       return unless params
-      return params if params.is_a? Helpscout::Thread
+      return params if params.is_a? HelpScout::Thread
 
-      Helpscout::Thread.new(params)
+      HelpScout::Thread.new(params)
     end
 
     def build_threads(items)

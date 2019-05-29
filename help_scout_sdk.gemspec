@@ -2,22 +2,22 @@
 
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'helpscout/version'
+require 'help_scout/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'helpscout-api'
-  spec.version       = Helpscout::VERSION
+  spec.name          = 'help_scout-sdk'
+  spec.version       = HelpScout::VERSION
   spec.authors       = ['TaxJar']
   spec.email         = ['support@taxjar.com']
 
-  spec.summary       = 'Ruby Wrapper for the Helpscout API'
-  spec.description   = 'Ruby Wrapper for the Helpscout API'
-  spec.homepage      = 'https://github.com/taxjar/helpscout'
+  spec.summary       = 'Ruby Help Scout SDK'
+  spec.description   = 'Ruby Help Scout SDK.'
+  spec.homepage      = 'https://github.com/taxjar/help-scout-sdk'
   spec.license       = 'MIT'
 
   if spec.respond_to?(:metadata)
-    spec.metadata['source_code_uri'] = 'https://github.com/taxjar/helpscout'
-    spec.metadata['bug_tracker_uri'] = 'https://github.com/taxjar/helpscout/issues'
+    spec.metadata['source_code_uri'] = 'https://github.com/taxjar/help-scout-sdk'
+    spec.metadata['bug_tracker_uri'] = 'https://github.com/taxjar/help-scout-sdk/issues'
   else
     raise 'RubyGems 2.0 or newer is required to protect against ' \
       'public gem pushes.'

@@ -7,7 +7,7 @@ require 'awesome_print'
 require 'vcr'
 require 'webmock/rspec'
 
-require 'helpscout'
+require 'help_scout_sdk'
 
 Dotenv.load('.env', '.env.test')
 
@@ -19,8 +19,8 @@ def model_name
   described_class.to_s.split('::').last.downcase
 end
 
-Helpscout.configure do |config|
-  config.api_key = ENV.fetch('HELPSCOUT_API_KEY')
+HelpScout.configure do |config|
+  config.api_key = ENV.fetch('HELP_SCOUT_API_KEY')
   config.default_mailbox = ENV.fetch('TEST_MAILBOX_ID')
 end
 

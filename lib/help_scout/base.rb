@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Helpscout
+module HelpScout
   class Base
     # TODO: Test
     def to_h(method = :to_h)
@@ -42,7 +42,7 @@ module Helpscout
       if value.is_a? Array
         value.map { |v| serialized_value(v, type) }
       else
-        value.class < Helpscout::Base ? value.send(type) : value
+        value.class < HelpScout::Base ? value.send(type) : value
       end
     end
   end
