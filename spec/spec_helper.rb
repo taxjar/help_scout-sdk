@@ -98,13 +98,13 @@ RSpec.configure do |config|
   # Auto-tag integration specs to use VCR
   config.define_derived_metadata(file_path: %r{spec/integration}) do |metadata|
     metadata[:allow_unused_http_interactions] = false
-    metadata[:record] = :once
+    metadata[:record] = :none
     metadata[:vcr] = true
   end
 
   config.define_derived_metadata(file_path: %r{shared_examples/integration}) do |metadata|
     metadata[:allow_unused_http_interactions] = false
-    metadata[:record] = :once
+    metadata[:record] = :none
     metadata[:vcr] = true
   end
 end
