@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module HelpScout
   class AccessToken
     class << self
