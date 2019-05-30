@@ -59,6 +59,7 @@ VCR.configure do |config|
   config.filter_sensitive_data('<TEST_CONVERSATION_ID>') { ENV['TEST_CONVERSATION_ID'] }
   config.filter_sensitive_data('<TEST_CUSTOMER_EMAIL>') { ENV['TEST_CUSTOMER_EMAIL'] }
   config.filter_sensitive_data('<TEST_CUSTOMER_ID>') { ENV['TEST_CUSTOMER_ID'] }
+  config.filter_sensitive_data('<TEST_THREAD_ID>') { ENV['TEST_THREAD_ID'] }
   config.filter_sensitive_data('<TEST_USER_EMAIL>') { ENV['TEST_USER_EMAIL'] }
   config.filter_sensitive_data('<TEST_USER_ID>') { ENV['TEST_USER_ID'] }
 end

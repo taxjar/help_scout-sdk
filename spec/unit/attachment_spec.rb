@@ -17,7 +17,7 @@ RSpec.describe HelpScout::Attachment do
     before do
       path = "https://api.helpscout.net/v2/conversations/#{conversation_id}/threads/#{thread_id}/attachments"
 
-      stub_request(:post, path).with(body: params.to_json).to_return(
+      stub_request(:post, path).with(body: HelpScout::Util.camelize_keys(params)).to_return(
         body: '',
         headers: { 'Content-Type' => 'application/json' },
         status: 201
