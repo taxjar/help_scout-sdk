@@ -19,7 +19,7 @@ RSpec.describe HelpScout::Attachment do
     subject { described_class.create(conversation_id, thread_id, params) }
 
     it 'creates an attachment on the thread' do |example|
-      puts example.metadata.slice(:vcr, :allow_unused_http_interactions).inspect
+      puts example.metadata.slice(:allow_unused_http_interactions, :record, :vcr).inspect
       expect(subject).to be true
     end
   end
