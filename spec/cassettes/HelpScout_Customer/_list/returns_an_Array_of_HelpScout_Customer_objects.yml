@@ -1,0 +1,66 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.helpscout.net/v2/customers
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <HELPSCOUT_ACCESS_TOKEN>
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Type:
+      - application/hal+json;charset=UTF-8
+      Correlation-Id:
+      - caa9e666-fae6-40c6-bebd-bcac6578b13a#55249936
+      Date:
+      - Thu, 23 May 2019 19:11:12 GMT
+      Expires:
+      - '0'
+      Pragma:
+      - no-cache
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Ratelimit-Limit-Minute:
+      - '400'
+      X-Ratelimit-Remaining-Minute:
+      - '398'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '6509'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"_embedded":{"customers":[{"id":<TEST_CUSTOMER_ID>,"firstName":"Vernon","lastName":"Bear","gender":"Male","jobTitle":"CEO
+        and Co-Founder","location":"Greater Dallas/FT Worth Area","organization":"Acme,
+        Inc","photoType":"twitter","photoUrl":"https://api.helpscout.net/img/some-avatar.jpg","age":"30-35","createdAt":"2019-05-23T18:25:46Z","updatedAt":"2019-05-23T19:07:53Z","background":"I''ve
+        worked with Vernon before and he''s really great.","_embedded":{"emails":[{"id":347205119,"value":"<TEST_CUSTOMER_EMAIL>","type":"work"}],"websites":[],"chats":[],"phones":[],"social_profiles":[]},"_links":{"address":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>/address/"},"chats":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>/chats/"},"emails":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>/emails/"},"phones":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>/phones/"},"self":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>"},"social-profiles":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>/social-profiles/"},"websites":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>/websites/"}}},{"id":257892316,"firstName":"The
+        G Suite","lastName":"Team","gender":"Unknown","photoType":"default","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/customer-avatar/06.png","createdAt":"2019-05-23T03:34:21Z","updatedAt":"2019-05-23T03:34:21Z","background":"","_embedded":{"emails":[{"id":346998736,"value":"gsuite-noreply@google.com","type":"work"}],"websites":[],"chats":[],"phones":[],"social_profiles":[]},"_links":{"address":{"href":"https://api.helpscout.net/v2/customers/257892316/address/"},"chats":{"href":"https://api.helpscout.net/v2/customers/257892316/chats/"},"emails":{"href":"https://api.helpscout.net/v2/customers/257892316/emails/"},"phones":{"href":"https://api.helpscout.net/v2/customers/257892316/phones/"},"self":{"href":"https://api.helpscout.net/v2/customers/257892316"},"social-profiles":{"href":"https://api.helpscout.net/v2/customers/257892316/social-profiles/"},"websites":{"href":"https://api.helpscout.net/v2/customers/257892316/websites/"}}},{"id":257647639,"firstName":"Paul","lastName":"Simpson","gender":"Male","jobTitle":"Hacking
+        People, Process, and Software With A Penchant","location":"Oklahoma, Oklahoma,
+        United States","organization":"Ruby and Cold Brew.","photoType":"facebook","photoUrl":"https://img.fullcontact.com/static/664fc3306cc6eb7ce5b55611d0ebcc42_6f8d7e4a9b7e4fd8726bca36132bf21572a5238b93e89d79dd63d3a55da7fcc8","createdAt":"2019-05-22T04:07:36Z","updatedAt":"2019-05-23T17:19:00Z","background":"","_embedded":{"emails":[{"id":346675800,"value":"prsimp@gmail.com","type":"work"}],"websites":[{"id":346675936,"value":"http://blog.thepaulsimpson.com"},{"id":346675938,"value":"http://www.parisim.net"},{"id":346675937,"value":"http://prsimp.com"}],"chats":[],"phones":[],"social_profiles":[{"id":346675931,"value":"https://www.facebook.com/prsimp","type":"facebook"},{"id":346675935,"value":"https://twitter.com/prsimp","type":"twitter"},{"id":346675934,"value":"https://www.linkedin.com/in/prsimp","type":"linkedin"},{"id":346675932,"value":"https://www.flickr.com/people/89115509@N06","type":"flickr"},{"id":346675933,"value":"https://foursquare.com/user/293482","type":"forsquare"}]},"_links":{"address":{"href":"https://api.helpscout.net/v2/customers/257647639/address/"},"chats":{"href":"https://api.helpscout.net/v2/customers/257647639/chats/"},"emails":{"href":"https://api.helpscout.net/v2/customers/257647639/emails/"},"phones":{"href":"https://api.helpscout.net/v2/customers/257647639/phones/"},"self":{"href":"https://api.helpscout.net/v2/customers/257647639"},"social-profiles":{"href":"https://api.helpscout.net/v2/customers/257647639/social-profiles/"},"websites":{"href":"https://api.helpscout.net/v2/customers/257647639/websites/"}}},{"id":257622466,"firstName":"Simpson
+        Consulting","lastName":"Team","gender":"Unknown","photoType":"default","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/customer-avatar/03.png","createdAt":"2019-05-22T00:41:02Z","updatedAt":"2019-05-22T00:41:02Z","background":"","_embedded":{"emails":[{"id":346641774,"value":"forwarding-noreply@google.com","type":"work"}],"websites":[],"chats":[],"phones":[],"social_profiles":[]},"_links":{"address":{"href":"https://api.helpscout.net/v2/customers/257622466/address/"},"chats":{"href":"https://api.helpscout.net/v2/customers/257622466/chats/"},"emails":{"href":"https://api.helpscout.net/v2/customers/257622466/emails/"},"phones":{"href":"https://api.helpscout.net/v2/customers/257622466/phones/"},"self":{"href":"https://api.helpscout.net/v2/customers/257622466"},"social-profiles":{"href":"https://api.helpscout.net/v2/customers/257622466/social-profiles/"},"websites":{"href":"https://api.helpscout.net/v2/customers/257622466/websites/"}}},{"id":257622247,"firstName":"Help","lastName":"Scout","gender":"Unknown","location":"Boston,
+        MA","photoType":"default","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/customer-avatar/07.png","createdAt":"2019-05-22T00:39:29Z","updatedAt":"2019-05-23T07:53:07Z","background":"","_embedded":{"emails":[{"id":346641465,"value":"help@helpscout.com","type":"work"}],"websites":[{"id":346641469,"value":"https://www.helpscout.com"},{"id":346641468,"value":"https://status.helpscout.com/"}],"chats":[],"phones":[],"social_profiles":[{"id":346641467,"value":"https://twitter.com/HelpScoutDev","type":"twitter"},{"id":346641466,"value":"https://twitter.com/helpscout","type":"twitter"}],"address":{"city":"Boston","lines":["100
+        City Hall Plaza","5th Floor"],"state":"MA","postalCode":"02108","country":"US"}},"_links":{"address":{"href":"https://api.helpscout.net/v2/customers/257622247/address/"},"chats":{"href":"https://api.helpscout.net/v2/customers/257622247/chats/"},"emails":{"href":"https://api.helpscout.net/v2/customers/257622247/emails/"},"phones":{"href":"https://api.helpscout.net/v2/customers/257622247/phones/"},"self":{"href":"https://api.helpscout.net/v2/customers/257622247"},"social-profiles":{"href":"https://api.helpscout.net/v2/customers/257622247/social-profiles/"},"websites":{"href":"https://api.helpscout.net/v2/customers/257622247/websites/"}}}]},"_links":{"first":{"href":"https://api.helpscout.net/v2/customers/?page=1"},"last":{"href":"https://api.helpscout.net/v2/customers/?page=1"},"page":{"href":"https://api.helpscout.net/v2/customers/"},"self":{"href":"https://api.helpscout.net/v2/customers/"}},"page":{"size":50,"totalElements":5,"totalPages":1,"number":1}}'
+    http_version: 
+  recorded_at: Thu, 23 May 2019 19:11:12 GMT
+recorded_with: VCR 4.0.0

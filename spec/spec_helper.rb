@@ -100,9 +100,4 @@ RSpec.configure do |config|
   config.define_derived_metadata(file_path: %r{spec/integration}) do |metadata|
     metadata[:vcr] = true
   end
-
-  # maybe a red herring
-  config.define_derived_metadata(file_path: %r{shared_examples/integration}) do |metadata|
-    metadata[:vcr] = true
-  end
 end

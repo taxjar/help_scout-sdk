@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads/2406997535/attachments
+    body:
+      encoding: UTF-8
+      string: '{"fileName":"file.txt","mimeType":"file/txt","data":"VGhpcyBpcyBhbiBhdHRhY2htZW50LgoKSXQgd2lsbCBiZSBhZGRlZCB0byBhIGNvbnZlcnNhdGlvbidzIHRocmVhZC4K"}'
+    headers:
+      Authorization:
+      - Bearer <HELPSCOUT_ACCESS_TOKEN>
+      User-Agent:
+      - Faraday v0.15.4
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Correlation-Id:
+      - ec159308-58f3-42b7-827a-2788227a7d8c#27499383
+      Date:
+      - Wed, 29 May 2019 17:45:04 GMT
+      Expires:
+      - '0'
+      Pragma:
+      - no-cache
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Ratelimit-Limit-Minute:
+      - '400'
+      X-Ratelimit-Remaining-Minute:
+      - '398'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '0'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Wed, 29 May 2019 17:45:04 GMT
+recorded_with: VCR 4.0.0
