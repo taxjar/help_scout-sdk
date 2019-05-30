@@ -39,6 +39,7 @@ end
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/cassettes'
   config.hook_into :webmock
+  config.default_cassette_options = { allow_unused_http_interactions: false, record: :none }
   config.configure_rspec_metadata!
 
   config.filter_sensitive_data('<HELP_SCOUT_ACCESS_TOKEN>') { HelpScout.access_token.token }
@@ -97,14 +98,11 @@ RSpec.configure do |config|
 
   # Auto-tag integration specs to use VCR
   config.define_derived_metadata(file_path: %r{spec/integration}) do |metadata|
-    metadata[:allow_unused_http_interactions] = false
-    metadata[:record] = :none
     metadata[:vcr] = true
   end
 
+  # maybe a red herring
   config.define_derived_metadata(file_path: %r{shared_examples/integration}) do |metadata|
-    metadata[:allow_unused_http_interactions] = false
-    metadata[:record] = :none
     metadata[:vcr] = true
   end
 end
