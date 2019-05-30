@@ -1,4 +1,4 @@
-# HelpScout
+# Help Scout
 # 🚨 WORK IN PROGRESS 🚨
 
 ## Progress
