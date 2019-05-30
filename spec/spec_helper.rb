@@ -7,7 +7,7 @@ require 'awesome_print'
 require 'vcr'
 require 'webmock/rspec'
 
-require 'help_scout'
+require 'help_scout-sdk'
 
 Dotenv.load('.env', '.env.test')
 
