@@ -12,12 +12,12 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'Ruby Help Scout SDK'
   spec.description   = 'Ruby Help Scout SDK.'
-  spec.homepage      = 'https://github.com/taxjar/help-scout-sdk'
+  spec.homepage      = 'https://github.com/taxjar/help_scout-sdk'
   spec.license       = 'MIT'
 
   if spec.respond_to?(:metadata)
-    spec.metadata['source_code_uri'] = 'https://github.com/taxjar/help-scout-sdk'
-    spec.metadata['bug_tracker_uri'] = 'https://github.com/taxjar/help-scout-sdk/issues'
+    spec.metadata['source_code_uri'] = 'https://github.com/taxjar/help_scout-sdk'
+    spec.metadata['bug_tracker_uri'] = 'https://github.com/taxjar/help_scout-sdk/issues'
   else
     raise 'RubyGems 2.0 or newer is required to protect against ' \
       'public gem pushes.'
