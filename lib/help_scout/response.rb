@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Helpscout
+module HelpScout
   class Response
     delegate :headers, to: :response
 

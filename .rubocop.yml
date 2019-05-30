@@ -1,14 +1,17 @@
 AllCops:
   TargetRubyVersion: 2.3
+Layout/DotPosition:
+  EnforcedStyle: trailing
 Metrics/BlockLength:
   Exclude:
-    - 'helpscout.gemspec'
+    - '*.gemspec'
     - 'Rakefile'
     - '**/*.rake'
     - 'spec/**/*.rb'
-Layout/DotPosition:
-  EnforcedStyle: trailing
 Metrics/LineLength:
   Enabled: False
+Naming/FileName:
+  Exclude:
+    - 'lib/help_scout-sdk.rb'
 Style/Documentation:
   Enabled: False

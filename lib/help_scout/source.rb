@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Helpscout
-  class Source < Helpscout::Base
+module HelpScout
+  class Source < HelpScout::Base
     attr_reader :type, :via
     def initialize(params)
       @type = params[:type]

@@ -3,7 +3,7 @@
 require 'shared_examples/integration/getable'
 require 'shared_examples/integration/listable'
 
-RSpec.describe Helpscout::Conversation do
+RSpec.describe HelpScout::Conversation do
   let(:id) { ENV.fetch('TEST_CONVERSATION_ID') }
   let(:customer_email) { ENV.fetch('TEST_CUSTOMER_EMAIL') }
   let(:user_email) { ENV.fetch('TEST_USER_EMAIL') }
@@ -16,16 +16,16 @@ RSpec.describe Helpscout::Conversation do
     subject { described_class.create(params) }
     let(:params) do
       {
-        customer: Helpscout::Person.new(email: customer_email),
+        customer: HelpScout::Person.new(email: customer_email),
         subject: 'Hello World!',
-        mailbox: Helpscout::MailboxRef.new(id: Helpscout.default_mailbox),
+        mailbox: HelpScout::MailboxRef.new(id: HelpScout.default_mailbox),
         threads: [thread]
       }
     end
     let(:thread) do
-      Helpscout::Thread.new(
+      HelpScout::Thread.new(
         type: 'message',
-        created_by: Helpscout::Person.new(type: 'user', id: user_id),
+        created_by: HelpScout::Person.new(type: 'user', id: user_id),
         body: "Hello World, this is #{user_email}."
       )
     end

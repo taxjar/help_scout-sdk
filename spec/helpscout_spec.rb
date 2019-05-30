@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Helpscout do
+RSpec.describe HelpScout do
   it 'has a version number' do
-    expect(Helpscout::VERSION).not_to be nil
+    expect(HelpScout::VERSION).not_to be nil
   end
 end

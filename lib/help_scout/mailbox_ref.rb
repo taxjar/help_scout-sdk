@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Helpscout
-  class MailboxRef < Helpscout::Base
+module HelpScout
+  class MailboxRef < HelpScout::Base
     def initialize(params)
       @id = params[:id]
       @name = params[:name]

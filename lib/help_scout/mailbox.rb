@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Helpscout
-  class Mailbox < Helpscout::Base
+module HelpScout
+  class Mailbox < HelpScout::Base
     ROUTE = 'mailboxes'
 
     extend Getable
@@ -9,7 +9,7 @@ module Helpscout
     class << self
       # TODO: Make sure folders is init'd correctly when lazy loaded
       def list(page: nil)
-        Helpscout.api.get(list_path, page: page).items.map { |item| new item }
+        HelpScout.api.get(list_path, page: page).items.map { |item| new item }
       end
 
       private
@@ -41,7 +41,7 @@ module Helpscout
     # end
 
     def folders
-      @folders ||= from_json(Helpscout.api.get(folders_path)[:items])
+      @folders ||= from_json(HelpScout.api.get(folders_path)[:items])
     end
 
     private
@@ -49,7 +49,7 @@ module Helpscout
     def build_folder(params)
       return unless params
 
-      Helpscout::Folder.new(params)
+      HelpScout::Folder.new(params)
     end
 
     def build_folders(items)

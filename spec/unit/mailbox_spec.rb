@@ -3,14 +3,14 @@
 require 'shared_examples/unit/listable'
 require 'shared_examples/unit/getable'
 
-RSpec.describe Helpscout::Mailbox do
+RSpec.describe HelpScout::Mailbox do
   include_examples 'getable unit', 'https://api.helpscout.net/v1/mailboxes/1234.json'
   include_examples 'listable unit', 'https://api.helpscout.net/v1/mailboxes.json'
 
   describe '#folders' do
     subject { described_class.new(mailbox).folders }
     let(:body) { file_fixture('mailbox/folders.json') }
-    let(:mailbox) { Helpscout::API.from_json(file_fixture('mailbox/get.json'))[:item] }
+    let(:mailbox) { HelpScout::API.from_json(file_fixture('mailbox/get.json'))[:item] }
 
     before do
       stub_request(:get, 'https://api.helpscout.net/v1/mailboxes/1234/folders.json').
@@ -19,7 +19,7 @@ RSpec.describe Helpscout::Mailbox do
 
     it 'returns an Array of Folders' do
       expect(subject).to be_a Array
-      expect(subject).to all(be_a(Helpscout::Folder))
+      expect(subject).to all(be_a(HelpScout::Folder))
     end
   end
 end
