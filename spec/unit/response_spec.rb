@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Helpscout::Response do
+RSpec.describe HelpScout::Response do
   describe '#body' do
     subject { described_class.new(response) }
     let(:response) { double('MockFaradayResponse') }

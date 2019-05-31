@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Helpscout::API::AccessToken do
+RSpec.describe HelpScout::API::AccessToken do
   describe '.create' do
     subject { described_class.create }
 

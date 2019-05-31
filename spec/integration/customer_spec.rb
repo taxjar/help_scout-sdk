@@ -3,7 +3,7 @@
 require 'shared_examples/integration/getable'
 require 'shared_examples/integration/listable'
 
-RSpec.describe Helpscout::Customer do
+RSpec.describe HelpScout::Customer do
   let(:id) { ENV.fetch('TEST_CUSTOMER_ID') }
 
   include_examples 'getable integration'

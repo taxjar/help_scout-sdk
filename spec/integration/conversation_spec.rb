@@ -3,7 +3,7 @@
 require 'shared_examples/integration/getable'
 require 'shared_examples/integration/listable'
 
-RSpec.describe Helpscout::Conversation do
+RSpec.describe HelpScout::Conversation do
   let(:id) { ENV.fetch('TEST_CONVERSATION_ID') }
   let(:customer_email) { ENV.fetch('TEST_CUSTOMER_EMAIL') }
   let(:user_email) { ENV.fetch('TEST_USER_EMAIL') }
@@ -19,7 +19,7 @@ RSpec.describe Helpscout::Conversation do
         type: 'email',
         customer: { email: customer_email },
         subject: 'Hello World!',
-        mailbox_id: Helpscout.default_mailbox,
+        mailbox_id: HelpScout.default_mailbox,
         status: 'active',
         threads: [thread]
       }

@@ -1,8 +1,8 @@
-# Helpscout API Wrapper
+# Help Scout API Wrapper
 
 🚨 WORK IN PROGRESS 🚨
 
-This gem is a wrapper around the Helpscout API. The current version is targeting the [Mailbox 2.0 API](https://developer.helpscout.com/mailbox-api/).
+This gem is a wrapper around the Help Scout API. The current version is targeting the [Mailbox 2.0 API](https://developer.helpscout.com/mailbox-api/).
 
 ## Installation
 
@@ -20,8 +20,7 @@ And then execute:
 
 | Models                     | List | Get  | Create  | Update | Delete  |
 | :------------------------- | :--: | :--: | :-----: | :----: | :-----: |
-| Attachment                 |   ❌  |  ❌  |    ❌   |    ❌   |    ❌   |
-| Attachment::Data           |   ❌  |  ❌  |    ❌   |    ❌   |    ❌   |
+| Attachment                 |   ❌  |  ❌  |    ✅   |    ❌   |    ❌   |
 | Conversations              |   ✅  |  ✅  |    ✅   |    ✅   |    ❌   |
 | Conversation::Threads      |   ❌  |  ❌  |    ❌   |    ❌   |    ❌   |
 | Conversation::ThreadSource |   ❌  |  ❌  |    ❌   |    ❌   |    ❌   |
@@ -47,11 +46,11 @@ And then execute:
 ### Configuration
 
 ```ruby
-Helpscout.configure do |config|
-  config.app_id = ENV["HELPSCOUT_APP_ID"]
-  config.app_secret = ENV["HELPSCOUT_APP_SECRET"]
+HelpScout.configure do |config|
+  config.app_id = ENV["HELP_SCOUT_APP_ID"]
+  config.app_secret = ENV["HELP_SCOUT_APP_SECRET"]
 
-  config.access_token = Helpscout::AccessToken.create
+  config.access_token = HelpScout::API::AccessToken.create
 end
 ```
 
@@ -60,9 +59,9 @@ end
 [Documentation Link](https://developer.helpscout.com/mailbox-api/endpoints/conversations/list/)
 
 ```ruby
-Helpscout::Conversation.list
-location = Helpscout::Conversation.create(...)
-conversation = Helpscout::Conversation.get(location.split("/").last)
+HelpScout::Conversation.list
+location = HelpScout::Conversation.create(...)
+conversation = HelpScout::Conversation.get(location.split("/").last)
 conversation.update("replace", "/subject", "New Subject")
 ```
 
@@ -71,8 +70,8 @@ conversation.update("replace", "/subject", "New Subject")
 [Documentation Link](https://developer.helpscout.com/mailbox-api/endpoints/customers/list/)
 
 ```ruby
-Helpscout::Customer.list
-Helpscout::Customer.get(id)
+HelpScout::Customer.list
+HelpScout::Customer.get(id)
 ```
 
 ### Mailboxes
@@ -80,8 +79,8 @@ Helpscout::Customer.get(id)
 [Documentation Link](https://developer.helpscout.com/mailbox-api/endpoints/mailboxes/list/)
 
 ```ruby
-Helpscout::Mailbox.list
-mailbox = Helpscout::Mailbox.get(id)
+HelpScout::Mailbox.list
+mailbox = HelpScout::Mailbox.get(id)
 mailbox.fields
 mailbox.folders
 ```
@@ -91,8 +90,8 @@ mailbox.folders
 [Documentation Link](https://developer.helpscout.com/mailbox-api/endpoints/users/list/)
 
 ```ruby
-Helpscout::User.list
-user = Helpscout::User.get(id)
+HelpScout::User.list
+user = HelpScout::User.get(id)
 ```
 
 ## Development

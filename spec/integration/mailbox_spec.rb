@@ -3,7 +3,7 @@
 require 'shared_examples/integration/getable'
 require 'shared_examples/integration/listable'
 
-RSpec.describe Helpscout::Mailbox do
+RSpec.describe HelpScout::Mailbox do
   let(:id) { ENV.fetch('TEST_MAILBOX_ID') }
 
   include_examples 'getable integration'
@@ -14,7 +14,7 @@ RSpec.describe Helpscout::Mailbox do
 
     it 'returns an Array of Folders' do
       expect(subject).to be_a Array
-      expect(subject).to all(be_a(Helpscout::Folder))
+      expect(subject).to all(be_a(HelpScout::Folder))
     end
   end
 end

@@ -10,9 +10,13 @@ require 'pry'
 require 'vcr'
 require 'webmock/rspec'
 
-require 'helpscout'
+require 'help_scout-sdk'
 
 Dotenv.load('.env', '.env.test')
+
+def api_path(path_part)
+  'https://api.helpscout.net/v2/' + path_part
+end
 
 def file_fixture(path)
   File.read("spec/fixtures/#{path}")
@@ -26,36 +30,38 @@ def logger
   @logger ||= Logger.new($stdout, level: ENV.fetch('LOG_LEVEL', 'INFO'))
 end
 
-Helpscout.configure do |config|
-  config.app_id = ENV.fetch('HELPSCOUT_APP_ID')
-  config.app_secret = ENV.fetch('HELPSCOUT_APP_SECRET')
-  config.access_token = ENV.fetch('HELPSCOUT_ACCESS_TOKEN', nil)
+HelpScout.configure do |config|
+  config.app_id = ENV.fetch('HELP_SCOUT_APP_ID')
+  config.app_secret = ENV.fetch('HELP_SCOUT_APP_SECRET')
+  config.access_token = ENV.fetch('HELP_SCOUT_ACCESS_TOKEN', nil)
   config.default_mailbox = ENV.fetch('TEST_MAILBOX_ID')
 end
 
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/cassettes'
   config.hook_into :webmock
+  config.default_cassette_options = { allow_unused_http_interactions: false, record: :none }
   config.configure_rspec_metadata!
 
-  config.filter_sensitive_data('<HELPSCOUT_ACCESS_TOKEN>') { Helpscout.access_token.value }
-  config.filter_sensitive_data('<HELPSCOUT_ACCESS_TOKEN>') do |interaction|
+  config.filter_sensitive_data('<HELP_SCOUT_ACCESS_TOKEN>') { HelpScout.access_token.token }
+  config.filter_sensitive_data('<HELP_SCOUT_ACCESS_TOKEN>') do |interaction|
     begin
       JSON.parse(interaction.response.body)['access_token']
     rescue JSON::ParserError => e
       logger.debug e.message
     end
   end
-  config.filter_sensitive_data('Bearer <HELPSCOUT_ACCESS_TOKEN>') do |interaction|
+  config.filter_sensitive_data('Bearer <HELP_SCOUT_ACCESS_TOKEN>') do |interaction|
     interaction.request.headers['Authorization']
   end
 
-  config.filter_sensitive_data('<HELPSCOUT_APP_ID>') { Helpscout.app_id }
-  config.filter_sensitive_data('<HELPSCOUT_APP_SECRET>') { Helpscout.app_secret }
-  config.filter_sensitive_data('<TEST_MAILBOX_ID>') { Helpscout.default_mailbox }
+  config.filter_sensitive_data('<HELP_SCOUT_APP_ID>') { HelpScout.app_id }
+  config.filter_sensitive_data('<HELP_SCOUT_APP_SECRET>') { HelpScout.app_secret }
+  config.filter_sensitive_data('<TEST_MAILBOX_ID>') { HelpScout.default_mailbox }
   config.filter_sensitive_data('<TEST_CONVERSATION_ID>') { ENV['TEST_CONVERSATION_ID'] }
   config.filter_sensitive_data('<TEST_CUSTOMER_EMAIL>') { ENV['TEST_CUSTOMER_EMAIL'] }
   config.filter_sensitive_data('<TEST_CUSTOMER_ID>') { ENV['TEST_CUSTOMER_ID'] }
+  config.filter_sensitive_data('<TEST_THREAD_ID>') { ENV['TEST_THREAD_ID'] }
   config.filter_sensitive_data('<TEST_USER_EMAIL>') { ENV['TEST_USER_EMAIL'] }
   config.filter_sensitive_data('<TEST_USER_ID>') { ENV['TEST_USER_ID'] }
 end

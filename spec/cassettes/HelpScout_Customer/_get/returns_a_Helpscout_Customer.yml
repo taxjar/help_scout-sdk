@@ -1,0 +1,60 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <HELP_SCOUT_ACCESS_TOKEN>
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Type:
+      - application/hal+json;charset=UTF-8
+      Correlation-Id:
+      - caa9e666-fae6-40c6-bebd-bcac6578b13a#55249925
+      Date:
+      - Thu, 23 May 2019 19:11:12 GMT
+      Expires:
+      - '0'
+      Pragma:
+      - no-cache
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Ratelimit-Limit-Minute:
+      - '400'
+      X-Ratelimit-Remaining-Minute:
+      - '399'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '1106'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"id":<TEST_CUSTOMER_ID>,"firstName":"Vernon","lastName":"Bear","gender":"Male","jobTitle":"CEO
+        and Co-Founder","location":"Greater Dallas/FT Worth Area","organization":"Acme,
+        Inc","photoType":"twitter","photoUrl":"https://api.helpscout.net/img/some-avatar.jpg","age":"30-35","createdAt":"2019-05-23T18:25:46Z","updatedAt":"2019-05-23T19:07:53Z","background":"I''ve
+        worked with Vernon before and he''s really great.","_embedded":{"emails":[{"id":347205119,"value":"<TEST_CUSTOMER_EMAIL>","type":"work"}],"websites":[],"chats":[],"phones":[],"social_profiles":[]},"_links":{"address":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>/address/"},"chats":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>/chats/"},"emails":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>/emails/"},"phones":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>/phones/"},"self":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>"},"social-profiles":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>/social-profiles/"},"websites":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>/websites/"}}}'
+    http_version:
+  recorded_at: Thu, 23 May 2019 19:11:12 GMT
+recorded_with: VCR 4.0.0

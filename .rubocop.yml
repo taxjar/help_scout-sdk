@@ -10,7 +10,7 @@ Lint/AmbiguousBlockAssociation:
 
 Metrics/BlockLength:
   Exclude:
-    - 'helpscout.gemspec'
+    - '*.gemspec'
     - 'Rakefile'
     - '**/*.rake'
     - 'spec/**/*_spec.rb'
@@ -20,6 +20,11 @@ Metrics/ClassLength:
 
 Metrics/LineLength:
   Max: 120
+
+Naming/FileName:
+  Exclude:
+    - 'lib/help_scout-sdk.rb'
+    - 'spec/**/*_spec.rb'
 
 Style/Documentation:
   Enabled: False

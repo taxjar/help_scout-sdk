@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Helpscout::API::AccessToken do
+RSpec.describe HelpScout::API::AccessToken do
   let(:access_token_json) { file_fixture('access_token.json') }
   let(:access_token_params) { JSON.parse(access_token_json, symbolize_names: true) }
   let(:access_token) { described_class.new(access_token_params) }

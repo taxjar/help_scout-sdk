@@ -3,9 +3,9 @@
 require 'shared_examples/unit/getable'
 require 'shared_examples/unit/listable'
 
-RSpec.describe Helpscout::Conversation do
+RSpec.describe HelpScout::Conversation do
   include_examples 'getable unit', 'https://api.helpscout.net/v2/conversations/1'
-  include_examples 'listable unit', "https://api.helpscout.net/v2/conversations?mailbox=#{Helpscout.default_mailbox}"
+  include_examples 'listable unit', "https://api.helpscout.net/v2/conversations?mailbox=#{HelpScout.default_mailbox}"
 
   let(:conversation) { described_class.new(params) }
 

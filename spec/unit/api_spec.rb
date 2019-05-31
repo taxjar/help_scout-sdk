@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Helpscout::API do
+RSpec.describe HelpScout::API do
   let(:api) { described_class.new }
   let(:client) { api.send(:client) }
 
@@ -73,10 +73,10 @@ RSpec.describe Helpscout::API do
         }
       end
 
-      it 'returns a Helpscout::Response with matching body' do
+      it 'returns a HelpScout::Response with matching body' do
         result = subject
 
-        expect(result).to be_a Helpscout::Response
+        expect(result).to be_a HelpScout::Response
         expect(result.body.to_json).to include(response[:body])
       end
     end
@@ -91,7 +91,7 @@ RSpec.describe Helpscout::API do
       end
 
       it 'raises a ThrottleLimitReached error' do
-        expect { subject }.to raise_error(Helpscout::API::ThrottleLimitReached)
+        expect { subject }.to raise_error(HelpScout::API::ThrottleLimitReached)
       end
     end
 
@@ -105,7 +105,7 @@ RSpec.describe Helpscout::API do
       end
 
       it 'raises an InternalError error' do
-        expect { subject }.to raise_error(Helpscout::API::InternalError)
+        expect { subject }.to raise_error(HelpScout::API::InternalError)
       end
     end
   end
@@ -128,8 +128,8 @@ RSpec.describe Helpscout::API do
       context 'when the request is successful' do
         let(:response) { { status: 200 } }
 
-        it 'returns a Helpscout::Response object' do
-          expect(subject).to be_a Helpscout::Response
+        it 'returns a HelpScout::Response object' do
+          expect(subject).to be_a HelpScout::Response
         end
       end
 
@@ -143,10 +143,10 @@ RSpec.describe Helpscout::API do
         end
       end
 
-      include_examples 'error handling', 'a bad request', status: 400, error: Helpscout::API::BadRequest
-      include_examples 'error handling', 'not found', status: 404, error: Helpscout::API::NotFound
-      include_examples 'error handling', 'rate limited', status: 429, error: Helpscout::API::ThrottleLimitReached
-      include_examples 'error handling', 'an internal error', status: [500, 501, 503].sample, error: Helpscout::API::InternalError # rubocop:disable Metrics/LineLength
+      include_examples 'error handling', 'a bad request', status: 400, error: HelpScout::API::BadRequest
+      include_examples 'error handling', 'not found', status: 404, error: HelpScout::API::NotFound
+      include_examples 'error handling', 'rate limited', status: 429, error: HelpScout::API::ThrottleLimitReached
+      include_examples 'error handling', 'an internal error', status: [500, 501, 503].sample, error: HelpScout::API::InternalError # rubocop:disable Metrics/LineLength
 
       context 'when the request is not authorized' do
         let(:response) { { status: 401 } }
@@ -162,24 +162,24 @@ RSpec.describe Helpscout::API do
         before { access_token_stub }
 
         it 'raises a NotAuthorized error' do
-          expect { subject }.to raise_error(Helpscout::API::NotAuthorized)
+          expect { subject }.to raise_error(HelpScout::API::NotAuthorized)
         end
 
         context 'and automatically_generate_tokens is configured to true' do
-          before { Helpscout.configuration.automatically_generate_tokens = true }
+          before { HelpScout.configuration.automatically_generate_tokens = true }
 
           it 'attempts to fetch a new access token' do
-            expect { subject }.to raise_error(Helpscout::API::NotAuthorized)
+            expect { subject }.to raise_error(HelpScout::API::NotAuthorized)
 
             expect(access_token_stub).to have_been_requested
           end
         end
 
         context 'and automatically_generate_tokens is configured to false' do
-          before { Helpscout.configuration.automatically_generate_tokens = false }
+          before { HelpScout.configuration.automatically_generate_tokens = false }
 
           it 'does not attempt to fetch a new access token' do
-            expect { subject }.to raise_error(Helpscout::API::NotAuthorized)
+            expect { subject }.to raise_error(HelpScout::API::NotAuthorized)
 
             expect(access_token_stub).not_to have_been_requested
           end
