@@ -11,40 +11,32 @@ module HelpScout
     BASE_URL = 'https://api.helpscout.net/v2/'
 
     attr_writer :access_token
-    def initialize
-      @access_token = HelpScout.configuration.access_token # TODO: Do this once after configure
-    end
 
     def access_token
       @access_token ||= HelpScout::API::AccessToken.create
     end
 
     def get(path, params = {})
-      http_action(:get, path, params)
+      send_request(:get, path, params)
     end
 
     def patch(path, params)
-      http_action(:patch, path, params)
+      send_request(:patch, path, params)
     end
 
     def post(path, params)
-      http_action(:post, path, params)
+      send_request(:post, path, params)
     end
 
     def put(path, params)
-      http_action(:put, path, params)
+      send_request(:put, path, params)
     end
 
     private
 
-    def cleansed_params(params)
-      params.delete_if { |_, v| v.nil? }
-    end
-
     def handle_response(result) # rubocop:disable AbcSize, MethodLength
       case result.status
       when 400
-        # ap result.body
         raise BadRequest, result.body&.dig('validationErrors')
       when 401
         raise NotAuthorized, result.body&.dig('error_description')
@@ -59,13 +51,13 @@ module HelpScout
       HelpScout::Response.new(result)
     end
 
-    def http_action(action, path, params)
+    def send_request(action, path, params)
       connection = HelpScout::API::Client.new.connection
-      response = connection.send(action, path, cleansed_params(params))
+      response = connection.send(action, path, params.compact)
 
       if response.status == 401 && HelpScout.configuration.automatically_generate_tokens
         self.access_token = HelpScout::API::AccessToken.create
-        response = connection.send(action, path, cleansed_params(params))
+        response = connection.send(action, path, params.compact)
       end
 
       handle_response(response)
