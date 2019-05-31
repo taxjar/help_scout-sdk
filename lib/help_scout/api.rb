@@ -94,6 +94,7 @@ module HelpScout
     def handle_response(result)
       case result.status
       when 400
+        # ap result.body
         raise BadRequest, result.body&.dig('validationErrors')
       when 401
         raise NotAuthorized, result.body&.dig('error_description')
