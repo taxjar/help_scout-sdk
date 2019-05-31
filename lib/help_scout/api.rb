@@ -75,10 +75,6 @@ module HelpScout
       http_action(:patch, path, params)
     end
 
-    def patch(path, params)
-      handle_response(http_action(:patch, path, params))
-    end
-
     def post(path, params)
       http_action(:post, path, params)
     end
@@ -119,7 +115,7 @@ module HelpScout
       response = connection.send(action, path, cleansed_params(params))
 
       if response.status == 401 && HelpScout.configuration.automatically_generate_tokens
-        HelpScout::API::AccessToken.create
+        self.access_token = HelpScout::API::AccessToken.create
         response = connection.send(action, path, cleansed_params(params))
       end
 

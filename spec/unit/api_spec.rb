@@ -36,7 +36,7 @@ RSpec.describe HelpScout::API do
     end
   end
 
-  describe '#access_token' do
+  xdescribe '#access_token' do
     subject { api.access_token }
 
     context 'when no Authorization header is set' do
@@ -56,7 +56,7 @@ RSpec.describe HelpScout::API do
     end
   end
 
-  describe '#fetch_access_token' do
+  xdescribe '#fetch_access_token' do
     subject { api.fetch_access_token }
 
     before do

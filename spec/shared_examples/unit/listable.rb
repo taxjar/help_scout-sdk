@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 RSpec.shared_examples 'listable unit' do |url|
+  before do
+    stub_request(:post, 'https://api.helpscout.net/v2/oauth2/token').
+      to_return(body: valid_access_token, headers: { 'Content-Type' => 'application/json' })
+  end
+
   describe '.list' do
     subject { described_class.list }
     let(:body) { file_fixture("#{model_name}/list.json") }

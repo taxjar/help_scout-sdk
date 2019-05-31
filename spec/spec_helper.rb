@@ -30,6 +30,10 @@ def logger
   @logger ||= Logger.new($stdout, level: ENV.fetch('LOG_LEVEL', 'INFO'))
 end
 
+def valid_access_token
+  file_fixture('access_token.json')
+end
+
 HelpScout.configure do |config|
   config.app_id = ENV.fetch('HELP_SCOUT_APP_ID')
   config.app_secret = ENV.fetch('HELP_SCOUT_APP_SECRET')
