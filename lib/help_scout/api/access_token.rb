@@ -15,8 +15,10 @@ module HelpScout
             raise InternalError, response.body&.dig('error')
           end
 
-          new(HelpScout::Response.new(response).body)
+          new HelpScout::Response.new(response).body
         end
+
+        private
 
         def token_request_params
           @token_request_params ||= {

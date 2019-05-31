@@ -5,6 +5,5 @@ module HelpScout
     def get(id)
       new parse_item(HelpScout.api.get(get_path(id)))
     end
-    alias find get
   end
 end

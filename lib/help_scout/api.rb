@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-# TODO: PERFORM_DELIVERIES option
-# TODO: Error handling (e.g. HelpScout::Conversation.create(foo: :bar))
-# TODO: Clean up with ActiveSupport
-
 module HelpScout
   class API
     class BadRequest < StandardError; end
@@ -13,50 +9,6 @@ module HelpScout
     class ThrottleLimitReached < StandardError; end
 
     BASE_URL = 'https://api.helpscout.net/v2/'
-
-    class << self
-      def from_json(data)
-        deep_underscore(::JSON.parse(data))
-      end
-
-      private
-
-      def deep_underscore(hash)
-        hash.map do |k, v|
-          [
-            deep_underscore_key(k),
-            deep_underscore_value(v)
-          ]
-        end.to_h
-      end
-
-      def deep_underscore_key(key)
-        underscore(key).to_sym
-      end
-
-      def deep_underscore_value(value) # rubocop:disable Metrics/MethodLength
-        case value
-        when Hash
-          deep_underscore(value)
-        when Array
-          if value.any? { |e| e.class < HelpScout::Base }
-            value.map { |v| deep_underscore(v) }
-          else
-            value
-          end
-        else
-          value
-        end
-      end
-
-      def underscore(string)
-        string.gsub(/::/, '/').
-          gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').
-          gsub(/([a-z\d])([A-Z])/, '\1_\2').
-          tr('-', '_').
-          downcase
-      end
-    end
 
     attr_writer :access_token
     def initialize
@@ -89,9 +41,7 @@ module HelpScout
       params.delete_if { |_, v| v.nil? }
     end
 
-    # rubocop:disable AbcSize
-    # rubocop:disable MethodLength
-    def handle_response(result)
+    def handle_response(result) # rubocop:disable AbcSize, MethodLength
       case result.status
       when 400
         # ap result.body
@@ -108,8 +58,6 @@ module HelpScout
 
       HelpScout::Response.new(result)
     end
-    # rubocop:enable AbcSize
-    # rubocop:enable MethodLength
 
     def http_action(action, path, params)
       connection = HelpScout::API::Client.new.connection

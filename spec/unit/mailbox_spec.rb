@@ -10,7 +10,7 @@ RSpec.describe HelpScout::Mailbox do
   describe '#folders' do
     subject { described_class.new(mailbox).folders }
     let(:body) { file_fixture('mailbox/folders.json') }
-    let(:mailbox) { HelpScout::API.from_json(file_fixture('mailbox/get.json')) }
+    let(:mailbox) { JSON.parse(file_fixture('mailbox/get.json')).deep_transform_keys { |k| k.underscore.to_sym } }
 
     before do
       stub_request(:post, 'https://api.helpscout.net/v2/oauth2/token').

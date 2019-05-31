@@ -6,12 +6,6 @@ RSpec.shared_examples 'getable unit' do |url|
       to_return(body: valid_access_token, headers: { 'Content-Type' => 'application/json' })
   end
 
-  describe '.find' do
-    it 'is an alias for .get' do
-      expect(described_class.method(:find)).to eq described_class.method(:get)
-    end
-  end
-
   describe '.get' do
     subject { described_class.get(id) }
     let(:body) { file_fixture("#{model_name}/get.json") }
