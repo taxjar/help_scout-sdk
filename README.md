@@ -2,7 +2,7 @@
 
 🚨 WORK IN PROGRESS 🚨
 
-This gem is a wrapper around the HelpScout API. The current version is targeting the [Mailbox 2.0 API](https://developer.helpscout.com/mailbox-api/).
+This gem is a wrapper around the Help Scout API. The current version is targeting the [Mailbox 2.0 API](https://developer.helpscout.com/mailbox-api/).
 
 ## Installation
 
@@ -47,10 +47,10 @@ And then execute:
 
 ```ruby
 HelpScout.configure do |config|
-  config.app_id = ENV["HELPSCOUT_APP_ID"]
-  config.app_secret = ENV["HELPSCOUT_APP_SECRET"]
+  config.app_id = ENV["HELP_SCOUT_APP_ID"]
+  config.app_secret = ENV["HELP_SCOUT_APP_SECRET"]
 
-  config.access_token = HelpScout::AccessToken.create
+  config.access_token = HelpScout::API::AccessToken.create
 end
 ```
 

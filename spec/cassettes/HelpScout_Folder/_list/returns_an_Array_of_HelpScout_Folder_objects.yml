@@ -8,7 +8,7 @@ http_interactions:
       string: ''
     headers:
       Authorization:
-      - Bearer <HELPSCOUT_ACCESS_TOKEN>
+      - Bearer <HELP_SCOUT_ACCESS_TOKEN>
       User-Agent:
       - Faraday v0.15.4
       Accept-Encoding:
@@ -27,9 +27,9 @@ http_interactions:
       Content-Type:
       - application/hal+json;charset=UTF-8
       Correlation-Id:
-      - ec159308-58f3-42b7-827a-2788227a7d8c#19038401
+      - caa9e666-fae6-40c6-bebd-bcac6578b13a#65704916
       Date:
-      - Thu, 23 May 2019 19:07:48 GMT
+      - Fri, 31 May 2019 05:04:05 GMT
       Expires:
       - '0'
       Pragma:
@@ -42,17 +42,18 @@ http_interactions:
       X-Ratelimit-Limit-Minute:
       - '400'
       X-Ratelimit-Remaining-Minute:
-      - '399'
+      - '393'
       X-Xss-Protection:
       - 1; mode=block
-      Content-Length:
-      - '1063'
+      Transfer-Encoding:
+      - chunked
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"_embedded":{"folders":[{"id":2963289,"name":"Unassigned","type":"open","userId":0,"totalCount":2,"activeCount":2,"updatedAt":"2019-05-23T18:37:56Z"},{"id":2963295,"name":"Mine","type":"mytickets","userId":<TEST_USER_ID>,"totalCount":0,"activeCount":0,"updatedAt":"2019-05-23T18:36:54Z"},{"id":2963290,"name":"Needs
-        Attention","type":"needs_attn","userId":0,"totalCount":0,"activeCount":0,"updatedAt":"2019-05-22T00:39:29Z"},{"id":2963291,"name":"Drafts","type":"drafts","userId":0,"totalCount":1,"activeCount":1,"updatedAt":"2019-05-23T18:37:56Z"},{"id":2963292,"name":"Assigned","type":"assigned","userId":0,"totalCount":0,"activeCount":0,"updatedAt":"2019-05-23T18:36:54Z"},{"id":2963294,"name":"Closed","type":"closed","userId":0,"totalCount":1,"activeCount":0,"updatedAt":"2019-05-22T00:43:01Z"},{"id":2963293,"name":"Spam","type":"spam","userId":0,"totalCount":0,"activeCount":0,"updatedAt":"2019-05-22T00:39:29Z"}]},"_links":{"self":{"href":"https://api.helpscout.net/v2/mailboxes/<TEST_MAILBOX_ID>/folders/"}},"page":{"size":50,"totalElements":7,"totalPages":1,"number":1}}'
+      string: '{"_embedded":{"folders":[{"id":1675979,"name":"Unassigned","type":"open","userId":0,"totalCount":20,"activeCount":20,"updatedAt":"2019-05-31T05:02:27Z"},{"id":1677761,"name":"Mine","type":"mytickets","userId":<TEST_USER_ID>,"totalCount":2,"activeCount":0,"updatedAt":"2018-04-12T13:33:47Z"},{"id":1675980,"name":"Needs
+        Attention","type":"needs_attn","userId":0,"totalCount":0,"activeCount":0,"updatedAt":"2017-12-05T20:53:56Z"},{"id":1675981,"name":"Drafts","type":"drafts","userId":0,"totalCount":12,"activeCount":12,"updatedAt":"2019-05-31T04:22:26Z"},{"id":1675982,"name":"Assigned","type":"assigned","userId":0,"totalCount":13,"activeCount":13,"updatedAt":"2019-05-16T14:45:32Z"},{"id":1675984,"name":"Closed","type":"closed","userId":0,"totalCount":86,"activeCount":0,"updatedAt":"2019-05-30T19:04:05Z"},{"id":1675983,"name":"Spam","type":"spam","userId":0,"totalCount":0,"activeCount":0,"updatedAt":"2017-10-30T18:36:04Z"},{"id":2373280,"name":"Dev
+        Reporting and Filing","type":"team","userId":315683,"totalCount":0,"activeCount":0,"updatedAt":"2018-10-25T17:57:48Z"}]},"_links":{"self":{"href":"https://api.helpscout.net/v2/mailboxes/<TEST_MAILBOX_ID>/folders/"}},"page":{"size":50,"totalElements":8,"totalPages":1,"number":1}}'
     http_version: 
-  recorded_at: Thu, 23 May 2019 19:07:48 GMT
-recorded_with: VCR 4.0.0
+  recorded_at: Fri, 31 May 2019 05:04:05 GMT
+recorded_with: VCR 5.0.0

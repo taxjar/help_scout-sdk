@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 RSpec.shared_examples 'getable unit' do |url|
+  before do
+    stub_request(:post, 'https://api.helpscout.net/v2/oauth2/token').
+      to_return(body: valid_access_token, headers: { 'Content-Type' => 'application/json' })
+  end
+
   describe '.find' do
     it 'is an alias for .get' do
       expect(described_class.method(:find)).to eq described_class.method(:get)

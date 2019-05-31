@@ -13,6 +13,8 @@ RSpec.describe HelpScout::Mailbox do
     let(:mailbox) { HelpScout::API.from_json(file_fixture('mailbox/get.json')) }
 
     before do
+      stub_request(:post, 'https://api.helpscout.net/v2/oauth2/token').
+        to_return(body: valid_access_token, headers: { 'Content-Type' => 'application/json' })
       stub_request(:get, 'https://api.helpscout.net/v2/mailboxes/1/folders/').
         to_return(body: body, headers: { 'Content-Type' => 'application/json' })
     end

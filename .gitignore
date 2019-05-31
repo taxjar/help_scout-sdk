@@ -9,6 +9,7 @@
 
 *.gem
 .env*
+.byebug_history
 .rspec_status
 .ruby-gemset
 .ruby-version

@@ -4,6 +4,7 @@ require 'bundler/setup'
 require 'dotenv'
 
 require 'awesome_print'
+require 'byebug'
 require 'logger'
 require 'pry'
 require 'vcr'
@@ -29,20 +30,24 @@ def logger
   @logger ||= Logger.new($stdout, level: ENV.fetch('LOG_LEVEL', 'INFO'))
 end
 
+def valid_access_token
+  file_fixture('access_token.json')
+end
+
 HelpScout.configure do |config|
   config.app_id = ENV.fetch('HELP_SCOUT_APP_ID')
   config.app_secret = ENV.fetch('HELP_SCOUT_APP_SECRET')
-  config.access_token = ENV.fetch('HELP_SCOUT_ACCESS_TOKEN') { HelpScout::AccessToken.create }
+  config.access_token = ENV.fetch('HELP_SCOUT_ACCESS_TOKEN', nil)
   config.default_mailbox = ENV.fetch('TEST_MAILBOX_ID')
 end
 
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/cassettes'
   config.hook_into :webmock
-  config.default_cassette_options = { allow_unused_http_interactions: false, record: :none }
+  config.default_cassette_options = { record: :none }
   config.configure_rspec_metadata!
 
-  config.filter_sensitive_data('<HELP_SCOUT_ACCESS_TOKEN>') { HelpScout.access_token.token }
+  config.filter_sensitive_data('<HELP_SCOUT_ACCESS_TOKEN>') { HelpScout.access_token.value }
   config.filter_sensitive_data('<HELP_SCOUT_ACCESS_TOKEN>') do |interaction|
     begin
       JSON.parse(interaction.response.body)['access_token']

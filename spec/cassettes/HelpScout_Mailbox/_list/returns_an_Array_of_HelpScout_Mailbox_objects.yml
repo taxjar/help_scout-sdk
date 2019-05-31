@@ -8,7 +8,7 @@ http_interactions:
       string: ''
     headers:
       Authorization:
-      - Bearer <HELPSCOUT_ACCESS_TOKEN>
+      - Bearer <HELP_SCOUT_ACCESS_TOKEN>
       User-Agent:
       - Faraday v0.15.4
       Accept-Encoding:
@@ -27,9 +27,9 @@ http_interactions:
       Content-Type:
       - application/hal+json;charset=UTF-8
       Correlation-Id:
-      - ec159308-58f3-42b7-827a-2788227a7d8c#19038406
+      - ec159308-58f3-42b7-827a-2788227a7d8c#29361727
       Date:
-      - Thu, 23 May 2019 19:07:49 GMT
+      - Fri, 31 May 2019 05:04:05 GMT
       Expires:
       - '0'
       Pragma:
@@ -42,16 +42,21 @@ http_interactions:
       X-Ratelimit-Limit-Minute:
       - '400'
       X-Ratelimit-Remaining-Minute:
-      - '398'
+      - '392'
       X-Xss-Protection:
       - 1; mode=block
-      Content-Length:
-      - '746'
+      Transfer-Encoding:
+      - chunked
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"_embedded":{"mailboxes":[{"id":<TEST_MAILBOX_ID>,"name":"SimpCo Support","slug":"97a4434ed14ec47b","email":"<TEST_USER_EMAIL>","createdAt":"2019-05-22T00:39:29Z","updatedAt":"2019-05-22T04:07:37Z","_links":{"fields":{"href":"https://api.helpscout.net/v2/mailboxes/<TEST_MAILBOX_ID>/fields/"},"folders":{"href":"https://api.helpscout.net/v2/mailboxes/<TEST_MAILBOX_ID>/folders/"},"self":{"href":"https://api.helpscout.net/v2/mailboxes/<TEST_MAILBOX_ID>"}}}]},"_links":{"first":{"href":"https://api.helpscout.net/v2/mailboxes/?page=1"},"last":{"href":"https://api.helpscout.net/v2/mailboxes/?page=1"},"page":{"href":"https://api.helpscout.net/v2/mailboxes/"},"self":{"href":"https://api.helpscout.net/v2/mailboxes/"}},"page":{"size":50,"totalElements":1,"totalPages":1,"number":1}}'
+      string: '{"_embedded":{"mailboxes":[{"id":108523,"name":"TaxJar Support","slug":"6fbb23940e98eba9","email":"support@taxjar.com","createdAt":"2017-04-28T16:19:27Z","updatedAt":"2019-05-28T14:55:41Z","_links":{"fields":{"href":"https://api.helpscout.net/v2/mailboxes/108523/fields/"},"folders":{"href":"https://api.helpscout.net/v2/mailboxes/108523/folders/"},"self":{"href":"https://api.helpscout.net/v2/mailboxes/108523"}}},{"id":<TEST_MAILBOX_ID>,"name":"Test
+        Helpscout","slug":"fe5239d630f1cae7","email":"matt+helpscout@taxjar.com","createdAt":"2017-10-30T18:36:04Z","updatedAt":"2019-05-06T19:31:28Z","_links":{"fields":{"href":"https://api.helpscout.net/v2/mailboxes/<TEST_MAILBOX_ID>/fields/"},"folders":{"href":"https://api.helpscout.net/v2/mailboxes/<TEST_MAILBOX_ID>/folders/"},"self":{"href":"https://api.helpscout.net/v2/mailboxes/<TEST_MAILBOX_ID>"}}},{"id":136644,"name":"Product
+        Engineering","slug":"bbe972489ef2fe50","email":"developers@taxjar.com","createdAt":"2018-01-29T15:42:40Z","updatedAt":"2019-05-06T21:24:25Z","_links":{"fields":{"href":"https://api.helpscout.net/v2/mailboxes/136644/fields/"},"folders":{"href":"https://api.helpscout.net/v2/mailboxes/136644/folders/"},"self":{"href":"https://api.helpscout.net/v2/mailboxes/136644"}}},{"id":143113,"name":"TaxJar
+        Integrations","slug":"bc57e8aef67a09d7","email":"integrations@taxjar.com","createdAt":"2018-03-28T14:24:16Z","updatedAt":"2019-04-23T21:17:53Z","_links":{"fields":{"href":"https://api.helpscout.net/v2/mailboxes/143113/fields/"},"folders":{"href":"https://api.helpscout.net/v2/mailboxes/143113/folders/"},"self":{"href":"https://api.helpscout.net/v2/mailboxes/143113"}}},{"id":160326,"name":"Automated
+        Developer Notifications","slug":"8657877b8254b68b","email":"developer.notifications@taxjar.com","createdAt":"2018-09-19T15:58:32Z","updatedAt":"2018-12-31T19:18:59Z","_links":{"fields":{"href":"https://api.helpscout.net/v2/mailboxes/160326/fields/"},"folders":{"href":"https://api.helpscout.net/v2/mailboxes/160326/folders/"},"self":{"href":"https://api.helpscout.net/v2/mailboxes/160326"}}},{"id":167020,"name":"Filing
+        Team @ TaxJar","slug":"b33ea1b52bfcd419","email":"filing@taxjar.com","createdAt":"2018-11-29T18:52:42Z","updatedAt":"2019-05-20T14:48:57Z","_links":{"fields":{"href":"https://api.helpscout.net/v2/mailboxes/167020/fields/"},"folders":{"href":"https://api.helpscout.net/v2/mailboxes/167020/folders/"},"self":{"href":"https://api.helpscout.net/v2/mailboxes/167020"}}}]},"_links":{"first":{"href":"https://api.helpscout.net/v2/mailboxes/?page=1"},"last":{"href":"https://api.helpscout.net/v2/mailboxes/?page=1"},"page":{"href":"https://api.helpscout.net/v2/mailboxes/"},"self":{"href":"https://api.helpscout.net/v2/mailboxes/"}},"page":{"size":50,"totalElements":6,"totalPages":1,"number":1}}'
     http_version: 
-  recorded_at: Thu, 23 May 2019 19:07:49 GMT
-recorded_with: VCR 4.0.0
+  recorded_at: Fri, 31 May 2019 05:04:05 GMT
+recorded_with: VCR 5.0.0

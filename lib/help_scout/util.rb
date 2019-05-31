@@ -33,7 +33,6 @@ module HelpScout
 
       def parse_path(path_template, replacements)
         placeholders = Regexp.union(replacements.keys)
-
         path_template.gsub(placeholders) { |match_text| replacements[match_text] }
       end
 

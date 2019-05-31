@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe HelpScout::AccessToken do
+RSpec.describe HelpScout::API::AccessToken do
   let(:access_token_json) { file_fixture('access_token.json') }
   let(:access_token_params) { JSON.parse(access_token_json, symbolize_names: true) }
   let(:access_token) { described_class.new(access_token_params) }
@@ -13,38 +13,11 @@ RSpec.describe HelpScout::AccessToken do
   describe '.create' do
     subject { described_class.create }
 
-    it { is_expected.to be_a HelpScout::AccessToken }
+    it { is_expected.to be_a described_class }
   end
 
-  describe '.update' do
-    let(:new_token_params) do
-      {
-        access_token: 'foo',
-        expires_in: 7200
-      }
-    end
-
-    subject { described_class.update(new_token_params) }
-
-    it 'sets the access_token configuration value' do
-      expect_any_instance_of(
-        HelpScout::Configuration
-      ).to receive(:access_token=)
-
-      subject
-    end
-
-    it 'sets the access_token on the API client' do
-      expect_any_instance_of(
-        HelpScout::API
-      ).to receive(:access_token=).with(new_token_params[:access_token])
-
-      subject
-    end
-  end
-
-  describe '#token' do
-    subject { access_token.token }
+  describe '#value' do
+    subject { access_token.value }
 
     it { is_expected.to eq(access_token_params[:access_token]) }
   end

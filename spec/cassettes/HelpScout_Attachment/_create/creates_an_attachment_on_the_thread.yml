@@ -2,13 +2,13 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads/2406997535/attachments
+    uri: https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads/<TEST_THREAD_ID>/attachments
     body:
       encoding: UTF-8
       string: '{"fileName":"file.txt","mimeType":"file/txt","data":"VGhpcyBpcyBhbiBhdHRhY2htZW50LgoKSXQgd2lsbCBiZSBhZGRlZCB0byBhIGNvbnZlcnNhdGlvbidzIHRocmVhZC4K"}'
     headers:
       Authorization:
-      - Bearer <HELPSCOUT_ACCESS_TOKEN>
+      - Bearer <HELP_SCOUT_ACCESS_TOKEN>
       User-Agent:
       - Faraday v0.15.4
       Content-Type:
@@ -29,9 +29,9 @@ http_interactions:
       Content-Type:
       - text/plain; charset=UTF-8
       Correlation-Id:
-      - ec159308-58f3-42b7-827a-2788227a7d8c#27499383
+      - caa9e666-fae6-40c6-bebd-bcac6578b13a#65704813
       Date:
-      - Wed, 29 May 2019 17:45:04 GMT
+      - Fri, 31 May 2019 05:04:03 GMT
       Expires:
       - '0'
       Pragma:
@@ -53,6 +53,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-    http_version:
-  recorded_at: Wed, 29 May 2019 17:45:04 GMT
-recorded_with: VCR 4.0.0
+    http_version: 
+  recorded_at: Fri, 31 May 2019 05:04:03 GMT
+recorded_with: VCR 5.0.0

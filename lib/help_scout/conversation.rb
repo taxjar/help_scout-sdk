@@ -51,7 +51,6 @@ module HelpScout
     BASIC_ATTRIBUTES = %i[
       id
       number
-      threads
       type
       folder_id
       status
@@ -85,6 +84,10 @@ module HelpScout
       end
 
       @hrefs = HelpScout::Util.map_links(params.fetch(:_links, []))
+    end
+
+    def threads
+      HelpScout::Thread.list(id) # TODO: This shadows #threads
     end
 
     # TODO: populate with data when id is present

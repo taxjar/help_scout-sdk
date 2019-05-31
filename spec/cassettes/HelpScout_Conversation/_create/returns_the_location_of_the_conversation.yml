@@ -10,7 +10,7 @@ http_interactions:
         test thread."}]}'
     headers:
       Authorization:
-      - Bearer <HELPSCOUT_ACCESS_TOKEN>
+      - Bearer <HELP_SCOUT_ACCESS_TOKEN>
       User-Agent:
       - Faraday v0.15.4
       Content-Type:
@@ -31,17 +31,17 @@ http_interactions:
       Content-Type:
       - text/plain; charset=UTF-8
       Correlation-Id:
-      - caa9e666-fae6-40c6-bebd-bcac6578b13a#55245940
+      - caa9e666-fae6-40c6-bebd-bcac6578b13a#65705223
       Date:
-      - Thu, 23 May 2019 19:07:53 GMT
+      - Fri, 31 May 2019 05:04:10 GMT
       Expires:
       - '0'
       Location:
-      - https://api.helpscout.net/v2/conversations/861104678
+      - https://api.helpscout.net/v2/conversations/866986799
       Pragma:
       - no-cache
       Resource-Id:
-      - '861104678'
+      - '866986799'
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -49,7 +49,7 @@ http_interactions:
       X-Ratelimit-Limit-Minute:
       - '400'
       X-Ratelimit-Remaining-Minute:
-      - '380'
+      - '372'
       X-Xss-Protection:
       - 1; mode=block
       Content-Length:
@@ -60,5 +60,5 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Thu, 23 May 2019 19:07:53 GMT
-recorded_with: VCR 4.0.0
+  recorded_at: Fri, 31 May 2019 05:04:11 GMT
+recorded_with: VCR 5.0.0

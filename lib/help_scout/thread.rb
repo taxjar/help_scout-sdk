@@ -2,6 +2,19 @@
 
 module HelpScout
   class Thread < HelpScout::Base
+    class << self
+      def list(conversation_id)
+        resp = HelpScout.api.get(list_path(conversation_id))
+        resp.embedded[:threads].map { |thread| new thread }
+      end
+
+      private
+
+      def list_path(conversation_id)
+        "conversations/#{conversation_id}/threads"
+      end
+    end
+
     def initialize(params) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       @id = params[:id]
       @assigned_to = build_person(params[:assigned_to])

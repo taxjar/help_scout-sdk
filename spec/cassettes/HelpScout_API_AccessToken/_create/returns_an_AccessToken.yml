@@ -5,10 +5,8 @@ http_interactions:
     uri: https://api.helpscout.net/v2/oauth2/token
     body:
       encoding: UTF-8
-      string: '{"grant_type":"client_credentials","client_id":"<HELPSCOUT_APP_ID>","client_secret":"<HELPSCOUT_APP_SECRET>"}'
+      string: '{"grant_type":"client_credentials","client_id":"<HELP_SCOUT_APP_ID>","client_secret":"<HELP_SCOUT_APP_SECRET>"}'
     headers:
-      Authorization:
-      - Bearer c7995198a7d441e0ac2dfd0581c2dc03
       User-Agent:
       - Faraday v0.15.4
       Content-Type:
@@ -29,7 +27,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Thu, 23 May 2019 19:07:48 GMT
+      - Fri, 31 May 2019 05:04:02 GMT
       Pragma:
       - no-cache
       Content-Length:
@@ -38,9 +36,9 @@ http_interactions:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"token_type":"bearer","access_token":"<HELPSCOUT_ACCESS_TOKEN>","expires_in":7200}
+      string: '{"token_type":"bearer","access_token":"<HELP_SCOUT_ACCESS_TOKEN>","expires_in":7200}
 
-'
+        '
     http_version: 
-  recorded_at: Thu, 23 May 2019 19:07:48 GMT
-recorded_with: VCR 4.0.0
+  recorded_at: Fri, 31 May 2019 05:04:02 GMT
+recorded_with: VCR 5.0.0

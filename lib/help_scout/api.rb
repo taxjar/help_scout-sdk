@@ -58,67 +58,35 @@ module HelpScout
       end
     end
 
-    def access_token=(token)
-      return unless token
-
-      client.authorization(:Bearer, token)
+    attr_writer :access_token
+    def initialize
+      @access_token = HelpScout.configuration.access_token # TODO: Do this once after configure
     end
 
     def access_token
-      return unless (header = client.headers['Authorization'])
-
-      header.slice(/\ABearer (.+)\Z/, 1)
-    end
-
-    def fetch_access_token # rubocop:disable Metrics/MethodLength
-      params = {
-        grant_type: 'client_credentials',
-        client_id: HelpScout.app_id,
-        client_secret: HelpScout.app_secret
-      }
-
-      response = client.post('oauth2/token', params)
-
-      case response.status
-      when 429
-        raise ThrottleLimitReached, response.body&.dig('error')
-      when 500, 501, 503
-        raise InternalError, response.body&.dig('error')
-      end
-
-      HelpScout::Response.new(response)
+      @access_token ||= HelpScout::API::AccessToken.create
     end
 
     def get(path, params = {})
-      handle_response(http_action(:get, path, params))
+      http_action(:get, path, params)
     end
 
     def patch(path, params)
-      handle_response(http_action(:patch, path, params))
+      http_action(:patch, path, params)
     end
 
     def post(path, params)
-      handle_response(http_action(:post, path, params))
+      http_action(:post, path, params)
     end
 
     def put(path, params)
-      handle_response(http_action(:put, path, params))
+      http_action(:put, path, params)
     end
 
     private
 
     def cleansed_params(params)
       params.delete_if { |_, v| v.nil? }
-      # params
-    end
-
-    def client
-      @client ||= Faraday.new(url: BASE_URL) do |conn|
-        conn.request :json
-        conn.authorization(:Bearer, HelpScout.access_token.token) if HelpScout.access_token
-        conn.response(:json, content_type: /\bjson$/)
-        conn.adapter(Faraday.default_adapter)
-      end
     end
 
     # rubocop:disable AbcSize
@@ -126,6 +94,7 @@ module HelpScout
     def handle_response(result)
       case result.status
       when 400
+        # ap result.body
         raise BadRequest, result.body&.dig('validationErrors')
       when 401
         raise NotAuthorized, result.body&.dig('error_description')
@@ -143,12 +112,12 @@ module HelpScout
     # rubocop:enable MethodLength
 
     def http_action(action, path, params)
-      response = client.send(action, path, cleansed_params(params))
+      connection = HelpScout::API::Client.new.connection
+      response = connection.send(action, path, cleansed_params(params))
 
       if response.status == 401 && HelpScout.configuration.automatically_generate_tokens
-        token_response = fetch_access_token
-
-        HelpScout::AccessToken.update(token_response.body) if token_response.success?
+        self.access_token = HelpScout::API::AccessToken.create
+        response = connection.send(action, path, cleansed_params(params))
       end
 
       handle_response(response)
