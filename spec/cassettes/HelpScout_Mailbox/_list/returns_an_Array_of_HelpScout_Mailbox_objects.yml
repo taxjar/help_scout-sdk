@@ -27,9 +27,9 @@ http_interactions:
       Content-Type:
       - application/hal+json;charset=UTF-8
       Correlation-Id:
-      - ec159308-58f3-42b7-827a-2788227a7d8c#29361727
+      - d48eb0d4-12dd-4181-9b4b-75d29145fd98#50457860
       Date:
-      - Fri, 31 May 2019 05:04:05 GMT
+      - Sat, 01 Jun 2019 00:17:14 GMT
       Expires:
       - '0'
       Pragma:
@@ -42,11 +42,11 @@ http_interactions:
       X-Ratelimit-Limit-Minute:
       - '400'
       X-Ratelimit-Remaining-Minute:
-      - '392'
+      - '376'
       X-Xss-Protection:
       - 1; mode=block
-      Transfer-Encoding:
-      - chunked
+      Content-Length:
+      - '2743'
       Connection:
       - keep-alive
     body:
@@ -58,5 +58,5 @@ http_interactions:
         Developer Notifications","slug":"8657877b8254b68b","email":"developer.notifications@taxjar.com","createdAt":"2018-09-19T15:58:32Z","updatedAt":"2018-12-31T19:18:59Z","_links":{"fields":{"href":"https://api.helpscout.net/v2/mailboxes/160326/fields/"},"folders":{"href":"https://api.helpscout.net/v2/mailboxes/160326/folders/"},"self":{"href":"https://api.helpscout.net/v2/mailboxes/160326"}}},{"id":167020,"name":"Filing
         Team @ TaxJar","slug":"b33ea1b52bfcd419","email":"filing@taxjar.com","createdAt":"2018-11-29T18:52:42Z","updatedAt":"2019-05-20T14:48:57Z","_links":{"fields":{"href":"https://api.helpscout.net/v2/mailboxes/167020/fields/"},"folders":{"href":"https://api.helpscout.net/v2/mailboxes/167020/folders/"},"self":{"href":"https://api.helpscout.net/v2/mailboxes/167020"}}}]},"_links":{"first":{"href":"https://api.helpscout.net/v2/mailboxes/?page=1"},"last":{"href":"https://api.helpscout.net/v2/mailboxes/?page=1"},"page":{"href":"https://api.helpscout.net/v2/mailboxes/"},"self":{"href":"https://api.helpscout.net/v2/mailboxes/"}},"page":{"size":50,"totalElements":6,"totalPages":1,"number":1}}'
     http_version: 
-  recorded_at: Fri, 31 May 2019 05:04:05 GMT
+  recorded_at: Sat, 01 Jun 2019 00:17:14 GMT
 recorded_with: VCR 5.0.0

@@ -14,7 +14,10 @@ module HelpScout
 
       attr_reader :skip_authorization
 
+      # TODO: Remove skip_auth
       def build_connection
+        HelpScout::API::AccessToken.refresh! if HelpScout.access_token.nil? && !skip_authorization?
+
         Faraday.new(url: BASE_URL) do |conn|
           conn.request :json
           conn.authorization(:Bearer, HelpScout.access_token.value) unless skip_authorization?

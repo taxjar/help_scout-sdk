@@ -6,9 +6,8 @@ module HelpScout
 
     class << self
       def list(mailbox_id: HelpScout.default_mailbox, page: nil)
-        resp = HelpScout.api.get(list_path(mailbox_id), page: page)
-
-        resp.embedded[:folders].map { |folder| new folder }
+        response = HelpScout.api.get(list_path(mailbox_id), page: page)
+        response.embedded[:folders].map { |folder| new folder }
       end
 
       private

@@ -2,6 +2,47 @@
 http_interactions:
 - request:
     method: post
+    uri: https://api.helpscout.net/v2/oauth2/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"client_credentials","client_id":"<HELP_SCOUT_APP_ID>","client_secret":"<HELP_SCOUT_APP_SECRET>"}'
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sat, 01 Jun 2019 00:16:57 GMT
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '92'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"token_type":"bearer","access_token":"<HELP_SCOUT_ACCESS_TOKEN>","expires_in":7200}
+
+        '
+    http_version: 
+  recorded_at: Sat, 01 Jun 2019 00:16:57 GMT
+- request:
+    method: post
     uri: https://api.helpscout.net/v2/conversations
     body:
       encoding: UTF-8
@@ -31,17 +72,17 @@ http_interactions:
       Content-Type:
       - text/plain; charset=UTF-8
       Correlation-Id:
-      - caa9e666-fae6-40c6-bebd-bcac6578b13a#65705223
+      - ec159308-58f3-42b7-827a-2788227a7d8c#30344787
       Date:
-      - Fri, 31 May 2019 05:04:10 GMT
+      - Sat, 01 Jun 2019 00:16:59 GMT
       Expires:
       - '0'
       Location:
-      - https://api.helpscout.net/v2/conversations/866986799
+      - https://api.helpscout.net/v2/conversations/867773453
       Pragma:
       - no-cache
       Resource-Id:
-      - '866986799'
+      - '867773453'
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -49,7 +90,7 @@ http_interactions:
       X-Ratelimit-Limit-Minute:
       - '400'
       X-Ratelimit-Remaining-Minute:
-      - '372'
+      - '397'
       X-Xss-Protection:
       - 1; mode=block
       Content-Length:
@@ -60,5 +101,5 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Fri, 31 May 2019 05:04:11 GMT
+  recorded_at: Sat, 01 Jun 2019 00:16:59 GMT
 recorded_with: VCR 5.0.0

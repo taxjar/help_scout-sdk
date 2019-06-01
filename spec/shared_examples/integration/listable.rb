@@ -7,7 +7,6 @@ RSpec.shared_examples 'listable integration' do
     it "returns an Array of #{described_class} objects" do
       expect(subject).to be_a Array
       expect(subject).to all(be_a(described_class))
-      # TODO: Consider testing attributes
     end
   end
 end

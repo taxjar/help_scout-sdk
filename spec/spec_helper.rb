@@ -44,10 +44,10 @@ end
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/cassettes'
   config.hook_into :webmock
-  config.default_cassette_options = { record: :none }
+  config.default_cassette_options = { record: :once }
   config.configure_rspec_metadata!
 
-  config.filter_sensitive_data('<HELP_SCOUT_ACCESS_TOKEN>') { HelpScout.access_token.value }
+  config.filter_sensitive_data('<HELP_SCOUT_ACCESS_TOKEN>') { HelpScout.access_token&.value }
   config.filter_sensitive_data('<HELP_SCOUT_ACCESS_TOKEN>') do |interaction|
     begin
       JSON.parse(interaction.response.body)['access_token']

@@ -10,11 +10,7 @@ module HelpScout
 
     BASE_URL = 'https://api.helpscout.net/v2/'
 
-    attr_writer :access_token
-
-    def access_token
-      @access_token ||= HelpScout::API::AccessToken.create
-    end
+    attr_accessor :access_token
 
     def get(path, params = {})
       send_request(:get, path, params)

@@ -18,6 +18,10 @@ module HelpScout
           new HelpScout::Response.new(response).body
         end
 
+        def refresh!
+          HelpScout.api.access_token = create
+        end
+
         private
 
         def token_request_params

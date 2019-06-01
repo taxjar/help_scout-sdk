@@ -27,9 +27,9 @@ http_interactions:
       Content-Type:
       - application/hal+json;charset=UTF-8
       Correlation-Id:
-      - d48eb0d4-12dd-4181-9b4b-75d29145fd98#49445014
+      - 99666b7a-fe2c-4f66-84bf-37a43d9b15d7#769039
       Date:
-      - Fri, 31 May 2019 05:04:03 GMT
+      - Sat, 01 Jun 2019 00:17:14 GMT
       Expires:
       - '0'
       Pragma:
@@ -42,16 +42,16 @@ http_interactions:
       X-Ratelimit-Limit-Minute:
       - '400'
       X-Ratelimit-Remaining-Minute:
-      - '397'
+      - '374'
       X-Xss-Protection:
       - 1; mode=block
-      Content-Length:
-      - '354'
+      Transfer-Encoding:
+      - chunked
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"id":<TEST_USER_ID>,"firstName":"Andre","lastName":"LeBlanc","email":"<TEST_CUSTOMER_EMAIL>","role":"user","timezone":"America/New_York","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/<TEST_USER_ID>.99795.jpg","createdAt":"2017-10-25T17:37:19Z","updatedAt":"2019-05-31T05:02:20Z","type":"user","_links":{"self":{"href":"https://api.helpscout.net/v2/users/<TEST_USER_ID>"}}}'
+      string: '{"id":<TEST_USER_ID>,"firstName":"Andre","lastName":"LeBlanc","email":"<TEST_CUSTOMER_EMAIL>","role":"user","timezone":"America/New_York","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/<TEST_USER_ID>.99795.jpg","createdAt":"2017-10-25T17:37:19Z","updatedAt":"2019-06-01T00:16:59Z","type":"user","_links":{"self":{"href":"https://api.helpscout.net/v2/users/<TEST_USER_ID>"}}}'
     http_version: 
-  recorded_at: Fri, 31 May 2019 05:04:03 GMT
+  recorded_at: Sat, 01 Jun 2019 00:17:15 GMT
 recorded_with: VCR 5.0.0

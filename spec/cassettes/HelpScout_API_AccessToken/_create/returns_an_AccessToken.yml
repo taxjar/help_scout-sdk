@@ -27,7 +27,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 31 May 2019 05:04:02 GMT
+      - Sat, 01 Jun 2019 00:17:15 GMT
       Pragma:
       - no-cache
       Content-Length:
@@ -40,5 +40,5 @@ http_interactions:
 
         '
     http_version: 
-  recorded_at: Fri, 31 May 2019 05:04:02 GMT
+  recorded_at: Sat, 01 Jun 2019 00:17:16 GMT
 recorded_with: VCR 5.0.0

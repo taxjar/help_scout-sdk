@@ -59,7 +59,7 @@ module HelpScout
 
   def self.configure
     yield(configuration)
-    api.access_token = HelpScout.configuration.access_token
+    api.access_token = HelpScout.configuration.access_token # TODO: Fix config.acc
   end
 
   def self.default_mailbox
