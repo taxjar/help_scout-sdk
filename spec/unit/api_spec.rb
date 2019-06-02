@@ -165,7 +165,7 @@ RSpec.describe HelpScout::API do
           expect { subject }.to raise_error(HelpScout::API::NotAuthorized)
         end
 
-        context 'and automatically_generate_tokens is configured to true' do
+        xcontext 'and automatically_generate_tokens is configured to true' do
           before { HelpScout.configuration.automatically_generate_tokens = true }
 
           it 'attempts to fetch a new access token' do
@@ -175,7 +175,7 @@ RSpec.describe HelpScout::API do
           end
         end
 
-        context 'and automatically_generate_tokens is configured to false' do
+        xcontext 'and automatically_generate_tokens is configured to false' do
           before { HelpScout.configuration.automatically_generate_tokens = false }
 
           it 'does not attempt to fetch a new access token' do

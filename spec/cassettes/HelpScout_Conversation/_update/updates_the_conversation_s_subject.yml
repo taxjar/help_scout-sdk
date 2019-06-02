@@ -1,6 +1,47 @@
 ---
 http_interactions:
 - request:
+    method: post
+    uri: https://api.helpscout.net/v2/oauth2/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"client_credentials","client_id":"<HELP_SCOUT_APP_ID>","client_secret":"<HELP_SCOUT_APP_SECRET>"}'
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sun, 02 Jun 2019 13:47:28 GMT
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '92'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"token_type":"bearer","access_token":"<HELP_SCOUT_ACCESS_TOKEN>","expires_in":7200}
+
+        '
+    http_version: 
+  recorded_at: Sun, 02 Jun 2019 13:47:29 GMT
+- request:
     method: get
     uri: https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>
     body:
@@ -27,9 +68,9 @@ http_interactions:
       Content-Type:
       - application/hal+json;charset=UTF-8
       Correlation-Id:
-      - 99666b7a-fe2c-4f66-84bf-37a43d9b15d7#768511
+      - c134d022-ecd9-4668-a1f0-5ec26c2b1f78#2543252
       Date:
-      - Sat, 01 Jun 2019 00:17:03 GMT
+      - Sun, 02 Jun 2019 13:47:29 GMT
       Expires:
       - '0'
       Pragma:
@@ -42,29 +83,29 @@ http_interactions:
       X-Ratelimit-Limit-Minute:
       - '400'
       X-Ratelimit-Remaining-Minute:
-      - '389'
+      - '379'
       X-Xss-Protection:
       - 1; mode=block
-      Content-Length:
-      - '1996'
+      Transfer-Encoding:
+      - chunked
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"id":<TEST_CONVERSATION_ID>,"number":91784,"threads":1,"type":"email","folderId":1675984,"status":"closed","state":"published","subject":"AutoFile
-        Issue: Texas March 2018","preview":"Hi there,    Aya here, from the TaxJar
+      string: '{"id":<TEST_CONVERSATION_ID>,"number":91784,"threads":1,"type":"email","folderId":1675984,"status":"closed","state":"published","subject":"8102
+        hcraM saxeT :eussI eliFotuA","preview":"Hi there,    Aya here, from the TaxJar
         Filing Team, with some information regarding your AutoFile return for Texas.    As
-        our system prepared your data for filing, we noticed some of your transactions","mailboxId":<TEST_MAILBOX_ID>,"assignee":{"id":<TEST_USER_ID>,"type":"user","first":"Andre","last":"LeBlanc","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/<TEST_USER_ID>.99795.jpg","email":"<TEST_CUSTOMER_EMAIL>"},"createdBy":{"id":191154,"type":"user","first":"Alec","last":"Carper","email":"alec@taxjar.com"},"createdAt":"2018-04-06T18:43:13Z","closedBy":<TEST_USER_ID>,"closedAt":"2018-04-12T13:33:47Z","userUpdatedAt":"2019-05-31T05:04:12Z","customerWaitingSince":{"time":"2018-04-12T13:33:47Z","friendly":"Apr
-        12, ''18"},"source":{"type":"api","via":"user"},"tags":[{"id":4771794,"color":"#A5B2BD","tag":"gat_laitini"},{"id":3067241,"color":"#A5B2BD","tag":"vip"},{"id":2313459,"color":"#E52F28","tag":"pro"},{"id":4771793,"color":"#A5B2BD","tag":"initial_tag"}],"cc":[],"bcc":[],"primaryCustomer":{"id":175406734,"type":"customer","first":"Andremleblanc","last":"","photoUrl":"https://img.fullcontact.com/static/3bb89005ef18614c492971ff4e27ca33_6fba8975179ac8937c9e86e51e4d5ca81af928bbdf6ab4e2e9c86396b2379952","email":"andre.leblanc88@gmail.com"},"customFields":[],"_links":{"assignee":{"href":"https://api.helpscout.net/v2/users/<TEST_USER_ID>"},"closedBy":{"href":"https://api.helpscout.net/v2/users/<TEST_USER_ID>"},"createdByUser":{"href":"https://api.helpscout.net/v2/users/191154"},"mailbox":{"href":"https://api.helpscout.net/v2/mailboxes/<TEST_MAILBOX_ID>"},"primaryCustomer":{"href":"https://api.helpscout.net/v2/customers/175406734"},"self":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>"},"threads":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads/"},"web":{"href":"https://secure.helpscout.net/conversation/<TEST_CONVERSATION_ID>/91784"}}}'
+        our system prepared your data for filing, we noticed some of your transactions","mailboxId":<TEST_MAILBOX_ID>,"assignee":{"id":<TEST_USER_ID>,"type":"user","first":"Andre","last":"LeBlanc","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/<TEST_USER_ID>.99795.jpg","email":"<TEST_CUSTOMER_EMAIL>"},"createdBy":{"id":191154,"type":"user","first":"Alec","last":"Carper","email":"alec@taxjar.com"},"createdAt":"2018-04-06T18:43:13Z","closedBy":<TEST_USER_ID>,"closedAt":"2018-04-12T13:33:47Z","userUpdatedAt":"2019-06-01T00:17:06Z","customerWaitingSince":{"time":"2018-04-12T13:33:47Z","friendly":"Apr
+        12, ''18"},"source":{"type":"api","via":"user"},"tags":[],"cc":[],"bcc":[],"primaryCustomer":{"id":175406734,"type":"customer","first":"Andremleblanc","last":"","photoUrl":"https://img.fullcontact.com/static/3bb89005ef18614c492971ff4e27ca33_6fba8975179ac8937c9e86e51e4d5ca81af928bbdf6ab4e2e9c86396b2379952","email":"andre.leblanc88@gmail.com"},"customFields":[],"_links":{"assignee":{"href":"https://api.helpscout.net/v2/users/<TEST_USER_ID>"},"closedBy":{"href":"https://api.helpscout.net/v2/users/<TEST_USER_ID>"},"createdByUser":{"href":"https://api.helpscout.net/v2/users/191154"},"mailbox":{"href":"https://api.helpscout.net/v2/mailboxes/<TEST_MAILBOX_ID>"},"primaryCustomer":{"href":"https://api.helpscout.net/v2/customers/175406734"},"self":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>"},"threads":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads/"},"web":{"href":"https://secure.helpscout.net/conversation/<TEST_CONVERSATION_ID>/91784"}}}'
     http_version: 
-  recorded_at: Sat, 01 Jun 2019 00:17:04 GMT
+  recorded_at: Sun, 02 Jun 2019 13:47:29 GMT
 - request:
     method: patch
     uri: https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>
     body:
       encoding: UTF-8
-      string: '{"op":"replace","path":"/subject","value":"8102 hcraM saxeT :eussI
-        eliFotuA"}'
+      string: '{"op":"replace","path":"/subject","value":"AutoFile Issue: Texas March
+        2018"}'
     headers:
       Authorization:
       - Bearer <HELP_SCOUT_ACCESS_TOKEN>
@@ -88,9 +129,9 @@ http_interactions:
       Content-Type:
       - text/plain; charset=UTF-8
       Correlation-Id:
-      - d48eb0d4-12dd-4181-9b4b-75d29145fd98#50457234
+      - 99666b7a-fe2c-4f66-84bf-37a43d9b15d7#2486868
       Date:
-      - Sat, 01 Jun 2019 00:17:05 GMT
+      - Sun, 02 Jun 2019 13:47:29 GMT
       Expires:
       - '0'
       Pragma:
@@ -102,7 +143,7 @@ http_interactions:
       X-Ratelimit-Limit-Minute:
       - '400'
       X-Ratelimit-Remaining-Minute:
-      - '388'
+      - '378'
       X-Xss-Protection:
       - 1; mode=block
       Connection:
@@ -111,7 +152,7 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Sat, 01 Jun 2019 00:17:05 GMT
+  recorded_at: Sun, 02 Jun 2019 13:47:29 GMT
 - request:
     method: get
     uri: https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>
@@ -139,9 +180,9 @@ http_interactions:
       Content-Type:
       - application/hal+json;charset=UTF-8
       Correlation-Id:
-      - d48eb0d4-12dd-4181-9b4b-75d29145fd98#50457275
+      - ec159308-58f3-42b7-827a-2788227a7d8c#32090883
       Date:
-      - Sat, 01 Jun 2019 00:17:06 GMT
+      - Sun, 02 Jun 2019 13:47:30 GMT
       Expires:
       - '0'
       Pragma:
@@ -154,20 +195,20 @@ http_interactions:
       X-Ratelimit-Limit-Minute:
       - '400'
       X-Ratelimit-Remaining-Minute:
-      - '387'
+      - '377'
       X-Xss-Protection:
       - 1; mode=block
       Content-Length:
-      - '1996'
+      - '1801'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"id":<TEST_CONVERSATION_ID>,"number":91784,"threads":1,"type":"email","folderId":1675984,"status":"closed","state":"published","subject":"8102
-        hcraM saxeT :eussI eliFotuA","preview":"Hi there,    Aya here, from the TaxJar
+      string: '{"id":<TEST_CONVERSATION_ID>,"number":91784,"threads":1,"type":"email","folderId":1675984,"status":"closed","state":"published","subject":"AutoFile
+        Issue: Texas March 2018","preview":"Hi there,    Aya here, from the TaxJar
         Filing Team, with some information regarding your AutoFile return for Texas.    As
-        our system prepared your data for filing, we noticed some of your transactions","mailboxId":<TEST_MAILBOX_ID>,"assignee":{"id":<TEST_USER_ID>,"type":"user","first":"Andre","last":"LeBlanc","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/<TEST_USER_ID>.99795.jpg","email":"<TEST_CUSTOMER_EMAIL>"},"createdBy":{"id":191154,"type":"user","first":"Alec","last":"Carper","email":"alec@taxjar.com"},"createdAt":"2018-04-06T18:43:13Z","closedBy":<TEST_USER_ID>,"closedAt":"2018-04-12T13:33:47Z","userUpdatedAt":"2019-06-01T00:17:06Z","customerWaitingSince":{"time":"2018-04-12T13:33:47Z","friendly":"Apr
-        12, ''18"},"source":{"type":"api","via":"user"},"tags":[{"id":3067241,"color":"#A5B2BD","tag":"vip"},{"id":4771793,"color":"#A5B2BD","tag":"initial_tag"},{"id":4771794,"color":"#A5B2BD","tag":"gat_laitini"},{"id":2313459,"color":"#E52F28","tag":"pro"}],"cc":[],"bcc":[],"primaryCustomer":{"id":175406734,"type":"customer","first":"Andremleblanc","last":"","photoUrl":"https://img.fullcontact.com/static/3bb89005ef18614c492971ff4e27ca33_6fba8975179ac8937c9e86e51e4d5ca81af928bbdf6ab4e2e9c86396b2379952","email":"andre.leblanc88@gmail.com"},"customFields":[],"_links":{"assignee":{"href":"https://api.helpscout.net/v2/users/<TEST_USER_ID>"},"closedBy":{"href":"https://api.helpscout.net/v2/users/<TEST_USER_ID>"},"createdByUser":{"href":"https://api.helpscout.net/v2/users/191154"},"mailbox":{"href":"https://api.helpscout.net/v2/mailboxes/<TEST_MAILBOX_ID>"},"primaryCustomer":{"href":"https://api.helpscout.net/v2/customers/175406734"},"self":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>"},"threads":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads/"},"web":{"href":"https://secure.helpscout.net/conversation/<TEST_CONVERSATION_ID>/91784"}}}'
+        our system prepared your data for filing, we noticed some of your transactions","mailboxId":<TEST_MAILBOX_ID>,"assignee":{"id":<TEST_USER_ID>,"type":"user","first":"Andre","last":"LeBlanc","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/<TEST_USER_ID>.99795.jpg","email":"<TEST_CUSTOMER_EMAIL>"},"createdBy":{"id":191154,"type":"user","first":"Alec","last":"Carper","email":"alec@taxjar.com"},"createdAt":"2018-04-06T18:43:13Z","closedBy":<TEST_USER_ID>,"closedAt":"2018-04-12T13:33:47Z","userUpdatedAt":"2019-06-02T13:47:30Z","customerWaitingSince":{"time":"2018-04-12T13:33:47Z","friendly":"Apr
+        12, ''18"},"source":{"type":"api","via":"user"},"tags":[],"cc":[],"bcc":[],"primaryCustomer":{"id":175406734,"type":"customer","first":"Andremleblanc","last":"","photoUrl":"https://img.fullcontact.com/static/3bb89005ef18614c492971ff4e27ca33_6fba8975179ac8937c9e86e51e4d5ca81af928bbdf6ab4e2e9c86396b2379952","email":"andre.leblanc88@gmail.com"},"customFields":[],"_links":{"assignee":{"href":"https://api.helpscout.net/v2/users/<TEST_USER_ID>"},"closedBy":{"href":"https://api.helpscout.net/v2/users/<TEST_USER_ID>"},"createdByUser":{"href":"https://api.helpscout.net/v2/users/191154"},"mailbox":{"href":"https://api.helpscout.net/v2/mailboxes/<TEST_MAILBOX_ID>"},"primaryCustomer":{"href":"https://api.helpscout.net/v2/customers/175406734"},"self":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>"},"threads":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads/"},"web":{"href":"https://secure.helpscout.net/conversation/<TEST_CONVERSATION_ID>/91784"}}}'
     http_version: 
-  recorded_at: Sat, 01 Jun 2019 00:17:06 GMT
+  recorded_at: Sun, 02 Jun 2019 13:47:30 GMT
 recorded_with: VCR 5.0.0

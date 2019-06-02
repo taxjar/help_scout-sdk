@@ -27,7 +27,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Sat, 01 Jun 2019 00:16:57 GMT
+      - Sun, 02 Jun 2019 13:47:20 GMT
       Pragma:
       - no-cache
       Content-Length:
@@ -40,7 +40,7 @@ http_interactions:
 
         '
     http_version: 
-  recorded_at: Sat, 01 Jun 2019 00:16:57 GMT
+  recorded_at: Sun, 02 Jun 2019 13:47:20 GMT
 - request:
     method: post
     uri: https://api.helpscout.net/v2/conversations
@@ -72,17 +72,17 @@ http_interactions:
       Content-Type:
       - text/plain; charset=UTF-8
       Correlation-Id:
-      - ec159308-58f3-42b7-827a-2788227a7d8c#30344787
+      - d48eb0d4-12dd-4181-9b4b-75d29145fd98#52197468
       Date:
-      - Sat, 01 Jun 2019 00:16:59 GMT
+      - Sun, 02 Jun 2019 13:47:21 GMT
       Expires:
       - '0'
       Location:
-      - https://api.helpscout.net/v2/conversations/867773453
+      - https://api.helpscout.net/v2/conversations/868570854
       Pragma:
       - no-cache
       Resource-Id:
-      - '867773453'
+      - '868570854'
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -90,7 +90,7 @@ http_interactions:
       X-Ratelimit-Limit-Minute:
       - '400'
       X-Ratelimit-Remaining-Minute:
-      - '397'
+      - '395'
       X-Xss-Protection:
       - 1; mode=block
       Content-Length:
@@ -101,5 +101,5 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Sat, 01 Jun 2019 00:16:59 GMT
+  recorded_at: Sun, 02 Jun 2019 13:47:21 GMT
 recorded_with: VCR 5.0.0

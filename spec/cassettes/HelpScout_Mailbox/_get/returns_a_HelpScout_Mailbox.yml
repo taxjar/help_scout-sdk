@@ -1,6 +1,47 @@
 ---
 http_interactions:
 - request:
+    method: post
+    uri: https://api.helpscout.net/v2/oauth2/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"client_credentials","client_id":"<HELP_SCOUT_APP_ID>","client_secret":"<HELP_SCOUT_APP_SECRET>"}'
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sun, 02 Jun 2019 13:47:34 GMT
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '92'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"token_type":"bearer","access_token":"<HELP_SCOUT_ACCESS_TOKEN>","expires_in":7200}
+
+        '
+    http_version: 
+  recorded_at: Sun, 02 Jun 2019 13:47:34 GMT
+- request:
     method: get
     uri: https://api.helpscout.net/v2/mailboxes/<TEST_MAILBOX_ID>
     body:
@@ -27,9 +68,9 @@ http_interactions:
       Content-Type:
       - application/hal+json;charset=UTF-8
       Correlation-Id:
-      - c134d022-ecd9-4668-a1f0-5ec26c2b1f78#764873
+      - c134d022-ecd9-4668-a1f0-5ec26c2b1f78#2543362
       Date:
-      - Sat, 01 Jun 2019 00:17:14 GMT
+      - Sun, 02 Jun 2019 13:47:34 GMT
       Expires:
       - '0'
       Pragma:
@@ -42,7 +83,7 @@ http_interactions:
       X-Ratelimit-Limit-Minute:
       - '400'
       X-Ratelimit-Remaining-Minute:
-      - '375'
+      - '373'
       X-Xss-Protection:
       - 1; mode=block
       Transfer-Encoding:
@@ -53,5 +94,5 @@ http_interactions:
       encoding: UTF-8
       string: '{"id":<TEST_MAILBOX_ID>,"name":"Test Helpscout","slug":"fe5239d630f1cae7","email":"matt+helpscout@taxjar.com","createdAt":"2017-10-30T18:36:04Z","updatedAt":"2019-05-06T19:31:28Z","_links":{"fields":{"href":"https://api.helpscout.net/v2/mailboxes/<TEST_MAILBOX_ID>/fields/"},"folders":{"href":"https://api.helpscout.net/v2/mailboxes/<TEST_MAILBOX_ID>/folders/"},"self":{"href":"https://api.helpscout.net/v2/mailboxes/<TEST_MAILBOX_ID>"}}}'
     http_version: 
-  recorded_at: Sat, 01 Jun 2019 00:17:14 GMT
+  recorded_at: Sun, 02 Jun 2019 13:47:34 GMT
 recorded_with: VCR 5.0.0

@@ -2,10 +2,6 @@
 
 module HelpScout
   class Configuration
-    attr_accessor(:access_token, :app_id, :app_secret, :api_key, :automatically_generate_tokens, :default_mailbox)
-
-    def initialize
-      @automatically_generate_tokens = true
-    end
+    attr_accessor(:access_token, :app_id, :app_secret, :api_key, :default_mailbox)
   end
 end

@@ -1,6 +1,47 @@
 ---
 http_interactions:
 - request:
+    method: post
+    uri: https://api.helpscout.net/v2/oauth2/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"client_credentials","client_id":"<HELP_SCOUT_APP_ID>","client_secret":"<HELP_SCOUT_APP_SECRET>"}'
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sun, 02 Jun 2019 13:47:36 GMT
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '92'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"token_type":"bearer","access_token":"<HELP_SCOUT_ACCESS_TOKEN>","expires_in":7200}
+
+        '
+    http_version: 
+  recorded_at: Sun, 02 Jun 2019 13:47:36 GMT
+- request:
     method: get
     uri: https://api.helpscout.net/v2/mailboxes
     body:
@@ -27,9 +68,9 @@ http_interactions:
       Content-Type:
       - application/hal+json;charset=UTF-8
       Correlation-Id:
-      - d48eb0d4-12dd-4181-9b4b-75d29145fd98#50457860
+      - 99666b7a-fe2c-4f66-84bf-37a43d9b15d7#2486960
       Date:
-      - Sat, 01 Jun 2019 00:17:14 GMT
+      - Sun, 02 Jun 2019 13:47:36 GMT
       Expires:
       - '0'
       Pragma:
@@ -42,7 +83,7 @@ http_interactions:
       X-Ratelimit-Limit-Minute:
       - '400'
       X-Ratelimit-Remaining-Minute:
-      - '376'
+      - '370'
       X-Xss-Protection:
       - 1; mode=block
       Content-Length:
@@ -58,5 +99,5 @@ http_interactions:
         Developer Notifications","slug":"8657877b8254b68b","email":"developer.notifications@taxjar.com","createdAt":"2018-09-19T15:58:32Z","updatedAt":"2018-12-31T19:18:59Z","_links":{"fields":{"href":"https://api.helpscout.net/v2/mailboxes/160326/fields/"},"folders":{"href":"https://api.helpscout.net/v2/mailboxes/160326/folders/"},"self":{"href":"https://api.helpscout.net/v2/mailboxes/160326"}}},{"id":167020,"name":"Filing
         Team @ TaxJar","slug":"b33ea1b52bfcd419","email":"filing@taxjar.com","createdAt":"2018-11-29T18:52:42Z","updatedAt":"2019-05-20T14:48:57Z","_links":{"fields":{"href":"https://api.helpscout.net/v2/mailboxes/167020/fields/"},"folders":{"href":"https://api.helpscout.net/v2/mailboxes/167020/folders/"},"self":{"href":"https://api.helpscout.net/v2/mailboxes/167020"}}}]},"_links":{"first":{"href":"https://api.helpscout.net/v2/mailboxes/?page=1"},"last":{"href":"https://api.helpscout.net/v2/mailboxes/?page=1"},"page":{"href":"https://api.helpscout.net/v2/mailboxes/"},"self":{"href":"https://api.helpscout.net/v2/mailboxes/"}},"page":{"size":50,"totalElements":6,"totalPages":1,"number":1}}'
     http_version: 
-  recorded_at: Sat, 01 Jun 2019 00:17:14 GMT
+  recorded_at: Sun, 02 Jun 2019 13:47:36 GMT
 recorded_with: VCR 5.0.0

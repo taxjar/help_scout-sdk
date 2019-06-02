@@ -105,4 +105,8 @@ RSpec.configure do |config|
   config.define_derived_metadata(file_path: %r{spec/integration}) do |metadata|
     metadata[:vcr] = true
   end
+
+  config.before(:each) do |_|
+    HelpScout.refresh!
+  end
 end

@@ -31,38 +31,42 @@ require 'help_scout/util'
 module HelpScout
   class << self
     attr_writer :configuration
-  end
 
-  def self.access_token
-    api.access_token
-  end
+    def access_token
+      api.access_token
+    end
 
-  def self.api
-    @api ||= HelpScout::API.new
-  end
+    def api
+      @api ||= HelpScout::API.new
+    end
 
-  def self.api_key
-    configuration.api_key
-  end
+    def api_key
+      configuration.api_key # TODO: Needed?
+    end
 
-  def self.app_id
-    configuration.app_id
-  end
+    def app_id
+      configuration.app_id
+    end
 
-  def self.app_secret
-    configuration.app_secret
-  end
+    def app_secret
+      configuration.app_secret
+    end
 
-  def self.configuration
-    @configuration ||= Configuration.new
-  end
+    def configuration
+      @configuration ||= Configuration.new
+    end
 
-  def self.configure
-    yield(configuration)
-    api.access_token = HelpScout.configuration.access_token # TODO: Fix config.acc
-  end
+    def configure
+      yield(configuration)
+      api.access_token = HelpScout.configuration.access_token # TODO: Fix config.acc
+    end
 
-  def self.default_mailbox
-    configuration.default_mailbox
+    def default_mailbox
+      configuration.default_mailbox
+    end
+
+    def refresh!
+      @api = nil
+    end
   end
 end

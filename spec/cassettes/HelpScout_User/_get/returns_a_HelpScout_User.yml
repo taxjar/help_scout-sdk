@@ -1,6 +1,47 @@
 ---
 http_interactions:
 - request:
+    method: post
+    uri: https://api.helpscout.net/v2/oauth2/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"client_credentials","client_id":"<HELP_SCOUT_APP_ID>","client_secret":"<HELP_SCOUT_APP_SECRET>"}'
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sun, 02 Jun 2019 13:47:17 GMT
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '92'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"token_type":"bearer","access_token":"<HELP_SCOUT_ACCESS_TOKEN>","expires_in":7200}
+
+        '
+    http_version: 
+  recorded_at: Sun, 02 Jun 2019 13:47:17 GMT
+- request:
     method: get
     uri: https://api.helpscout.net/v2/users/<TEST_USER_ID>
     body:
@@ -27,9 +68,9 @@ http_interactions:
       Content-Type:
       - application/hal+json;charset=UTF-8
       Correlation-Id:
-      - 99666b7a-fe2c-4f66-84bf-37a43d9b15d7#769039
+      - d48eb0d4-12dd-4181-9b4b-75d29145fd98#52197420
       Date:
-      - Sat, 01 Jun 2019 00:17:14 GMT
+      - Sun, 02 Jun 2019 13:47:18 GMT
       Expires:
       - '0'
       Pragma:
@@ -42,16 +83,16 @@ http_interactions:
       X-Ratelimit-Limit-Minute:
       - '400'
       X-Ratelimit-Remaining-Minute:
-      - '374'
+      - '397'
       X-Xss-Protection:
       - 1; mode=block
-      Transfer-Encoding:
-      - chunked
+      Content-Length:
+      - '354'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"id":<TEST_USER_ID>,"firstName":"Andre","lastName":"LeBlanc","email":"<TEST_CUSTOMER_EMAIL>","role":"user","timezone":"America/New_York","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/<TEST_USER_ID>.99795.jpg","createdAt":"2017-10-25T17:37:19Z","updatedAt":"2019-06-01T00:16:59Z","type":"user","_links":{"self":{"href":"https://api.helpscout.net/v2/users/<TEST_USER_ID>"}}}'
+      string: '{"id":<TEST_USER_ID>,"firstName":"Andre","lastName":"LeBlanc","email":"<TEST_CUSTOMER_EMAIL>","role":"user","timezone":"America/New_York","photoUrl":"https://d33v4339jhl8k0.cloudfront.net/users/<TEST_USER_ID>.99795.jpg","createdAt":"2017-10-25T17:37:19Z","updatedAt":"2019-06-02T13:47:17Z","type":"user","_links":{"self":{"href":"https://api.helpscout.net/v2/users/<TEST_USER_ID>"}}}'
     http_version: 
-  recorded_at: Sat, 01 Jun 2019 00:17:15 GMT
+  recorded_at: Sun, 02 Jun 2019 13:47:18 GMT
 recorded_with: VCR 5.0.0
