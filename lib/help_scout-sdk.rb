@@ -40,10 +40,6 @@ module HelpScout
       @api ||= HelpScout::API.new
     end
 
-    def api_key
-      configuration.api_key # TODO: Needed?
-    end
-
     def app_id
       configuration.app_id
     end
