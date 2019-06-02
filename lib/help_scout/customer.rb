@@ -6,10 +6,6 @@ module HelpScout
     extend Listable
 
     class << self
-      def get_path(id)
-        "#{base_path}/#{id}"
-      end
-
       def parse_item(response)
         response.body
       end

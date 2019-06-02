@@ -21,10 +21,6 @@ module HelpScout
         base_path
       end
 
-      def get_path(id)
-        "#{base_path}/#{id}"
-      end
-
       def list_path(mailbox_id)
         "#{base_path}?mailbox=#{mailbox_id}"
       end
