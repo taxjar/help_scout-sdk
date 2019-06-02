@@ -5,34 +5,22 @@ module HelpScout
     BASE_PATH = 'conversations'
 
     extend Getable
+    extend Listable
 
     class << self
-      def list(mailbox_id: HelpScout.default_mailbox, page: nil)
-        resp = HelpScout.api.get(list_path(mailbox_id), page: page)
-
-        resp.embedded[:conversations].map { |conversation| new conversation }
-      end
-
-      # TODO: Add the below methods
-      # def list_for_customer
-      # end
-      #
-      # def list_for_folder
-      # end
-      #
-      # def list_for_user
-      # end
-
       def create(params)
-        resp = HelpScout.api.post(create_path, HelpScout::Util.camelize_keys(params))
-
-        resp.location
+        response = HelpScout.api.post(create_path, HelpScout::Util.camelize_keys(params))
+        response.location
       end
 
       private
 
       def create_path
         BASE_PATH
+      end
+
+      def embed_key
+        :conversations
       end
 
       def get_path(id)
@@ -86,18 +74,9 @@ module HelpScout
       @hrefs = HelpScout::Util.map_links(params.fetch(:_links, []))
     end
 
-    def threads
-      HelpScout::Thread.list(id) # TODO: This shadows #threads
+    def populated_threads
+      @populated_threads ||= HelpScout::Thread.list(id)
     end
-
-    # TODO: populate with data when id is present
-    # def hydrate
-    # end
-
-    # TODO: ?
-    # def parse_customer(customer)
-    #   customer.is_a?(HelpScout::Person) ? customer : build_person(customer)
-    # end
 
     def update(operation, path, value = nil)
       update_path = URI.parse(hrefs[:self]).path

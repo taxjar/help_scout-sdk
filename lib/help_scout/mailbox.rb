@@ -5,20 +5,20 @@ module HelpScout
     BASE_PATH = 'mailboxes'
 
     extend Getable
+    extend Listable
 
     class << self
-      # TODO: Make sure folders is init'd correctly when lazy loaded
-      def list(page: nil)
-        HelpScout.api.get(list_path, page: page).embedded[:mailboxes].map { |item| new item }
-      end
-
       private
+
+      def embed_key
+        :mailboxes
+      end
 
       def get_path(id)
         "#{BASE_PATH}/#{id}"
       end
 
-      def list_path
+      def list_path(_)
         BASE_PATH
       end
 
@@ -57,7 +57,7 @@ module HelpScout
     alias custom_fields fields
 
     def folders
-      @folders ||= HelpScout::Folder.list(mailbox_id: id)
+      @folders ||= HelpScout::Folder.list(id: id)
     end
 
     private

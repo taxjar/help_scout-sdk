@@ -4,13 +4,14 @@ module HelpScout
   class Folder < HelpScout::Base
     BASE_PATH = 'mailboxes/%<MAILBOX_ID>/folders/'
 
-    class << self
-      def list(mailbox_id: HelpScout.default_mailbox, page: nil)
-        response = HelpScout.api.get(list_path(mailbox_id), page: page)
-        response.embedded[:folders].map { |folder| new folder }
-      end
+    extend Listable
 
+    class << self
       private
+
+      def embed_key
+        :folders
+      end
 
       def list_path(mailbox_id)
         replacements = {

@@ -10,6 +10,7 @@ require 'help_scout/version'
 
 require 'help_scout/base'
 require 'help_scout/modules/getable'
+require 'help_scout/modules/listable'
 
 require 'help_scout/api'
 require 'help_scout/api/access_token'

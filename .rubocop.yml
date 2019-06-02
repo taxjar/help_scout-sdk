@@ -1,8 +1,11 @@
 AllCops:
   TargetRubyVersion: 2.3
 
-Layout/DotPosition:
-  EnforcedStyle: trailing
+Layout:
+  DotPosition:
+    EnforcedStyle: trailing
+  MultilineMethodCallIndentation:
+    EnforcedStyle: indented
 
 Lint/AmbiguousBlockAssociation:
   Exclude:

@@ -12,9 +12,9 @@ module HelpScout
       end
 
       def list(page: nil)
-        resp = HelpScout.api.get(list_path, page: page)
+        response = HelpScout.api.get(list_path, page: page)
 
-        resp.embedded[:customers].map { |details| new(details) }
+        response.embedded[:customers].map { |details| new(details) }
       end
 
       def list_path

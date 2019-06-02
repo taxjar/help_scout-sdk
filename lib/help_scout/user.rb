@@ -5,21 +5,20 @@ module HelpScout
     BASE_PATH = 'users'
 
     extend Getable
+    extend Listable
 
     class << self
-      def list(page: nil)
-        resp = HelpScout.api.get(list_path, page: page)
-
-        resp.embedded[:users].map { |user| new(user) }
-      end
-
       private
 
       def get_path(id)
         "#{BASE_PATH}/#{id}"
       end
 
-      def list_path
+      def embed_key
+        :users
+      end
+
+      def list_path(_)
         BASE_PATH
       end
 

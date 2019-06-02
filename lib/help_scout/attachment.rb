@@ -6,7 +6,10 @@ module HelpScout
 
     class << self
       def create(conversation_id, thread_id, params)
-        HelpScout.api.post(create_path(conversation_id, thread_id), HelpScout::Util.camelize_keys(params))
+        HelpScout.api.post(
+          create_path(conversation_id, thread_id),
+          HelpScout::Util.camelize_keys(params)
+        )
         true
       end
 

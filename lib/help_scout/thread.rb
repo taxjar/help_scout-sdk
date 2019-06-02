@@ -2,13 +2,14 @@
 
 module HelpScout
   class Thread < HelpScout::Base
-    class << self
-      def list(conversation_id)
-        resp = HelpScout.api.get(list_path(conversation_id))
-        resp.embedded[:threads].map { |thread| new thread }
-      end
+    extend Listable
 
+    class << self
       private
+
+      def embed_key
+        threads
+      end
 
       def list_path(conversation_id)
         "conversations/#{conversation_id}/threads"
