@@ -43,7 +43,7 @@ module HelpScout
     end
 
     def send_request(action, path, params)
-      connection = HelpScout::API::Client.new.connection
+      connection = HelpScout::API::Client.new.authorized_connection
       response = connection.send(action, path, params.compact)
 
       if response.status == 401

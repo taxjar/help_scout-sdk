@@ -5,14 +5,12 @@ module HelpScout
     class AccessToken
       class << self
         def create
-          connection = HelpScout::API::Client.new(skip_authorization: true).connection
+          connection = HelpScout::API::Client.new.unauthorized_connection
           response = connection.post('oauth2/token', token_request_params)
 
           case response.status
-          when 429
-            raise ThrottleLimitReached, response.body&.dig('error')
-          when 500, 501, 503
-            raise InternalError, response.body&.dig('error')
+          when 429 then raise ThrottleLimitReached, response.body&.dig('error')
+          when 500, 501, 503 then raise InternalError, response.body&.dig('error')
           end
 
           new HelpScout::Response.new(response).body
@@ -29,7 +27,7 @@ module HelpScout
             grant_type: 'client_credentials',
             client_id: HelpScout.app_id,
             client_secret: HelpScout.app_secret
-          }.freeze
+          }
         end
       end
 

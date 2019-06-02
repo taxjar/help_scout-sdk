@@ -3,31 +3,28 @@
 module HelpScout
   class API
     class Client
-      attr_reader :connection
+      def authorized_connection
+        @authorized_connection ||= begin
+          HelpScout::API::AccessToken.refresh! if HelpScout.access_token.nil?
+          build_connection
+        end
+      end
 
-      def initialize(skip_authorization: false)
-        @skip_authorization = skip_authorization
-        @connection = build_connection
+      def unauthorized_connection
+        @unauthorized_connection ||= begin
+          build_connection(authorize: false)
+        end
       end
 
       private
 
-      attr_reader :skip_authorization
-
-      # TODO: Remove skip_auth
-      def build_connection
-        HelpScout::API::AccessToken.refresh! if HelpScout.access_token.nil? && !skip_authorization?
-
+      def build_connection(authorize: true)
         Faraday.new(url: BASE_URL) do |conn|
           conn.request :json
-          conn.authorization(:Bearer, HelpScout.access_token.value) unless skip_authorization?
+          conn.authorization(:Bearer, HelpScout.access_token.value) if authorize
           conn.response(:json, content_type: /\bjson$/)
           conn.adapter(Faraday.default_adapter)
         end
-      end
-
-      def skip_authorization?
-        skip_authorization
       end
     end
   end
