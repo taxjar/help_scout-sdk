@@ -2,8 +2,6 @@
 
 module HelpScout
   class Conversation < HelpScout::Base
-    BASE_PATH = 'conversations'
-
     extend Getable
     extend Listable
 
@@ -15,20 +13,20 @@ module HelpScout
 
       private
 
-      def create_path
-        BASE_PATH
+      def base_path
+        'conversations'
       end
 
-      def embed_key
-        :conversations
+      def create_path
+        base_path
       end
 
       def get_path(id)
-        "#{BASE_PATH}/#{id}"
+        "#{base_path}/#{id}"
       end
 
       def list_path(mailbox_id)
-        "#{BASE_PATH}?mailbox=#{mailbox_id}"
+        "#{base_path}?mailbox=#{mailbox_id}"
       end
 
       def parse_item(response)

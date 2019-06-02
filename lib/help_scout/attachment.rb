@@ -2,8 +2,6 @@
 
 module HelpScout
   class Attachment < HelpScout::Base
-    BASE_PATH = 'conversations/%<CONVERSATION_ID>/threads/%<THREAD_ID>/attachments'
-
     class << self
       def create(conversation_id, thread_id, params)
         HelpScout.api.post(
@@ -15,13 +13,17 @@ module HelpScout
 
       private
 
+      def base_path
+        'conversations/%<CONVERSATION_ID>/threads/%<THREAD_ID>/attachments'
+      end
+
       def create_path(conversation_id, thread_id)
         replacements = {
           '%<CONVERSATION_ID>' => conversation_id,
           '%<THREAD_ID>' => thread_id
         }
 
-        HelpScout::Util.parse_path(BASE_PATH, replacements)
+        HelpScout::Util.parse_path(base_path, replacements)
       end
     end
   end

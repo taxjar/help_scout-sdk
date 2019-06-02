@@ -2,27 +2,22 @@
 
 module HelpScout
   class Customer < HelpScout::Base
-    BASE_PATH = 'customers'
-
     extend Getable
+    extend Listable
 
     class << self
       def get_path(id)
-        "#{BASE_PATH}/#{id}"
-      end
-
-      def list(page: nil)
-        response = HelpScout.api.get(list_path, page: page)
-
-        response.embedded[:customers].map { |details| new(details) }
-      end
-
-      def list_path
-        BASE_PATH
+        "#{base_path}/#{id}"
       end
 
       def parse_item(response)
         response.body
+      end
+
+      private
+
+      def base_path
+        'customers'
       end
     end
 

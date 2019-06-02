@@ -2,15 +2,13 @@
 
 module HelpScout
   class Folder < HelpScout::Base
-    BASE_PATH = 'mailboxes/%<MAILBOX_ID>/folders/'
-
     extend Listable
 
     class << self
       private
 
-      def embed_key
-        :folders
+      def base_path
+        'mailboxes/%<MAILBOX_ID>/folders/'
       end
 
       def list_path(mailbox_id)
@@ -18,7 +16,7 @@ module HelpScout
           '%<MAILBOX_ID>' => mailbox_id
         }
 
-        HelpScout::Util.parse_path(BASE_PATH, replacements)
+        HelpScout::Util.parse_path(base_path, replacements)
       end
     end
 

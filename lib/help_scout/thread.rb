@@ -7,10 +7,6 @@ module HelpScout
     class << self
       private
 
-      def embed_key
-        threads
-      end
-
       def list_path(conversation_id)
         "conversations/#{conversation_id}/threads"
       end

@@ -2,24 +2,18 @@
 
 module HelpScout
   class User < HelpScout::Base
-    BASE_PATH = 'users'
-
     extend Getable
     extend Listable
 
     class << self
       private
 
+      def base_path
+        'users'
+      end
+
       def get_path(id)
-        "#{BASE_PATH}/#{id}"
-      end
-
-      def embed_key
-        :users
-      end
-
-      def list_path(_)
-        BASE_PATH
+        "#{base_path}/#{id}"
       end
 
       def parse_item(response)
