@@ -14,6 +14,10 @@ require 'help_scout-sdk'
 
 Dotenv.load('.env', '.env.test')
 
+def access_token_json
+  file_fixture('access_token.json')
+end
+
 def api_path(path_part)
   'https://api.helpscout.net/v2/' + path_part
 end
@@ -106,7 +110,12 @@ RSpec.configure do |config|
     metadata[:vcr] = true
   end
 
-  config.before(:each) do |_|
+  config.before(:each) do
     HelpScout.refresh!
+  end
+
+  config.before(:each, :unit) do
+    stub_request(:post, 'https://api.helpscout.net/v2/oauth2/token')
+      .to_return(body: access_token_json, headers: { 'Content-Type' => 'application/json' })
   end
 end
