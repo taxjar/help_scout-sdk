@@ -6,7 +6,7 @@ module HelpScout
     extend Listable
 
     class << self
-      def create(params) # TODO: Createable
+      def create(params)
         response = HelpScout.api.post(create_path, HelpScout::Util.camelize_keys(params))
         response.location
       end

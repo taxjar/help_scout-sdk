@@ -26,13 +26,9 @@ module HelpScout
       @hrefs = HelpScout::Util.map_links(params[:_links])
     end
 
-    # TODO: def conversations
-    # end
-
     def fields
       @fields ||= HelpScout.api.get(fields_path).embedded[:fields]
     end
-    alias custom_fields fields
 
     def folders
       @folders ||= HelpScout::Folder.list(id: id)

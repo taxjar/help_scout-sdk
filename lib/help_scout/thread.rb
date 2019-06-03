@@ -37,7 +37,6 @@ module HelpScout
 
     private
 
-    # TODO: DRY
     def build_mailbox_ref(params)
       return unless params
       return params if params.is_a? HelpScout::MailboxRef
@@ -45,7 +44,6 @@ module HelpScout
       HelpScout::MailboxRef.new(params)
     end
 
-    # TODO: DRY
     def build_person(params)
       return unless params
       return params if params.is_a? HelpScout::Person

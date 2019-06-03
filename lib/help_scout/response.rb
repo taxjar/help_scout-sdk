@@ -14,7 +14,7 @@ module HelpScout
     end
 
     def embedded
-      body[:_embedded] # TODO: We should just pluck the internal key here
+      body[:_embedded]
     end
 
     def embedded_list
