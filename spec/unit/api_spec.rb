@@ -60,8 +60,8 @@ RSpec.describe HelpScout::API do
     subject { api.fetch_access_token }
 
     before do
-      stub_request(:post, 'https://api.helpscout.net/v2/oauth2/token').
-        to_return(response)
+      stub_request(:post, 'https://api.helpscout.net/v2/oauth2/token')
+        .to_return(response)
     end
 
     context 'when the request is successful' do
@@ -151,8 +151,8 @@ RSpec.describe HelpScout::API do
       context 'when the request is not authorized' do
         let(:response) { { status: 401 } }
         let(:access_token_stub) do
-          stub_request(:post, 'https://api.helpscout.net/v2/oauth2/token').
-            to_return(
+          stub_request(:post, 'https://api.helpscout.net/v2/oauth2/token')
+            .to_return(
               body: file_fixture('access_token.json'),
               headers: { 'Content-Type' => 'application/json' },
               status: 200

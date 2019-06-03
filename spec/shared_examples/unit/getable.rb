@@ -2,8 +2,8 @@
 
 RSpec.shared_examples 'getable unit' do |url|
   before do
-    stub_request(:post, 'https://api.helpscout.net/v2/oauth2/token').
-      to_return(body: valid_access_token, headers: { 'Content-Type' => 'application/json' })
+    stub_request(:post, 'https://api.helpscout.net/v2/oauth2/token')
+      .to_return(body: valid_access_token, headers: { 'Content-Type' => 'application/json' })
   end
 
   describe '.get' do

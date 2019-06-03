@@ -16,9 +16,9 @@ RSpec.describe HelpScout::Conversation do
     let(:location) { "https://api.helpscout.net/v2/conversations/#{resource_id}" }
 
     before do
-      stub_request(:post, 'https://api.helpscout.net/v2/conversations').
-        with(body: params.to_json).
-        to_return(
+      stub_request(:post, 'https://api.helpscout.net/v2/conversations')
+        .with(body: params.to_json)
+        .to_return(
           status: 201,
           headers: {
             'Location' => location,
@@ -54,9 +54,9 @@ RSpec.describe HelpScout::Conversation do
     subject { conversation.update(*update_params.values) }
 
     before do
-      stub_request(:patch, "https://api.helpscout.net/v2/conversations/#{id}").
-        with(body: update_params.to_json).
-        to_return(status: 204)
+      stub_request(:patch, "https://api.helpscout.net/v2/conversations/#{id}")
+        .with(body: update_params.to_json)
+        .to_return(status: 204)
     end
 
     it 'returns true' do
@@ -77,9 +77,9 @@ RSpec.describe HelpScout::Conversation do
     let(:tags) { %w[vip pro] }
 
     before do
-      stub_request(:put, "https://api.helpscout.net/v2/conversations/#{id}/tags").
-        with(body: { tags: tags }.to_json).
-        to_return(status: 204)
+      stub_request(:put, "https://api.helpscout.net/v2/conversations/#{id}/tags")
+        .with(body: { tags: tags }.to_json)
+        .to_return(status: 204)
     end
 
     subject { conversation.update_tags(tags) }
