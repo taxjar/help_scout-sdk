@@ -21,7 +21,7 @@ module HelpScout
       def build_connection(authorize: true)
         Faraday.new(url: BASE_URL) do |conn|
           conn.request :json
-          conn.authorization(:Bearer, HelpScout.access_token.value) if authorize
+          conn.authorization(:Bearer, HelpScout.access_token.value) if authorize && HelpScout.access_token&.value
           conn.response(:json, content_type: /\bjson$/)
           conn.adapter(Faraday.default_adapter)
         end
