@@ -6,16 +6,12 @@ module HelpScout
     extend Listable
 
     class << self
-      def create(params)
+      def create(params) # TODO: Createable
         response = HelpScout.api.post(create_path, HelpScout::Util.camelize_keys(params))
         response.location
       end
 
       private
-
-      def base_path
-        'conversations'
-      end
 
       def create_path
         base_path
@@ -23,10 +19,6 @@ module HelpScout
 
       def list_path(mailbox_id)
         "#{base_path}?mailbox=#{mailbox_id}"
-      end
-
-      def parse_item(response)
-        response.body
       end
     end
 

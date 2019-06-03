@@ -2,6 +2,7 @@
 
 module HelpScout
   module Util
+    # TODO: Consider including in Base
     class << self
       def camelize(term)
         term = term.to_s.split('_').collect(&:capitalize).join

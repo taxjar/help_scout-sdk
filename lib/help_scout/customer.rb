@@ -5,18 +5,6 @@ module HelpScout
     extend Getable
     extend Listable
 
-    class << self
-      def parse_item(response)
-        response.body
-      end
-
-      private
-
-      def base_path
-        'customers'
-      end
-    end
-
     BASIC_ATTRIBUTES = %i[
       first_name
       last_name

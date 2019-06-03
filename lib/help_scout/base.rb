@@ -2,6 +2,14 @@
 
 module HelpScout
   class Base
+    class << self
+      private
+
+      def base_path
+        name.split('::').last.downcase.pluralize
+      end
+    end
+
     def to_h(method = :to_h) # rubocop:disable Metrics/MethodLength
       {}.tap do |result|
         instance_variables.each do |var|
