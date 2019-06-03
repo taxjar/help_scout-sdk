@@ -3,7 +3,7 @@
 module HelpScout
   module Listable
     def list(id: HelpScout.default_mailbox, page: nil)
-      HelpScout.api.get(list_path(id), page: page).embedded_list.map { |e| new e } # TODO: .embedded needed?
+      HelpScout.api.get(list_path(id), page: page).embedded_list.map { |e| new e }
     end
 
     def list_path(_)
