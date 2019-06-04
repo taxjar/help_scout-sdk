@@ -9,7 +9,7 @@ This gem is a wrapper around the Help Scout API. The current version is targetin
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'helpscout', git: "https://github.com/taxjar/helpscout.git"
+gem "help_scout-sdk"
 ```
 
 And then execute:
