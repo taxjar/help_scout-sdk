@@ -1,5 +1,7 @@
 # Help Scout API Wrapper
 
+[![Build Status](https://travis-ci.org/taxjar/help_scout-sdk.svg?branch=master)](https://travis-ci.org/taxjar/help_scout-sdk)
+
 🚨 WORK IN PROGRESS 🚨
 
 This gem is a wrapper around the Help Scout API. The current version is targeting the [Mailbox 2.0 API](https://developer.helpscout.com/mailbox-api/).
