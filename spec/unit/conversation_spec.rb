@@ -4,18 +4,27 @@ require 'shared_examples/unit/getable'
 require 'shared_examples/unit/listable'
 
 RSpec.describe HelpScout::Conversation do
-  include_examples 'getable unit', 'https://api.helpscout.net/v1/conversations/1234.json'
-  include_examples 'listable unit', 'https://api.helpscout.net/v1/mailboxes/127439/conversations.json'
+  include_examples 'getable unit', 'https://api.helpscout.net/v2/conversations/1'
+  include_examples 'listable unit', "https://api.helpscout.net/v2/conversations?mailbox=#{HelpScout.default_mailbox}"
+
+  let(:conversation) { described_class.new(params) }
 
   describe '.create' do
     subject { described_class.create(params) }
     let(:params) { { subject: 'Hello World' } }
-    let(:location) { 'abc123' }
+    let(:resource_id) { '123' }
+    let(:location) { "https://api.helpscout.net/v2/conversations/#{resource_id}" }
 
     before do
-      stub_request(:post, 'https://api.helpscout.net/v1/conversations.json').
-        with(body: params.to_json).
-        to_return(status: 200, headers: { 'Location' => location })
+      stub_request(:post, 'https://api.helpscout.net/v2/conversations')
+        .with(body: params.to_json)
+        .to_return(
+          status: 201,
+          headers: {
+            'Location' => location,
+            'Resource-ID' => resource_id
+          }
+        )
     end
 
     it 'returns the location of the conversation' do
@@ -24,16 +33,56 @@ RSpec.describe HelpScout::Conversation do
   end
 
   describe '#update' do
-    subject { described_class.new(params).update(new_params) }
-    let(:params) { { id: id } }
-    let(:id) { '1234' }
-    let(:new_params) { params.merge(tags: ['bar']) }
+    let(:id) { '123' }
+    let(:params) do
+      {
+        id: id,
+        _links: {
+          self: { href: "https://api.helpscout.net/v2/conversations/#{id}" }
+        }
+      }
+    end
+    let(:new_subject) { 'A New Subject' }
+    let(:update_params) do
+      {
+        "op": 'replace',
+        "path": '/subject',
+        "value": new_subject
+      }
+    end
+
+    subject { conversation.update(*update_params.values) }
 
     before do
-      stub_request(:put, "https://api.helpscout.net/v1/conversations/#{id}.json").
-        with(body: new_params.to_json).
-        to_return(status: 200)
+      stub_request(:patch, "https://api.helpscout.net/v2/conversations/#{id}")
+        .with(body: update_params.to_json)
+        .to_return(status: 204)
     end
+
+    it 'returns true' do
+      expect(subject).to be true
+    end
+  end
+
+  describe '#update_tags' do
+    let(:id) { '123' }
+    let(:params) do
+      {
+        id: id,
+        _links: {
+          self: { href: "https://api.helpscout.net/v2/conversations/#{id}" }
+        }
+      }
+    end
+    let(:tags) { %w[vip pro] }
+
+    before do
+      stub_request(:put, "https://api.helpscout.net/v2/conversations/#{id}/tags")
+        .with(body: { tags: tags }.to_json)
+        .to_return(status: 204)
+    end
+
+    subject { conversation.update_tags(tags) }
 
     it 'returns true' do
       expect(subject).to be true

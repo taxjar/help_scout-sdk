@@ -2,118 +2,79 @@
 
 module HelpScout
   class Conversation < HelpScout::Base
-    SAVE_PATH = 'conversations.json'
-
     extend Getable
+    extend Listable
 
     class << self
-      def list(mailbox_id: HelpScout.default_mailbox, page: nil)
-        HelpScout.api.get(list_path(mailbox_id), page: page).items.map { |item| new item }
-      end
-
-      # TODO: Add the below methods
-      # def list_for_customer
-      # end
-      #
-      # def list_for_folder
-      # end
-      #
-      # def list_for_user
-      # end
-
       def create(params)
-        new(params).save.location
+        response = HelpScout.api.post(create_path, HelpScout::Util.camelize_keys(params))
+        response.location
       end
 
       private
 
-      def get_path(id)
-        "conversations/#{id}.json"
+      def create_path
+        base_path
       end
 
       def list_path(mailbox_id)
-        "mailboxes/#{mailbox_id}/conversations.json"
+        "#{base_path}?mailbox=#{mailbox_id}"
       end
     end
 
-    attr_accessor :id, :type, :folder_id, :is_draft, :number, :owner, :mailbox,
-                  :customer, :thread_count, :status, :subject, :preview,
-                  :created_by, :created_at, :modified_at, :closed_at, :closed_by,
-                  :source, :cc, :bcc, :tags
+    BASIC_ATTRIBUTES = %i[
+      id
+      number
+      type
+      folder_id
+      status
+      state
+      subject
+      preview
+      mailbox_id
+      assignee
+      created_by
+      created_at
+      closed_by
+      closed_at
+      user_updated_at
+      customer_waiting_since
+      source
+      tags
+      cc
+      bcc
+      primary_customer
+      custom_fields
+    ].freeze
 
-    def initialize(params) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-      @id = params[:id]
-      @type = params[:type] # TODO: Sub-classes
-      @folder_id = params[:folder_id]
-      @is_draft = params[:is_draft]
-      @number = params[:number]
-      @owner = build_person(params[:owner])
-      @mailbox = build_mailbox_ref(params[:mailbox])
-      @customer = build_person(params[:customer])
-      @thread_count = params[:thread_count]
-      @status = params[:status]
-      @subject = params[:subject]
-      @preview = params[:preview]
-      @created_by = build_person(params[:created_by])
-      @created_at = params[:created_at]
-      @modified_at = params[:modified_at]
-      @user_modified_at = params[:user_modified_at]
-      @closed_at = params[:closed_at]
-      @closed_by = build_person(params[:closed_by])
-      @source = params[:source]
-      @cc = params[:cc]
-      @bcc = params[:bcc]
-      @tags = params[:tags]
-      @threads = build_threads(params[:threads])
+    attr_accessor(*BASIC_ATTRIBUTES)
+    attr_reader :hrefs
+
+    def initialize(params)
+      BASIC_ATTRIBUTES.each do |attribute|
+        next unless params[attribute]
+
+        instance_variable_set("@#{attribute}", params[attribute])
+      end
+
+      @hrefs = HelpScout::Util.map_links(params.fetch(:_links, []))
     end
 
-    # TODO: populate with data when id is present
-    # def hydate
-    # end
-
-    # TODO: ?
-    # def parse_customer(customer)
-    #   customer.is_a?(HelpScout::Person) ? customer : build_person(customer)
-    # end
-
-    def save
-      HelpScout.api.post(SAVE_PATH, as_json)
-      # TODO: optional hydrate
+    def populated_threads
+      @populated_threads ||= HelpScout::Thread.list(id)
     end
 
-    def update(params)
-      params.each { |k, v| public_send("#{k}=", v) }
-      HelpScout.api.put("conversations/#{id}.json", as_json)
+    def update(operation, path, value = nil)
+      update_path = URI.parse(hrefs[:self]).path
+      HelpScout.api.patch(update_path, op: operation, path: path, value: value)
       true
     end
 
-    private
-
-    # TODO: DRY
-    def build_mailbox_ref(params)
-      return unless params
-      return params if params.is_a? HelpScout::MailboxRef
-
-      HelpScout::MailboxRef.new(params)
-    end
-
-    # TODO: DRY
-    def build_person(params)
-      return unless params
-      return params if params.is_a? HelpScout::Person
-
-      HelpScout::Person.new(params)
-    end
-
-    def build_thread(params)
-      return unless params
-      return params if params.is_a? HelpScout::Thread
-
-      HelpScout::Thread.new(params)
-    end
-
-    def build_threads(items)
-      items&.map { |item| build_thread(item) }
+    def update_tags(new_tags = nil)
+      new_tags ||= []
+      tags_path = URI.parse(hrefs[:self]).path + '/tags'
+      HelpScout.api.put(tags_path, tags: new_tags)
+      true
     end
   end
 end

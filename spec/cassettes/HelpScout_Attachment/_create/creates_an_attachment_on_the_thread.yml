@@ -1,0 +1,99 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.helpscout.net/v2/oauth2/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"client_credentials","client_id":"<HELP_SCOUT_APP_ID>","client_secret":"<HELP_SCOUT_APP_SECRET>"}'
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sun, 02 Jun 2019 13:47:36 GMT
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '92'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"token_type":"bearer","access_token":"<HELP_SCOUT_ACCESS_TOKEN>","expires_in":7200}
+
+        '
+    http_version: 
+  recorded_at: Sun, 02 Jun 2019 13:47:36 GMT
+- request:
+    method: post
+    uri: https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads/<TEST_THREAD_ID>/attachments
+    body:
+      encoding: UTF-8
+      string: '{"fileName":"file.txt","mimeType":"file/txt","data":"VGhpcyBpcyBhbiBhdHRhY2htZW50LgoKSXQgd2lsbCBiZSBhZGRlZCB0byBhIGNvbnZlcnNhdGlvbidzIHRocmVhZC4K"}'
+    headers:
+      Authorization:
+      - Bearer <HELP_SCOUT_ACCESS_TOKEN>
+      User-Agent:
+      - Faraday v0.15.4
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Correlation-Id:
+      - d48eb0d4-12dd-4181-9b4b-75d29145fd98#52197713
+      Date:
+      - Sun, 02 Jun 2019 13:47:37 GMT
+      Expires:
+      - '0'
+      Pragma:
+      - no-cache
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Ratelimit-Limit-Minute:
+      - '400'
+      X-Ratelimit-Remaining-Minute:
+      - '368'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '0'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Sun, 02 Jun 2019 13:47:37 GMT
+recorded_with: VCR 5.0.0

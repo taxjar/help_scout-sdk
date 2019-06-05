@@ -1,20 +1,19 @@
 {
-  "item": {
-    "id": 1234,
-    "name": "My Mailbox",
-    "slug": "47204a026903ce6d",
-    "email": "help@mymailbox.com",
-    "createdAt": "2012-07-23T12:34:12Z",
-    "customFields": null,
-    "modifiedAt": "2012-07-24T20:18:33Z",
-    "folders": [{
-      "id": 1234,
-      "name": "Mine",
-      "type": "mine",
-      "userId": 4532,
-      "totalCount": 2,
-      "activeCount": 1,
-      "modifiedAt": "2012-07-24T20:18:33Z"
-    }]
+  "id" : 1,
+  "name" : "Help Scout",
+  "slug" : "83ebc5d87292a795",
+  "email" : "bearbox@acme.com",
+  "createdAt" : "2013-06-05T09:17:15Z",
+  "updatedAt" : "2016-11-11T12:20:39Z",
+  "_links" : {
+    "fields" : {
+      "href" : "https://api.helpscout.net/v2/mailboxes/1/fields/"
+    },
+    "folders" : {
+      "href" : "https://api.helpscout.net/v2/mailboxes/1/folders/"
+    },
+    "self" : {
+      "href" : "https://api.helpscout.net/v2/mailboxes/1"
+    }
   }
 }

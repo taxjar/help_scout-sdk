@@ -1,0 +1,100 @@
+{
+  "_embedded" : {
+    "threads" : [ {
+      "id" : 1234,
+      "type" : "customer",
+      "status" : "active",
+      "state" : "published",
+      "action" : {
+        "type" : "manual-workflow",
+        "text" : "You ran the Assign to Spam workflow"
+      },
+      "body" : "this is what i have to say: I love your service.",
+      "source" : {
+        "type" : "email",
+        "via" : "customer"
+      },
+      "customer" : {
+        "id" : 29418,
+        "first" : "Vernon",
+        "last" : "Bear",
+        "photoUrl" : "http://whatever-path-to-url/image.jpg",
+        "email" : "vbear@mywork.com"
+      },
+      "createdBy" : {
+        "id" : 29418,
+        "type" : "customer",
+        "first" : "Vernon",
+        "last" : "Bear",
+        "photoUrl" : "http://whatever-path-to-url/image.jpg",
+        "email" : "vbear@mywork.com"
+      },
+      "assignedTo" : {
+        "id" : 1234,
+        "type" : "team",
+        "first" : "Jack",
+        "last" : "Sprout",
+        "email" : "jack.sprout@gmail.com"
+      },
+      "savedReplyId" : 10,
+      "to" : [ "to1@somewhere.com", "to2@somewhere.com" ],
+      "cc" : [ "cc1@somewhere.com", "cc2@somewhere.com" ],
+      "bcc" : [ "bcc1@somewhere.com", "bcc2@somewhere.com" ],
+      "createdAt" : "2015-06-05T20:18:33Z",
+      "openedAt" : "2015-06-07T10:01:25Z",
+      "_embedded" : {
+        "attachments" : [ {
+          "id" : 1234,
+          "filename" : "photo1.jpg",
+          "mimeType" : "image/jpeg",
+          "width" : 600,
+          "height" : 800,
+          "size" : 20191,
+          "_links" : {
+            "data" : {
+              "href" : "https://api.helpscout.net"
+            },
+            "self" : {
+              "href" : "https://api.helpscout.net"
+            },
+            "web" : {
+              "href" : "https://api.helpscout.net"
+            }
+          }
+        } ]
+      },
+      "_links" : {
+        "assignedTo" : {
+          "href" : "https://api.helpscout.net"
+        },
+        "createdByCustomer" : {
+          "href" : "https://api.helpscout.net"
+        },
+        "customer" : {
+          "href" : "https://api.helpscout.net"
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "first" : {
+      "href" : "https://api.helpscout.net"
+    },
+    "last" : {
+      "href" : "https://api.helpscout.net"
+    },
+    "page" : {
+      "href" : "https://api.helpscout.net"
+    },
+    "self" : {
+      "href" : "https://api.helpscout.net"
+    }
+  },
+  "page" : {
+    "size" : 50,
+    "totalElements" : 0,
+    "totalPages" : 0,
+    "number" : 0
+  }
+}
+

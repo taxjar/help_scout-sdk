@@ -17,7 +17,10 @@ RSpec.shared_examples 'listable unit' do |url|
       subject { described_class.list(page: 2) }
       let(:body) { file_fixture("#{model_name}/list.json") }
 
-      before { stub_request(:get, "#{url}?page=2").to_return(body: body, headers: headers) }
+      before do
+        path = url.include?('?') ? "#{url}&page=2" : "#{url}?page=2"
+        stub_request(:get, path).to_return(body: body, headers: headers)
+      end
 
       it 'gets second page' do
         subject

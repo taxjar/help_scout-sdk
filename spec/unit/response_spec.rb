@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
-
 RSpec.describe HelpScout::Response do
   describe '#body' do
     subject { described_class.new(response) }

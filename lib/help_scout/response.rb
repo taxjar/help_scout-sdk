@@ -2,7 +2,7 @@
 
 module HelpScout
   class Response
-    delegate :headers, to: :response
+    delegate :headers, :status, :success?, to: :response
 
     attr_reader :response
     def initialize(response)
@@ -11,6 +11,14 @@ module HelpScout
 
     def body
       @body ||= response.body.deep_transform_keys { |key| key.to_s.underscore.to_sym }
+    end
+
+    def embedded
+      body[:_embedded]
+    end
+
+    def embedded_list
+      embedded.values.first
     end
 
     def item

@@ -1,0 +1,100 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.helpscout.net/v2/oauth2/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"client_credentials","client_id":"<HELP_SCOUT_APP_ID>","client_secret":"<HELP_SCOUT_APP_SECRET>"}'
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sun, 02 Jun 2019 13:47:15 GMT
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '92'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"token_type":"bearer","access_token":"<HELP_SCOUT_ACCESS_TOKEN>","expires_in":7200}
+
+        '
+    http_version: 
+  recorded_at: Sun, 02 Jun 2019 13:47:15 GMT
+- request:
+    method: get
+    uri: https://api.helpscout.net/v2/mailboxes/<TEST_MAILBOX_ID>/folders/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <HELP_SCOUT_ACCESS_TOKEN>
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Type:
+      - application/hal+json;charset=UTF-8
+      Correlation-Id:
+      - c134d022-ecd9-4668-a1f0-5ec26c2b1f78#2543146
+      Date:
+      - Sun, 02 Jun 2019 13:47:16 GMT
+      Expires:
+      - '0'
+      Pragma:
+      - no-cache
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Ratelimit-Limit-Minute:
+      - '400'
+      X-Ratelimit-Remaining-Minute:
+      - '399'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '1215'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"_embedded":{"folders":[{"id":1675979,"name":"Unassigned","type":"open","userId":0,"totalCount":22,"activeCount":22,"updatedAt":"2019-06-01T00:16:59Z"},{"id":1677761,"name":"Mine","type":"mytickets","userId":<TEST_USER_ID>,"totalCount":2,"activeCount":0,"updatedAt":"2018-04-12T13:33:47Z"},{"id":1675980,"name":"Needs
+        Attention","type":"needs_attn","userId":0,"totalCount":0,"activeCount":0,"updatedAt":"2017-12-05T20:53:56Z"},{"id":1675981,"name":"Drafts","type":"drafts","userId":0,"totalCount":11,"activeCount":11,"updatedAt":"2019-06-01T00:17:41Z"},{"id":1675982,"name":"Assigned","type":"assigned","userId":0,"totalCount":13,"activeCount":13,"updatedAt":"2019-05-16T14:45:32Z"},{"id":1675984,"name":"Closed","type":"closed","userId":0,"totalCount":86,"activeCount":0,"updatedAt":"2019-05-30T19:04:05Z"},{"id":1675983,"name":"Spam","type":"spam","userId":0,"totalCount":0,"activeCount":0,"updatedAt":"2017-10-30T18:36:04Z"},{"id":2373280,"name":"Dev
+        Reporting and Filing","type":"team","userId":315683,"totalCount":0,"activeCount":0,"updatedAt":"2018-10-25T17:57:48Z"}]},"_links":{"self":{"href":"https://api.helpscout.net/v2/mailboxes/<TEST_MAILBOX_ID>/folders/"}},"page":{"size":50,"totalElements":8,"totalPages":1,"number":1}}'
+    http_version: 
+  recorded_at: Sun, 02 Jun 2019 13:47:16 GMT
+recorded_with: VCR 5.0.0

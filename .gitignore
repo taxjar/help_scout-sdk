@@ -4,12 +4,12 @@
 /coverage/
 /doc/
 /pkg/
-/spec/cassettes/
 /spec/reports/
 /tmp/
 
 *.gem
 .env*
+.byebug_history
 .rspec_status
 .ruby-gemset
 .ruby-version

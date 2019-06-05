@@ -1,0 +1,32 @@
+{
+  "_embedded" : {
+    "folders" : [ {
+      "id" : 1234,
+      "name" : "My Tickets",
+      "type" : "mytickets",
+      "userId" : 4532,
+      "totalCount" : 2,
+      "activeCount" : 1,
+      "updatedAt" : "2012-07-24T20:18:33Z"
+    }, {
+      "id" : 5678,
+      "name" : "Unassigned",
+      "type" : "open",
+      "userId" : 8976,
+      "totalCount" : 3,
+      "activeCount" : 2,
+      "updatedAt" : "2012-07-24T20:18:33Z"
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "href" : "..."
+    }
+  },
+  "page" : {
+    "size" : 50,
+    "totalElements" : 1,
+    "totalPages" : 1,
+    "number" : 1
+  }
+}

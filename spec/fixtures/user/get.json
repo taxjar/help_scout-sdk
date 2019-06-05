@@ -1,0 +1,17 @@
+{
+  "id" : 1,
+  "firstName" : "Vernon",
+  "lastName" : "Bear",
+  "email" : "bear@acme.com",
+  "role" : "owner",
+  "timezone" : "America/New_York",
+  "photoUrl" : "http://somesite.com/images/avatar.jpg",
+  "createdAt" : "2011-04-01T03:18:33Z",
+  "updatedAt" : "2012-07-24T20:18:33Z",
+  "type" : "user",
+  "_links" : {
+    "self" : {
+      "href" : "https://api.helpscout.net/v2/users/1"
+    }
+  }
+}

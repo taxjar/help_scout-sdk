@@ -1,0 +1,99 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.helpscout.net/v2/oauth2/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"client_credentials","client_id":"<HELP_SCOUT_APP_ID>","client_secret":"<HELP_SCOUT_APP_SECRET>"}'
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sun, 02 Jun 2019 13:47:33 GMT
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '92'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"token_type":"bearer","access_token":"<HELP_SCOUT_ACCESS_TOKEN>","expires_in":7200}
+
+        '
+    http_version: 
+  recorded_at: Sun, 02 Jun 2019 13:47:33 GMT
+- request:
+    method: get
+    uri: https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <HELP_SCOUT_ACCESS_TOKEN>
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Type:
+      - application/hal+json;charset=UTF-8
+      Correlation-Id:
+      - 99666b7a-fe2c-4f66-84bf-37a43d9b15d7#2486931
+      Date:
+      - Sun, 02 Jun 2019 13:47:33 GMT
+      Expires:
+      - '0'
+      Pragma:
+      - no-cache
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Ratelimit-Limit-Minute:
+      - '400'
+      X-Ratelimit-Remaining-Minute:
+      - '374'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '1428'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"id":<TEST_CUSTOMER_ID>,"firstName":"Andre","lastName":"Leblanc","gender":"Male","jobTitle":"Software
+        Engineer","location":"Clearwater, FL 33756, United States","organization":"TaxJar","photoType":"gravatar","photoUrl":"https://secure.gravatar.com/avatar/8319f019fc608e7b550ce4852077b396","createdAt":"2017-11-06T02:55:50Z","updatedAt":"2019-06-02T13:47:21Z","background":"","_embedded":{"emails":[{"id":199681969,"value":"<TEST_CUSTOMER_EMAIL>","type":"work"}],"websites":[{"id":233272925,"value":"http://BruiserConversions.com"},{"id":217623410,"value":"http://www.blancblog.co"}],"chats":[],"phones":[],"social_profiles":[{"id":290382267,"value":"https://www.flickr.com/people/33510707@N02","type":"flickr"},{"id":217623409,"value":"https://twitter.com/BruiserCustoms","type":"twitter"},{"id":217623408,"value":"https://www.linkedin.com/in/andremleblanc","type":"linkedin"}]},"_links":{"address":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>/address/"},"chats":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>/chats/"},"emails":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>/emails/"},"phones":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>/phones/"},"self":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>"},"social-profiles":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>/social-profiles/"},"websites":{"href":"https://api.helpscout.net/v2/customers/<TEST_CUSTOMER_ID>/websites/"}}}'
+    http_version: 
+  recorded_at: Sun, 02 Jun 2019 13:47:33 GMT
+recorded_with: VCR 5.0.0
