@@ -9,11 +9,10 @@ module HelpScout
           response = connection.post('oauth2/token', token_request_params)
 
           case response.status
+          when 200 then new HelpScout::Response.new(response).body
           when 429 then raise ThrottleLimitReached, response.body&.dig('error')
-          when 500, 501, 503 then raise InternalError, response.body&.dig('error')
+          else raise InternalError, response.body
           end
-
-          new HelpScout::Response.new(response).body
         end
 
         def refresh!
