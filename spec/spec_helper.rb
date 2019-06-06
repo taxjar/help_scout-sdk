@@ -41,7 +41,7 @@ end
 HelpScout.configure do |config|
   config.app_id = ENV.fetch('HELP_SCOUT_APP_ID')
   config.app_secret = ENV.fetch('HELP_SCOUT_APP_SECRET')
-  config.access_token = ENV.fetch('HELP_SCOUT_ACCESS_TOKEN', nil)
+  config.access_token = ENV['HELP_SCOUT_ACCESS_TOKEN'] if ENV['HELP_SCOUT_ACCESS_TOKEN']
   config.default_mailbox = ENV.fetch('TEST_MAILBOX_ID')
 end
 
@@ -110,9 +110,9 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
     metadata[:vcr] = true
   end
 
-  config.before(:each) do
-    HelpScout.refresh!
-  end
+  # config.before(:each) do
+  #   HelpScout.refresh!
+  # end
 
   config.before(:each, :unit) do
     stub_request(:post, 'https://api.helpscout.net/v2/oauth2/token')

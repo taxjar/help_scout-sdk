@@ -58,9 +58,5 @@ module HelpScout
     def default_mailbox
       configuration.default_mailbox
     end
-
-    def refresh!
-      @api = nil
-    end
   end
 end
