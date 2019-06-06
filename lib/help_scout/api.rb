@@ -31,15 +31,17 @@ module HelpScout
     private
 
     def handle_response(result) # rubocop:disable AbcSize
-      case result.status
-      when 400 then raise BadRequest, result.body&.dig('validationErrors')
-      when 401 then raise NotAuthorized, result.body&.dig('error_description')
-      when 404 then raise NotFound, 'Resource Not Found'
-      when 429 then raise ThrottleLimitReached, result.body&.dig('error')
-      when 500, 501, 503 then raise InternalError, result.body&.dig('error')
+      if result.success?
+        HelpScout::Response.new(result)
+      else
+        case result.status
+        when 400 then raise BadRequest, result.body&.dig('validationErrors')
+        when 401 then raise NotAuthorized, result.body&.dig('error_description')
+        when 404 then raise NotFound, 'Resource Not Found'
+        when 429 then raise ThrottleLimitReached, result.body&.dig('error')
+        else raise InternalError, result.body
+        end
       end
-
-      HelpScout::Response.new(result)
     end
 
     def new_connection

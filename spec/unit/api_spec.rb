@@ -11,7 +11,7 @@ RSpec.describe HelpScout::API do
     end
 
     describe 'when the token is valid' do
-      let(:response_1) { OpenStruct.new(status: 200) }
+      let(:response_1) { OpenStruct.new(status: 200, success?: true) }
 
       before do
         expect(connection).to receive(:send).once.and_return(response_1)
@@ -33,7 +33,7 @@ RSpec.describe HelpScout::API do
       end
 
       context 'and second request is successful' do
-        let(:response_2) { OpenStruct.new(status: 200, body: '') }
+        let(:response_2) { OpenStruct.new(status: 200, body: '', success?: true) }
 
         it 'refreshes the token and makes the request again' do
           subject.get('foo')
