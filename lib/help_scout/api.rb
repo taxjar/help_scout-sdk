@@ -30,7 +30,7 @@ module HelpScout
 
     private
 
-    def handle_response(result) # rubocop:disable AbcSize
+    def handle_response(result) # rubocop:disable AbcSize, Metrics/MethodLength
       if result.success?
         HelpScout::Response.new(result)
       else
