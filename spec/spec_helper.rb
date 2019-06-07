@@ -41,7 +41,7 @@ end
 HelpScout.configure do |config|
   config.app_id = ENV.fetch('HELP_SCOUT_APP_ID')
   config.app_secret = ENV.fetch('HELP_SCOUT_APP_SECRET')
-  config.access_token = ENV['HELP_SCOUT_ACCESS_TOKEN'] if ENV['HELP_SCOUT_ACCESS_TOKEN']
+  config.access_token = ENV.fetch('HELP_SCOUT_ACCESS_TOKEN', nil)
   config.default_mailbox = ENV.fetch('TEST_MAILBOX_ID')
 end
 

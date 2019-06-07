@@ -6,6 +6,8 @@ module HelpScout
     attr_reader :access_token
 
     def access_token=(token_value)
+      return unless token_value
+
       @access_token = HelpScout::API::AccessToken.new(access_token: token_value)
     end
   end

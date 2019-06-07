@@ -45,7 +45,7 @@ module HelpScout
     end
 
     def new_connection
-      HelpScout::API::Client.new.authorized_connection
+      HelpScout::API::Client.new.connection
     end
 
     def send_request(action, path, params)

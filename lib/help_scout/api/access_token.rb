@@ -5,7 +5,7 @@ module HelpScout
     class AccessToken
       class << self
         def create
-          connection = HelpScout::API::Client.new.unauthorized_connection
+          connection = HelpScout::API::Client.new(authorize: false).connection
           response = connection.post('oauth2/token', token_request_params)
 
           case response.status
