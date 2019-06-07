@@ -31,7 +31,7 @@ module HelpScout
     private
 
     def handle_response(result) # rubocop:disable AbcSize, Metrics/MethodLength
-      if result.success?
+      if (200...300).include? result.status
         HelpScout::Response.new(result)
       else
         case result.status

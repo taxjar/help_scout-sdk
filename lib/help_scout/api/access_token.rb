@@ -10,8 +10,8 @@ module HelpScout
 
           case response.status
           when 200 then new HelpScout::Response.new(response).body
-          when 429 then raise ThrottleLimitReached, response.body&.dig('error')
-          else raise InternalError, response.body
+          when 429 then raise HelpScout::API::ThrottleLimitReached, response.body&.dig('error')
+          else raise HelpScout::API::InternalError, "unexpected response (status #{response.status})"
           end
         end
 
