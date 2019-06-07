@@ -50,7 +50,7 @@ module HelpScout
         invalid
       end
 
-      def mark_invalid!
+      def invalidate!
         self.invalid = true
       end
 

@@ -52,7 +52,7 @@ module HelpScout
       response = new_connection.send(action, path, params.compact)
 
       if response.status == 401
-        access_token.mark_invalid!
+        access_token.invalidate!
         response = new_connection.send(action, path, params.compact)
       end
 
