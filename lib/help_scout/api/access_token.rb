@@ -37,11 +37,13 @@ module HelpScout
         @value = params[:access_token]
         @expires_in = params[:expires_in]
         return unless @expires_in
+
         @expires_at = Time.now.utc + expires_in
       end
 
       def expired?
         return false unless expires_at
+
         Time.now.utc > expires_at
       end
 
