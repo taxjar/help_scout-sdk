@@ -11,7 +11,7 @@ module HelpScout
 
       def connection
         @_connection ||= begin
-          HelpScout::API::AccessToken.refresh! if authorize? && HelpScout.access_token.nil?
+          HelpScout::API::AccessToken.refresh! if authorize? && token_needs_refresh?
           build_connection
         end
       end
@@ -29,6 +29,10 @@ module HelpScout
           conn.response(:json, content_type: /\bjson$/)
           conn.adapter(Faraday.default_adapter)
         end
+      end
+
+      def token_needs_refresh?
+        HelpScout.access_token.nil? || HelpScout.access_token.stale?
       end
     end
   end

@@ -30,20 +30,32 @@ module HelpScout
         end
       end
 
-      attr_reader :expires_at, :expires_in, :value
+      attr_accessor :invalid
+      attr_reader :expires_in, :value
 
       def initialize(params)
         @value = params[:access_token]
-        expires_in = params[:expires_in]
+        @expires_in = params[:expires_in]
+      end
 
-        return unless expires_in
-
-        @expires_in = expires_in
-        @expires_at = Time.now.utc + expires_in
+      def expires_at
+        @_expires_at ||= Time.now.utc + expires_in
       end
 
       def expired?
         Time.now.utc > expires_at
+      end
+
+      def invalid?
+        invalid
+      end
+
+      def mark_invalid!
+        self.invalid = true
+      end
+
+      def stale?
+        invalid? || expired?
       end
     end
   end

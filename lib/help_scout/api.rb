@@ -49,12 +49,11 @@ module HelpScout
     end
 
     def send_request(action, path, params)
-      connection = new_connection
-      response = connection.send(action, path, params.compact)
+      response = new_connection.send(action, path, params.compact)
 
       if response.status == 401
-        HelpScout::API::AccessToken.refresh!
-        response = connection.send(action, path, params.compact)
+        access_token.mark_invalid!
+        response = new_connection.send(action, path, params.compact)
       end
 
       handle_response(response)

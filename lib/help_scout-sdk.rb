@@ -58,5 +58,9 @@ module HelpScout
     def default_mailbox
       configuration.default_mailbox
     end
+
+    def reset!
+      @_api = HelpScout::API.new
+    end
   end
 end

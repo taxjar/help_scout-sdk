@@ -110,6 +110,10 @@ RSpec.configure do |config|
     metadata[:vcr] = true
   end
 
+  config.before(:each) do
+    HelpScout.reset!
+  end
+
   config.before(:each, :unit) do
     stub_request(:post, 'https://api.helpscout.net/v2/oauth2/token')
       .to_return(body: access_token_json, headers: { 'Content-Type' => 'application/json' })
