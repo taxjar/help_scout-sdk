@@ -74,7 +74,7 @@ VCR.configure do |config|
   config.filter_sensitive_data('<TEST_USER_ID>') { ENV['TEST_USER_ID'] }
 end
 
-RSpec.configure do |config|
+RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
   config.order = :random
   Kernel.srand config.seed
 
