@@ -10,7 +10,7 @@ module HelpScout
     end
 
     def body
-      @body ||= response.body.deep_transform_keys { |key| key.to_s.underscore.to_sym }
+      @_body ||= response.body.deep_transform_keys { |key| key.to_s.underscore.to_sym }
     end
 
     def embedded

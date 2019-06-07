@@ -61,7 +61,7 @@ module HelpScout
     end
 
     def populated_threads
-      @populated_threads ||= HelpScout::Thread.list(id)
+      @_populated_threads ||= HelpScout::Thread.list(id)
     end
 
     def update(operation, path, value = nil)

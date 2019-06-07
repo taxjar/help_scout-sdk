@@ -10,7 +10,7 @@ module HelpScout
       end
 
       def connection
-        @connection ||= begin
+        @_connection ||= begin
           HelpScout::API::AccessToken.refresh! if authorize? && HelpScout.access_token.nil?
           build_connection
         end

@@ -22,7 +22,7 @@ module HelpScout
         private
 
         def token_request_params
-          @token_request_params ||= {
+          @_token_request_params ||= {
             grant_type: 'client_credentials',
             client_id: HelpScout.app_id,
             client_secret: HelpScout.app_secret

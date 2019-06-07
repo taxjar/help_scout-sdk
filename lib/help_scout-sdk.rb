@@ -35,7 +35,7 @@ module HelpScout
     end
 
     def api
-      @api ||= HelpScout::API.new
+      @_api ||= HelpScout::API.new
     end
 
     def app_id
@@ -47,7 +47,7 @@ module HelpScout
     end
 
     def configuration
-      @configuration ||= Configuration.new
+      @_configuration ||= Configuration.new
     end
 
     def configure
