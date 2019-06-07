@@ -31,7 +31,7 @@ def model_name
 end
 
 def logger
-  @logger ||= Logger.new($stdout, level: ENV.fetch('LOG_LEVEL', 'INFO'))
+  @_logger ||= Logger.new($stdout, level: ENV.fetch('LOG_LEVEL', 'INFO'))
 end
 
 def valid_access_token
@@ -111,7 +111,7 @@ RSpec.configure do |config| # rubocop:disable Metrics/BlockLength
   end
 
   config.before(:each) do
-    HelpScout.refresh!
+    HelpScout.reset!
   end
 
   config.before(:each, :unit) do

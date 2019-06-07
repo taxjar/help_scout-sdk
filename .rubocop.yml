@@ -29,5 +29,8 @@ Naming/FileName:
     - 'lib/help_scout-sdk.rb'
     - 'spec/**/*_spec.rb'
 
+Naming/MemoizedInstanceVariableName:
+    EnforcedStyleForLeadingUnderscores: required
+
 Style/Documentation:
   Enabled: False

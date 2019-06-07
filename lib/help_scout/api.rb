@@ -30,29 +30,30 @@ module HelpScout
 
     private
 
-    def handle_response(result) # rubocop:disable AbcSize
-      case result.status
-      when 400 then raise BadRequest, result.body&.dig('validationErrors')
-      when 401 then raise NotAuthorized, result.body&.dig('error_description')
-      when 404 then raise NotFound, 'Resource Not Found'
-      when 429 then raise ThrottleLimitReached, result.body&.dig('error')
-      when 500, 501, 503 then raise InternalError, result.body&.dig('error')
+    def handle_response(result) # rubocop:disable AbcSize, Metrics/MethodLength
+      if (200...300).include? result.status
+        HelpScout::Response.new(result)
+      else
+        case result.status
+        when 400 then raise BadRequest, result.body&.dig('validationErrors')
+        when 401 then raise NotAuthorized, result.body&.dig('error_description')
+        when 404 then raise NotFound, 'Resource Not Found'
+        when 429 then raise ThrottleLimitReached, result.body&.dig('error')
+        else raise InternalError, result.body
+        end
       end
-
-      HelpScout::Response.new(result)
     end
 
     def new_connection
-      HelpScout::API::Client.new.authorized_connection
+      HelpScout::API::Client.new.connection
     end
 
     def send_request(action, path, params)
-      connection = new_connection
-      response = connection.send(action, path, params.compact)
+      response = new_connection.send(action, path, params.compact)
 
       if response.status == 401
-        HelpScout::API::AccessToken.refresh!
-        response = connection.send(action, path, params.compact)
+        access_token.invalidate!
+        response = new_connection.send(action, path, params.compact)
       end
 
       handle_response(response)

@@ -27,11 +27,11 @@ module HelpScout
     end
 
     def fields
-      @fields ||= HelpScout.api.get(fields_path).embedded[:fields]
+      @_fields ||= HelpScout.api.get(fields_path).embedded[:fields]
     end
 
     def folders
-      @folders ||= HelpScout::Folder.list(id: id)
+      @_folders ||= HelpScout::Folder.list(id: id)
     end
 
     private

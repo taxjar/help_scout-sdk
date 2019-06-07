@@ -5,15 +5,14 @@ module HelpScout
     class AccessToken
       class << self
         def create
-          connection = HelpScout::API::Client.new.unauthorized_connection
+          connection = HelpScout::API::Client.new(authorize: false).connection
           response = connection.post('oauth2/token', token_request_params)
 
           case response.status
-          when 429 then raise ThrottleLimitReached, response.body&.dig('error')
-          when 500, 501, 503 then raise InternalError, response.body&.dig('error')
+          when 200 then new HelpScout::Response.new(response).body
+          when 429 then raise HelpScout::API::ThrottleLimitReached, response.body&.dig('error')
+          else raise HelpScout::API::InternalError, "unexpected response (status #{response.status})"
           end
-
-          new HelpScout::Response.new(response).body
         end
 
         def refresh!
@@ -23,7 +22,7 @@ module HelpScout
         private
 
         def token_request_params
-          @token_request_params ||= {
+          @_token_request_params ||= {
             grant_type: 'client_credentials',
             client_id: HelpScout.app_id,
             client_secret: HelpScout.app_secret
@@ -31,20 +30,32 @@ module HelpScout
         end
       end
 
-      attr_reader :expires_at, :expires_in, :value
+      attr_accessor :invalid
+      attr_reader :expires_in, :value
 
       def initialize(params)
         @value = params[:access_token]
-        expires_in = params[:expires_in]
+        @expires_in = params[:expires_in]
+      end
 
-        return unless expires_in
-
-        @expires_in = expires_in
-        @expires_at = Time.now.utc + expires_in
+      def expires_at
+        @_expires_at ||= Time.now.utc + expires_in
       end
 
       def expired?
         Time.now.utc > expires_at
+      end
+
+      def invalid?
+        invalid
+      end
+
+      def invalidate!
+        self.invalid = true
+      end
+
+      def stale?
+        invalid? || expired?
       end
     end
   end
