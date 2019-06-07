@@ -95,6 +95,19 @@ HelpScout::User.list
 user = HelpScout::User.get(id)
 ```
 
+### Caching Access Tokens
+
+Since short-lived access tokens aren't likely to be embedded into environment variables, it can be difficult to share them across processes. To work around this, you can configure a `token_cache` (and optional `token_cache_key`) to be used to store and retrieve the token until expiry. In general any object that conforms to the `ActiveSupport::Cache::Store` API should work. For example, using an application's Rails cache:
+
+```ruby
+HelpScout.configuration.token_cache = Rails.cache
+HelpScout.configuration.token_cache_key
+# => 'help_scout_token_cache'
+HelpScout.configuration.token_cache_key = 'my-own-key'
+```
+
+With caching configured, whenever the gem attempts to create an access token, it will first attempt to read a value from the cache using the configured cache key. If it's a hit, the cached values will be used to create a new `AccessToken`. If it's a miss, then the gem will make a request to the Help Scout API to retrieve a new token, writing the token's details to the cache before returning the new token.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
