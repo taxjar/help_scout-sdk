@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['support@taxjar.com']
 
   spec.summary       = 'Ruby Help Scout SDK'
-  spec.description   = 'Ruby Help Scout (aka HelpScout) SDK.'
+  spec.description   = 'Ruby Help Scout (aka HelpScout) SDK, using Mailbox API v2.0'
   spec.homepage      = 'https://github.com/taxjar/help_scout-sdk'
   spec.license       = 'MIT'
 
