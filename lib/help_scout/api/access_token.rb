@@ -1,56 +1,24 @@
 # frozen_string_literal: true
 
 require 'date'
+require 'help_scout/api/access_token/cache'
+require 'help_scout/api/access_token/request'
 
 module HelpScout
   class API
     class AccessToken
       class << self
         def create
-          cache.present? ? fetch_token : request_token
+          cache = HelpScout::API::AccessToken::Cache.new
+          request = HelpScout::API::AccessToken::Request.new
+
+          cache.configured? ? cache.fetch_token { request.execute } : request.execute
         end
 
         def refresh!
+          return unless HelpScout.access_token&.stale?
+
           HelpScout.api.access_token = create
-        end
-
-        private
-
-        def cache
-          HelpScout.configuration.token_cache
-        end
-
-        def cache_key
-          HelpScout.configuration.token_cache_key
-        end
-
-        def fetch_token
-          if (cached_token_json = cache.read(cache_key))
-            new(JSON.parse(cached_token_json, symbolize_names: true))
-          else
-            request_token.tap do |token|
-              cache.write(cache_key, token.to_json, expires_in: token.expires_in)
-            end
-          end
-        end
-
-        def request_token
-          connection = HelpScout::API::Client.new(authorize: false).connection
-          response = connection.post('oauth2/token', token_request_params)
-
-          case response.status
-          when 200 then new HelpScout::Response.new(response).body
-          when 429 then raise HelpScout::API::ThrottleLimitReached, response.body&.dig('error')
-          else raise HelpScout::API::InternalError, "unexpected response (status #{response.status})"
-          end
-        end
-
-        def token_request_params
-          @_token_request_params ||= {
-            grant_type: 'client_credentials',
-            client_id: HelpScout.app_id,
-            client_secret: HelpScout.app_secret
-          }
         end
       end
 
@@ -83,7 +51,7 @@ module HelpScout
       end
 
       def invalid?
-        invalid
+        !!invalid # rubocop:disable Style/DoubleNegation
       end
 
       def invalidate!
