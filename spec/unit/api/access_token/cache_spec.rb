@@ -36,6 +36,19 @@ RSpec.describe HelpScout::API::AccessToken::Cache do
     end
   end
 
+  describe '#delete' do
+    let(:backend) { ActiveSupport::Cache::MemoryStore.new }
+    let(:cache) { described_class.new(backend: backend) }
+
+    subject { cache.delete }
+
+    it 'calls delete on the backend with the configured key' do
+      expect(backend).to receive(:delete).with(cache.key)
+
+      subject
+    end
+  end
+
   describe '#fetch_token' do
     let(:access_token_klass) { HelpScout::API::AccessToken }
     let(:backend) { ActiveSupport::Cache::MemoryStore.new }

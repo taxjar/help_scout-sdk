@@ -121,6 +121,42 @@ RSpec.describe HelpScout::API::AccessToken do
     end
   end
 
+  describe '#invalidate!' do
+    subject { access_token.invalidate! }
+
+    context 'when no cache is configured' do
+      around { |example| with_config(token_cache: nil) { example.run } }
+
+      it 'marks the access token as invalid' do
+        expect { subject }.to change { access_token.invalid? }.from(false).to(true)
+      end
+
+      it 'does not attempt to clear the cache' do
+        expect_any_instance_of(HelpScout::API::AccessToken::Cache).not_to receive(:delete)
+
+        subject
+      end
+    end
+
+    context 'when a cache is configured' do
+      let(:token_cache) { double('cache') }
+
+      around { |example| with_config(token_cache: token_cache) { example.run } }
+
+      before { allow(token_cache).to receive(:delete) }
+
+      it 'marks the access token as invalid' do
+        expect { subject }.to change { access_token.invalid? }.from(false).to(true)
+      end
+
+      it 'attempts to clear the cache' do
+        expect(token_cache).to receive(:delete)
+
+        subject
+      end
+    end
+  end
+
   describe '#value' do
     subject { access_token.value }
 

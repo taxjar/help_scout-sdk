@@ -54,6 +54,10 @@ module HelpScout
       end
 
       def invalidate!
+        cache = HelpScout::API::AccessToken::Cache.new
+
+        cache.delete if cache.configured?
+
         self.invalid = true
       end
 

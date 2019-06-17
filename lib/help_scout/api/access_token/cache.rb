@@ -15,6 +15,10 @@ module HelpScout
           backend.present? && key.present?
         end
 
+        def delete
+          backend.delete(key)
+        end
+
         def fetch_token(&token_request)
           raise ArgumentError, 'A request fallback block is required' unless block_given?
 
