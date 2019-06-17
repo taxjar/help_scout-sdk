@@ -20,6 +20,70 @@ RSpec.describe HelpScout::API::AccessToken do
     it { is_expected.to be_a described_class }
   end
 
+  describe '.refresh!' do
+    subject { described_class.refresh! }
+
+    context 'when the token is valid' do
+      before { HelpScout.api.access_token = access_token }
+
+      it 'does not call create' do
+        expect(described_class).not_to receive(:create)
+
+        subject
+      end
+
+      it 'returns the token' do
+        expect(subject).to eq(access_token)
+      end
+    end
+
+    context 'when the token is stale' do
+      let(:initial_token) do
+        described_class.new(
+          token_type: 'bearer',
+          access_token: 'initial42token',
+          expires_in: 7200
+        )
+      end
+
+      before do
+        allow(initial_token).to receive(:stale?).and_return(true)
+        HelpScout.api.access_token = initial_token
+      end
+
+      it 'calls create' do
+        expect(described_class).to receive(:create)
+
+        subject
+      end
+
+      it 'returns the newly created token' do
+        new_token = subject
+
+        expect(new_token).to be_a(described_class)
+        expect(new_token.value).not_to eq(initial_token.value)
+        expect(new_token.value).to eq(access_token_params[:access_token])
+      end
+    end
+
+    context 'when the token is nil' do
+      before { HelpScout.api.access_token = nil }
+
+      it 'calls create' do
+        expect(described_class).to receive(:create)
+
+        subject
+      end
+
+      it 'returns the newly created token' do
+        new_token = subject
+
+        expect(new_token).to be_a(described_class)
+        expect(new_token.value).to eq(access_token_params[:access_token])
+      end
+    end
+  end
+
   describe '#value' do
     subject { access_token.value }
 
