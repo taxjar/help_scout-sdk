@@ -39,7 +39,6 @@ module HelpScout
       def as_json(*)
         {
           access_token: value,
-          expires_in: expires_in,
           expires_at: expires_at
         }
       end

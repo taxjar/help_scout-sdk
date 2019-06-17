@@ -84,10 +84,15 @@ RSpec.describe HelpScout::API::AccessToken do
     end
   end
 
-  describe '#value' do
-    subject { access_token.value }
+  describe '#as_json' do
+    subject { access_token.as_json }
 
-    it { is_expected.to eq(access_token_params[:access_token]) }
+    it 'includes the value and expires_at attributes' do
+      expect(subject).to eq(
+        access_token: access_token.value,
+        expires_at: access_token.expires_at
+      )
+    end
   end
 
   describe '#expires_in' do
@@ -114,5 +119,11 @@ RSpec.describe HelpScout::API::AccessToken do
 
       it { is_expected.to eq false }
     end
+  end
+
+  describe '#value' do
+    subject { access_token.value }
+
+    it { is_expected.to eq(access_token_params[:access_token]) }
   end
 end
