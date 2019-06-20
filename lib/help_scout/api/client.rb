@@ -10,13 +10,19 @@ module HelpScout
       end
 
       def connection
-        @_connection ||= begin
-          HelpScout::API::AccessToken.refresh! if authorize? && token_needs_refresh?
-          build_connection
+        @_connection ||= build_connection.tap do |conn|
+          if authorize?
+            HelpScout::API::AccessToken.refresh!
+            conn.authorization(:Bearer, access_token) if access_token
+          end
         end
       end
 
       private
+
+      def access_token
+        HelpScout.access_token&.value
+      end
 
       def authorize?
         authorize
@@ -25,14 +31,9 @@ module HelpScout
       def build_connection
         Faraday.new(url: BASE_URL) do |conn|
           conn.request :json
-          conn.authorization(:Bearer, HelpScout.access_token.value) if authorize? && HelpScout.access_token&.value
           conn.response(:json, content_type: /\bjson$/)
           conn.adapter(Faraday.default_adapter)
         end
-      end
-
-      def token_needs_refresh?
-        HelpScout.access_token.nil? || HelpScout.access_token.stale?
       end
     end
   end

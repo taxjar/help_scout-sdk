@@ -38,6 +38,20 @@ def valid_access_token
   file_fixture('access_token.json')
 end
 
+def with_config(new_configs = {})
+  old_values = {}
+
+  new_configs.each do |getter, new_value|
+    setter = "#{getter}="
+    old_values[setter] = HelpScout.configuration.public_send(getter)
+    HelpScout.configuration.public_send(setter, new_value)
+  end
+
+  yield if block_given?
+
+  old_values.each { |setter, old_value| HelpScout.configuration.public_send(setter, old_value) }
+end
+
 HelpScout.configure do |config|
   config.app_id = ENV.fetch('HELP_SCOUT_APP_ID')
   config.app_secret = ENV.fetch('HELP_SCOUT_APP_SECRET')

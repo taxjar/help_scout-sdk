@@ -1,32 +1,24 @@
 # frozen_string_literal: true
 
+require 'date'
+require 'help_scout/api/access_token/cache'
+require 'help_scout/api/access_token/request'
+
 module HelpScout
   class API
     class AccessToken
       class << self
         def create
-          connection = HelpScout::API::Client.new(authorize: false).connection
-          response = connection.post('oauth2/token', token_request_params)
+          cache = HelpScout::API::AccessToken::Cache.new
+          request = HelpScout::API::AccessToken::Request.new
 
-          case response.status
-          when 200 then new HelpScout::Response.new(response).body
-          when 429 then raise HelpScout::API::ThrottleLimitReached, response.body&.dig('error')
-          else raise HelpScout::API::InternalError, "unexpected response (status #{response.status})"
-          end
+          cache.configured? ? cache.fetch_token { request.execute } : request.execute
         end
 
         def refresh!
+          return HelpScout.api.access_token unless HelpScout.access_token.nil? || HelpScout.access_token.stale?
+
           HelpScout.api.access_token = create
-        end
-
-        private
-
-        def token_request_params
-          @_token_request_params ||= {
-            grant_type: 'client_credentials',
-            client_id: HelpScout.app_id,
-            client_secret: HelpScout.app_secret
-          }
         end
       end
 
@@ -35,10 +27,20 @@ module HelpScout
 
       def initialize(params)
         @value = params[:access_token]
-        @expires_in = params[:expires_in]
-        return unless @expires_in
 
-        @expires_at = Time.now.utc + expires_in
+        if params[:expires_at]
+          @expires_at = DateTime.parse(params[:expires_at].to_s).to_time.utc
+        elsif params[:expires_in]
+          @expires_in = params[:expires_in].to_i
+          @expires_at = (Time.now.utc + @expires_in)
+        end
+      end
+
+      def as_json(*)
+        {
+          access_token: value,
+          expires_at: expires_at
+        }
       end
 
       def expired?
@@ -48,10 +50,14 @@ module HelpScout
       end
 
       def invalid?
-        invalid
+        !!invalid # rubocop:disable Style/DoubleNegation
       end
 
       def invalidate!
+        cache = HelpScout::API::AccessToken::Cache.new
+
+        cache.delete if cache.configured?
+
         self.invalid = true
       end
 
