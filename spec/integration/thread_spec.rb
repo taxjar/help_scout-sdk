@@ -2,10 +2,10 @@
 
 RSpec.describe HelpScout::Thread do
   let(:conversation_id) { ENV.fetch('TEST_CONVERSATION_ID') }
-  let(:thread_id) { ENV.fetch('TEST_THREAD_ID')}
+  let(:thread_id) { ENV.fetch('TEST_THREAD_ID') }
 
-  describe '.get' do 
-    it "returns a HelpScout::Thread given a conversation_id and thread_id" do 
+  describe '.get' do
+    it "returns a #{described_class} given a conversation_id and thread_id" do
       thread = described_class.get(conversation_id, thread_id)
 
       expect(thread).to be_a(described_class)
@@ -22,11 +22,11 @@ RSpec.describe HelpScout::Thread do
   end
 
   describe '.create' do
-    subject { described_class.create(conversation_id, thread_type, params)}
-    let(:thread_type) { "notes" }
+    subject { described_class.create(conversation_id, thread_type, params) }
+    let(:thread_type) { 'notes' }
     let(:params) do
       {
-        text: "Hello, note!"
+        text: 'Hello, note!'
       }
     end
 
@@ -37,7 +37,7 @@ RSpec.describe HelpScout::Thread do
 
   describe '#update' do
     it "updates a given thread's text on a conversation" do
-      thread = described_class.get(conversation_id, thread_id) 
+      thread = described_class.get(conversation_id, thread_id)
       original_body = thread.body
       update_params = {
         op: 'replace',

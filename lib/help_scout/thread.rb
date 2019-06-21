@@ -4,11 +4,16 @@ module HelpScout
   class Thread < HelpScout::Base
     class << self
       def create(conversation_id, thread_type, params)
-        HelpScout.api.post(create_path(conversation_id, thread_type), HelpScout::Util.camelize_keys(params))
+        HelpScout.api.post(
+          create_path(conversation_id, thread_type),
+          HelpScout::Util.camelize_keys(params)
+        )
       end
 
       def list(conversation_id, page: nil)
-        HelpScout.api.get(list_path(conversation_id), page: page).embedded_list.map { |details| new (details.merge({conversation_id: conversation_id})) }
+        HelpScout.api.get(
+          list_path(conversation_id), page: page
+        ).embedded_list.map { |details| new details.merge(conversation_id: conversation_id) }
       end
 
       def get(conversation_id, thread_id)
