@@ -23,8 +23,7 @@ And then execute:
 | :------------------------- | :--: | :--: | :-----: | :----: | :-----: |
 | Attachment                 |   ❌  |  ❌  |    ✅   |    ❌   |    ❌   |
 | Conversations              |   ✅  |  ✅  |    ✅   |    ✅   |    ❌   |
-| Conversation::Threads      |   ❌  |  ❌  |    ❌   |    ❌   |    ❌   |
-| Conversation::ThreadSource |   ❌  |  ❌  |    ❌   |    ❌   |    ❌   |
+| Conversation::Threads      |   ✅  |  ➖  |    ✅   |    ✅   |    ➖   |
 | Customers                  |   ✅  |  ✅  |    ❌   |    ❌   |    ❌   |
 | Notes                      |   ❌  |  ❌  |    ❌   |    ❌   |    ❌   |
 | Mailboxes                  |   ✅  |  ✅  |    ➖   |    ➖   |    ➖   |
