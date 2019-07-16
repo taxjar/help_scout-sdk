@@ -16,7 +16,7 @@ module HelpScout
         end
 
         def refresh!
-          return HelpScout.api.access_token unless HelpScout.access_token.nil? || HelpScout.access_token.stale?
+          return HelpScout.access_token unless HelpScout.access_token.nil? || HelpScout.access_token.stale?
 
           HelpScout.api.access_token = create
         end

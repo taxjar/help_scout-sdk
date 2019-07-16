@@ -52,7 +52,6 @@ module HelpScout
 
     def configure
       yield(configuration)
-      api.access_token = HelpScout.configuration.access_token
     end
 
     def default_mailbox
