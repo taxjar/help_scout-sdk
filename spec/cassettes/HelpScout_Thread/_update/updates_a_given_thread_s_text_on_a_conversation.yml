@@ -1,0 +1,217 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.helpscout.net/v2/oauth2/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"client_credentials","client_id":"<HELP_SCOUT_APP_ID>","client_secret":"<HELP_SCOUT_APP_SECRET>"}'
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 16 Jul 2019 19:22:21 GMT
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '92'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"token_type":"bearer","access_token":"<HELP_SCOUT_ACCESS_TOKEN>","expires_in":7200}
+
+'
+    http_version: 
+  recorded_at: Tue, 16 Jul 2019 19:22:21 GMT
+- request:
+    method: get
+    uri: https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Authorization:
+      - Bearer <HELP_SCOUT_ACCESS_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Type:
+      - application/hal+json;charset=UTF-8
+      Correlation-Id:
+      - 99666b7a-fe2c-4f66-84bf-37a43d9b15d7#62331367
+      Date:
+      - Tue, 16 Jul 2019 19:22:21 GMT
+      Expires:
+      - '0'
+      Pragma:
+      - no-cache
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Ratelimit-Limit-Minute:
+      - '400'
+      X-Ratelimit-Remaining-Minute:
+      - '399'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '5975'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"_embedded":{"threads":[{"id":2535529292,"type":"note","status":"active","state":"published","action":{"type":"default"},"body":"Hello,
+        note!","source":{"type":"api","via":"user"},"customer":{"id":268319927,"first":"Paul","last":"Simpson","photoUrl":"https://img.fullcontact.com/static/664fc3306cc6eb7ce5b55611d0ebcc42_6f8d7e4a9b7e4fd8726bca36132bf21572a5238b93e89d79dd63d3a55da7fcc8","email":"paul@taxjar.com"},"createdBy":{"id":378608,"type":"user","first":"Paul","last":"Simpson","email":"paul@simpsonconsulting.ltd"},"assignedTo":{"id":1,"first":"Help","last":"Scout","email":"none@nowhere.com"},"to":[],"cc":[],"bcc":[],"createdAt":"2019-07-16T19:19:32Z","_embedded":{"attachments":[]},"_links":{"assignedTo":{"href":"https://api.helpscout.net/v2/users/1"},"createdByUser":{"href":"https://api.helpscout.net/v2/users/378608"},"customer":{"href":"https://api.helpscout.net/v2/customers/268319927"}}},{"id":2535524362,"type":"note","status":"active","state":"published","action":{"type":"default"},"body":"Hello,
+        note!","source":{"type":"api","via":"user"},"customer":{"id":268319927,"first":"Paul","last":"Simpson","photoUrl":"https://img.fullcontact.com/static/664fc3306cc6eb7ce5b55611d0ebcc42_6f8d7e4a9b7e4fd8726bca36132bf21572a5238b93e89d79dd63d3a55da7fcc8","email":"paul@taxjar.com"},"createdBy":{"id":378608,"type":"user","first":"Paul","last":"Simpson","email":"paul@simpsonconsulting.ltd"},"assignedTo":{"id":1,"first":"Help","last":"Scout","email":"none@nowhere.com"},"to":[],"cc":[],"bcc":[],"createdAt":"2019-07-16T19:17:39Z","_embedded":{"attachments":[]},"_links":{"assignedTo":{"href":"https://api.helpscout.net/v2/users/1"},"createdByUser":{"href":"https://api.helpscout.net/v2/users/378608"},"customer":{"href":"https://api.helpscout.net/v2/customers/268319927"}}},{"id":2535517559,"type":"note","status":"active","state":"published","action":{"type":"default"},"body":"Hello,
+        note!","source":{"type":"api","via":"user"},"customer":{"id":268319927,"first":"Paul","last":"Simpson","photoUrl":"https://img.fullcontact.com/static/664fc3306cc6eb7ce5b55611d0ebcc42_6f8d7e4a9b7e4fd8726bca36132bf21572a5238b93e89d79dd63d3a55da7fcc8","email":"paul@taxjar.com"},"createdBy":{"id":378608,"type":"user","first":"Paul","last":"Simpson","email":"paul@simpsonconsulting.ltd"},"assignedTo":{"id":1,"first":"Help","last":"Scout","email":"none@nowhere.com"},"to":[],"cc":[],"bcc":[],"createdAt":"2019-07-16T19:15:11Z","_embedded":{"attachments":[]},"_links":{"assignedTo":{"href":"https://api.helpscout.net/v2/users/1"},"createdByUser":{"href":"https://api.helpscout.net/v2/users/378608"},"customer":{"href":"https://api.helpscout.net/v2/customers/268319927"}}},{"id":2519189245,"type":"message","status":"active","state":"published","action":{"type":"original-author"},"body":"Sounds
+        good!<br />","source":{"type":"web","via":"user"},"customer":{"id":268319927,"first":"Paul","last":"Simpson","photoUrl":"https://img.fullcontact.com/static/664fc3306cc6eb7ce5b55611d0ebcc42_6f8d7e4a9b7e4fd8726bca36132bf21572a5238b93e89d79dd63d3a55da7fcc8","email":"paul@taxjar.com"},"createdBy":{"id":378608,"type":"user","first":"Paul","last":"Simpson","email":"paul@simpsonconsulting.ltd"},"assignedTo":{"id":1,"first":"Help","last":"Scout","email":"none@nowhere.com"},"savedReplyId":0,"to":[],"cc":[],"bcc":[],"createdAt":"2019-07-09T18:40:17Z","openedAt":"2019-07-09T18:40:44Z","_embedded":{"attachments":[]},"_links":{"assignedTo":{"href":"https://api.helpscout.net/v2/users/1"},"createdByUser":{"href":"https://api.helpscout.net/v2/users/378608"},"customer":{"href":"https://api.helpscout.net/v2/customers/268319927"}}},{"id":2519165247,"type":"note","status":"active","state":"published","action":{"type":"default"},"body":"Hello,
+        note!","source":{"type":"api","via":"user"},"customer":{"id":268319927,"first":"Paul","last":"Simpson","photoUrl":"https://img.fullcontact.com/static/664fc3306cc6eb7ce5b55611d0ebcc42_6f8d7e4a9b7e4fd8726bca36132bf21572a5238b93e89d79dd63d3a55da7fcc8","email":"paul@taxjar.com"},"createdBy":{"id":378608,"type":"user","first":"Paul","last":"Simpson","email":"paul@simpsonconsulting.ltd"},"assignedTo":{"id":1,"first":"Help","last":"Scout","email":"none@nowhere.com"},"to":[],"cc":[],"bcc":[],"createdAt":"2019-07-09T18:31:21Z","_embedded":{"attachments":[]},"_links":{"assignedTo":{"href":"https://api.helpscout.net/v2/users/1"},"createdByUser":{"href":"https://api.helpscout.net/v2/users/378608"},"customer":{"href":"https://api.helpscout.net/v2/customers/268319927"}}},{"id":<TEST_THREAD_ID>,"type":"customer","status":"active","state":"published","action":{"type":"default"},"body":".daerht
+        ymmud a si sihT","source":{"type":"email","via":"customer"},"customer":{"id":268319927,"first":"Paul","last":"Simpson","photoUrl":"https://img.fullcontact.com/static/664fc3306cc6eb7ce5b55611d0ebcc42_6f8d7e4a9b7e4fd8726bca36132bf21572a5238b93e89d79dd63d3a55da7fcc8","email":"paul@taxjar.com"},"createdBy":{"id":268319927,"type":"customer","first":"Paul","last":"Simpson","photoUrl":"https://img.fullcontact.com/static/664fc3306cc6eb7ce5b55611d0ebcc42_6f8d7e4a9b7e4fd8726bca36132bf21572a5238b93e89d79dd63d3a55da7fcc8","email":"paul@taxjar.com"},"assignedTo":{"id":1,"first":"Help","last":"Scout","email":"none@nowhere.com"},"savedReplyId":0,"to":[],"cc":[],"bcc":[],"createdAt":"2019-07-09T18:29:22Z","_embedded":{"attachments":[]},"_links":{"assignedTo":{"href":"https://api.helpscout.net/v2/users/1"},"createdByCustomer":{"href":"https://api.helpscout.net/v2/customers/268319927"},"customer":{"href":"https://api.helpscout.net/v2/customers/268319927"}}}]},"_links":{"first":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads/?page=1"},"last":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads/?page=1"},"page":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads/"},"self":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads/"}},"page":{"size":25,"totalElements":6,"totalPages":1,"number":1}}'
+    http_version: 
+  recorded_at: Tue, 16 Jul 2019 19:22:21 GMT
+- request:
+    method: patch
+    uri: https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads/<TEST_THREAD_ID>
+    body:
+      encoding: UTF-8
+      string: '{"op":"replace","path":"/text","value":"This is a dummy thread."}'
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Authorization:
+      - Bearer <HELP_SCOUT_ACCESS_TOKEN>
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 204
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Type:
+      - text/plain; charset=UTF-8
+      Correlation-Id:
+      - ec159308-58f3-42b7-827a-2788227a7d8c#91975436
+      Date:
+      - Tue, 16 Jul 2019 19:22:21 GMT
+      Expires:
+      - '0'
+      Pragma:
+      - no-cache
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Ratelimit-Limit-Minute:
+      - '400'
+      X-Ratelimit-Remaining-Minute:
+      - '398'
+      X-Xss-Protection:
+      - 1; mode=block
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Tue, 16 Jul 2019 19:22:21 GMT
+- request:
+    method: get
+    uri: https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Authorization:
+      - Bearer <HELP_SCOUT_ACCESS_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Type:
+      - application/hal+json;charset=UTF-8
+      Correlation-Id:
+      - ec159308-58f3-42b7-827a-2788227a7d8c#91975441
+      Date:
+      - Tue, 16 Jul 2019 19:22:22 GMT
+      Expires:
+      - '0'
+      Pragma:
+      - no-cache
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Ratelimit-Limit-Minute:
+      - '400'
+      X-Ratelimit-Remaining-Minute:
+      - '397'
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"_embedded":{"threads":[{"id":2535529292,"type":"note","status":"active","state":"published","action":{"type":"default"},"body":"Hello,
+        note!","source":{"type":"api","via":"user"},"customer":{"id":268319927,"first":"Paul","last":"Simpson","photoUrl":"https://img.fullcontact.com/static/664fc3306cc6eb7ce5b55611d0ebcc42_6f8d7e4a9b7e4fd8726bca36132bf21572a5238b93e89d79dd63d3a55da7fcc8","email":"paul@taxjar.com"},"createdBy":{"id":378608,"type":"user","first":"Paul","last":"Simpson","email":"paul@simpsonconsulting.ltd"},"assignedTo":{"id":1,"first":"Help","last":"Scout","email":"none@nowhere.com"},"to":[],"cc":[],"bcc":[],"createdAt":"2019-07-16T19:19:32Z","_embedded":{"attachments":[]},"_links":{"assignedTo":{"href":"https://api.helpscout.net/v2/users/1"},"createdByUser":{"href":"https://api.helpscout.net/v2/users/378608"},"customer":{"href":"https://api.helpscout.net/v2/customers/268319927"}}},{"id":2535524362,"type":"note","status":"active","state":"published","action":{"type":"default"},"body":"Hello,
+        note!","source":{"type":"api","via":"user"},"customer":{"id":268319927,"first":"Paul","last":"Simpson","photoUrl":"https://img.fullcontact.com/static/664fc3306cc6eb7ce5b55611d0ebcc42_6f8d7e4a9b7e4fd8726bca36132bf21572a5238b93e89d79dd63d3a55da7fcc8","email":"paul@taxjar.com"},"createdBy":{"id":378608,"type":"user","first":"Paul","last":"Simpson","email":"paul@simpsonconsulting.ltd"},"assignedTo":{"id":1,"first":"Help","last":"Scout","email":"none@nowhere.com"},"to":[],"cc":[],"bcc":[],"createdAt":"2019-07-16T19:17:39Z","_embedded":{"attachments":[]},"_links":{"assignedTo":{"href":"https://api.helpscout.net/v2/users/1"},"createdByUser":{"href":"https://api.helpscout.net/v2/users/378608"},"customer":{"href":"https://api.helpscout.net/v2/customers/268319927"}}},{"id":2535517559,"type":"note","status":"active","state":"published","action":{"type":"default"},"body":"Hello,
+        note!","source":{"type":"api","via":"user"},"customer":{"id":268319927,"first":"Paul","last":"Simpson","photoUrl":"https://img.fullcontact.com/static/664fc3306cc6eb7ce5b55611d0ebcc42_6f8d7e4a9b7e4fd8726bca36132bf21572a5238b93e89d79dd63d3a55da7fcc8","email":"paul@taxjar.com"},"createdBy":{"id":378608,"type":"user","first":"Paul","last":"Simpson","email":"paul@simpsonconsulting.ltd"},"assignedTo":{"id":1,"first":"Help","last":"Scout","email":"none@nowhere.com"},"to":[],"cc":[],"bcc":[],"createdAt":"2019-07-16T19:15:11Z","_embedded":{"attachments":[]},"_links":{"assignedTo":{"href":"https://api.helpscout.net/v2/users/1"},"createdByUser":{"href":"https://api.helpscout.net/v2/users/378608"},"customer":{"href":"https://api.helpscout.net/v2/customers/268319927"}}},{"id":2519189245,"type":"message","status":"active","state":"published","action":{"type":"original-author"},"body":"Sounds
+        good!<br />","source":{"type":"web","via":"user"},"customer":{"id":268319927,"first":"Paul","last":"Simpson","photoUrl":"https://img.fullcontact.com/static/664fc3306cc6eb7ce5b55611d0ebcc42_6f8d7e4a9b7e4fd8726bca36132bf21572a5238b93e89d79dd63d3a55da7fcc8","email":"paul@taxjar.com"},"createdBy":{"id":378608,"type":"user","first":"Paul","last":"Simpson","email":"paul@simpsonconsulting.ltd"},"assignedTo":{"id":1,"first":"Help","last":"Scout","email":"none@nowhere.com"},"savedReplyId":0,"to":[],"cc":[],"bcc":[],"createdAt":"2019-07-09T18:40:17Z","openedAt":"2019-07-09T18:40:44Z","_embedded":{"attachments":[]},"_links":{"assignedTo":{"href":"https://api.helpscout.net/v2/users/1"},"createdByUser":{"href":"https://api.helpscout.net/v2/users/378608"},"customer":{"href":"https://api.helpscout.net/v2/customers/268319927"}}},{"id":2519165247,"type":"note","status":"active","state":"published","action":{"type":"default"},"body":"Hello,
+        note!","source":{"type":"api","via":"user"},"customer":{"id":268319927,"first":"Paul","last":"Simpson","photoUrl":"https://img.fullcontact.com/static/664fc3306cc6eb7ce5b55611d0ebcc42_6f8d7e4a9b7e4fd8726bca36132bf21572a5238b93e89d79dd63d3a55da7fcc8","email":"paul@taxjar.com"},"createdBy":{"id":378608,"type":"user","first":"Paul","last":"Simpson","email":"paul@simpsonconsulting.ltd"},"assignedTo":{"id":1,"first":"Help","last":"Scout","email":"none@nowhere.com"},"to":[],"cc":[],"bcc":[],"createdAt":"2019-07-09T18:31:21Z","_embedded":{"attachments":[]},"_links":{"assignedTo":{"href":"https://api.helpscout.net/v2/users/1"},"createdByUser":{"href":"https://api.helpscout.net/v2/users/378608"},"customer":{"href":"https://api.helpscout.net/v2/customers/268319927"}}},{"id":<TEST_THREAD_ID>,"type":"customer","status":"active","state":"published","action":{"type":"default"},"body":"This
+        is a dummy thread.","source":{"type":"email","via":"customer"},"customer":{"id":268319927,"first":"Paul","last":"Simpson","photoUrl":"https://img.fullcontact.com/static/664fc3306cc6eb7ce5b55611d0ebcc42_6f8d7e4a9b7e4fd8726bca36132bf21572a5238b93e89d79dd63d3a55da7fcc8","email":"paul@taxjar.com"},"createdBy":{"id":268319927,"type":"customer","first":"Paul","last":"Simpson","photoUrl":"https://img.fullcontact.com/static/664fc3306cc6eb7ce5b55611d0ebcc42_6f8d7e4a9b7e4fd8726bca36132bf21572a5238b93e89d79dd63d3a55da7fcc8","email":"paul@taxjar.com"},"assignedTo":{"id":1,"first":"Help","last":"Scout","email":"none@nowhere.com"},"savedReplyId":0,"to":[],"cc":[],"bcc":[],"createdAt":"2019-07-09T18:29:22Z","_embedded":{"attachments":[]},"_links":{"assignedTo":{"href":"https://api.helpscout.net/v2/users/1"},"createdByCustomer":{"href":"https://api.helpscout.net/v2/customers/268319927"},"customer":{"href":"https://api.helpscout.net/v2/customers/268319927"}}}]},"_links":{"first":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads/?page=1"},"last":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads/?page=1"},"page":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads/"},"self":{"href":"https://api.helpscout.net/v2/conversations/<TEST_CONVERSATION_ID>/threads/"}},"page":{"size":25,"totalElements":6,"totalPages":1,"number":1}}'
+    http_version: 
+  recorded_at: Tue, 16 Jul 2019 19:22:22 GMT
+recorded_with: VCR 5.0.0
