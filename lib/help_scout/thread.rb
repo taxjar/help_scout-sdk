@@ -19,6 +19,8 @@ module HelpScout
 
       def get(conversation_id, thread_id)
         threads = list(conversation_id)
+        thread_id = thread_id.to_i
+
         threads.find { |thread| thread.id == thread_id }
       end
 
