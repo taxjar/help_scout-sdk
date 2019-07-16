@@ -8,6 +8,7 @@ module HelpScout
           create_path(conversation_id, thread_type),
           HelpScout::Util.camelize_keys(params)
         )
+        true
       end
 
       def list(conversation_id, page: nil)

@@ -31,7 +31,7 @@ RSpec.describe HelpScout::Thread do
     end
 
     it 'creates a new thread on a given conversation' do
-      expect(subject.success?).to eq(true)
+      expect(subject).to eq(true)
     end
   end
 
