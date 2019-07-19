@@ -1,5 +1,10 @@
 ### master (unreleased)
 
+Breaking Changes:
+
+* Removes HelpScout::Configuration#access_token and writer to avoid multiple sources
+  of truth for access token values (#14)
+
 Enhancements:
 
 * Adds support for `HelpScout::Thread.create`, `HelpScout::Thread.get`, and
