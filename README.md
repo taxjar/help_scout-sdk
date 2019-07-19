@@ -23,8 +23,7 @@ And then execute:
 | :------------------------- | :--: | :--: | :-----: | :----: | :-----: |
 | Attachment                 |   ❌  |  ❌  |    ✅   |    ❌   |    ❌   |
 | Conversations              |   ✅  |  ✅  |    ✅   |    ✅   |    ❌   |
-| Conversation::Threads      |   ❌  |  ❌  |    ❌   |    ❌   |    ❌   |
-| Conversation::ThreadSource |   ❌  |  ❌  |    ❌   |    ❌   |    ❌   |
+| Conversation::Threads      |   ✅  |  ➖  |    ✅   |    ✅   |    ➖   |
 | Customers                  |   ✅  |  ✅  |    ❌   |    ❌   |    ❌   |
 | Notes                      |   ❌  |  ❌  |    ❌   |    ❌   |    ❌   |
 | Mailboxes                  |   ✅  |  ✅  |    ➖   |    ➖   |    ➖   |
@@ -84,6 +83,19 @@ HelpScout::Mailbox.list
 mailbox = HelpScout::Mailbox.get(id)
 mailbox.fields
 mailbox.folders
+```
+
+### Threads
+
+[Documentation Link](https://developer.helpscout.com/mailbox-api/endpoints/conversations/threads/list/)
+
+```ruby
+conversation = HelpScout::Conversation.list.first
+new_thread = HelpScout::Thread.create(conversation.id, "notes", { text: 'Hello, world!' })
+threads = HelpScout::Thread.list(conversation.id)
+latest_thread = threads.first
+latest_thread.update("replace", "/text", "Updating a threads text.")
+modified_thread = HelpScout::Thread.get(conversation.id, latest_thread.id)
 ```
 
 ### Users
