@@ -3,11 +3,32 @@
 module HelpScout
   class Thread < HelpScout::Base
     class << self
+      def create(conversation_id, thread_type, params)
+        HelpScout.api.post(
+          create_path(conversation_id, thread_type),
+          HelpScout::Util.camelize_keys(params)
+        )
+        true
+      end
+
       def list(conversation_id, page: nil)
-        HelpScout.api.get(list_path(conversation_id), page: page).embedded_list.map { |details| new details }
+        HelpScout.api.get(
+          list_path(conversation_id), page: page
+        ).embedded_list.map { |details| new details.merge(conversation_id: conversation_id) }
+      end
+
+      def get(conversation_id, thread_id)
+        threads = list(conversation_id)
+        thread_id = thread_id.to_i
+
+        threads.find { |thread| thread.id == thread_id }
       end
 
       private
+
+      def create_path(conversation_id, thread_type)
+        "conversations/#{conversation_id}/#{thread_type}"
+      end
 
       def list_path(conversation_id)
         "conversations/#{conversation_id}/threads"
@@ -32,6 +53,7 @@ module HelpScout
       created_at
       opened_at
       attachments
+      conversation_id
     ].freeze
 
     attr_accessor(*BASIC_ATTRIBUTES)
@@ -45,6 +67,16 @@ module HelpScout
       end
 
       @hrefs = HelpScout::Util.map_links(params.fetch(:_links, []))
+    end
+
+    def conversation
+      @_conversation ||= HelpScout::Conversation.get(conversation_id)
+    end
+
+    def update(operation, path, value = nil)
+      update_path = "conversations/#{conversation_id}/threads/#{id}"
+      HelpScout.api.patch(update_path, op: operation, path: path, value: value)
+      true
     end
   end
 end
