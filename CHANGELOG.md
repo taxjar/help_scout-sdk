@@ -1,9 +1,11 @@
 ### master (unreleased)
 
+### 2.0.0 / 2019-07-19
+
 Breaking Changes:
 
 * Removes HelpScout::Configuration#access_token and writer to avoid multiple sources
-  of truth for access token values (#14)
+  of truth for access token values ([#14](https://github.com/taxjar/help_scout-sdk/pull/14))
 
 Enhancements:
 
