@@ -45,6 +45,7 @@ module HelpScout
       bcc
       primary_customer
       custom_fields
+      threads
     ].freeze
 
     attr_accessor(*BASIC_ATTRIBUTES)
