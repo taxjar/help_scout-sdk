@@ -11,7 +11,7 @@ RSpec.describe HelpScout::Customer do
 
   describe 'list' do
     it 'finds customers filtered with query' do
-      result = described_class.list(query: '(email="some@email.com")')
+      result = described_class.list(query: '(email:"some.anonymous.123456@email.com")')
 
       expect(result).to be_a Array
       expect(result).to all(be_a(described_class))
