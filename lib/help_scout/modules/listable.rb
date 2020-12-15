@@ -2,8 +2,8 @@
 
 module HelpScout
   module Listable
-    def list(id: HelpScout.default_mailbox, page: nil)
-      HelpScout.api.get(list_path(id), page: page).embedded_list.map { |e| new e }
+    def list(id: HelpScout.default_mailbox, page: nil, **params)
+      HelpScout.api.get(list_path(id), { page: page }.merge(params)).embedded_list.map { |e| new e }
     end
 
     def list_path(_)

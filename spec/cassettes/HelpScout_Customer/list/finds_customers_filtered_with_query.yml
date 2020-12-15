@@ -1,0 +1,109 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.helpscout.net/v2/oauth2/token
+    body:
+      encoding: UTF-8
+      string: '{"grant_type":"client_credentials","client_id":"<HELP_SCOUT_APP_ID>","client_secret":"<HELP_SCOUT_APP_SECRET>"}'
+    headers:
+      User-Agent:
+      - Faraday v1.1.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Location,Resource-Id
+      Cache-Control:
+      - no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 15 Dec 2020 10:53:49 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - kong/0.14.1
+      Content-Length:
+      - '94'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"token_type":"bearer","access_token":"<HELP_SCOUT_ACCESS_TOKEN>","expires_in":172800}
+
+        '
+    http_version:
+  recorded_at: Tue, 15 Dec 2020 10:53:49 GMT
+- request:
+    method: get
+    uri: https://api.helpscout.net/v2/customers?query=(email:%22some.anonymous.123456@email.com%22)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.1.0
+      Authorization:
+      - Bearer <HELP_SCOUT_ACCESS_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Location,Resource-Id
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Type:
+      - application/hal+json
+      Correlation-Id:
+      - d48066af-6189-4c30-952e-1f640af4530a#37772310
+      Date:
+      - Tue, 15 Dec 2020 10:53:49 GMT
+      Expires:
+      - '0'
+      Pragma:
+      - no-cache
+      Via:
+      - kong/0.14.1
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Kong-Proxy-Latency:
+      - '4'
+      X-Kong-Upstream-Latency:
+      - '164'
+      X-Ratelimit-Limit-Minute:
+      - '400'
+      X-Ratelimit-Remaining-Minute:
+      - '390'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '571'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"_embedded":{"customers":[]},"_links":{"self":{"href":"https://api.helpscout.net/v2/customers?query=(email:\"some.anonymous.123456@email.com\")"},"first":{"href":"https://api.helpscout.net/v2/customers?query=(email:\"some.anonymous.123456@email.com\")&page=1"},"last":{"href":"https://api.helpscout.net/v2/customers?query=(email:\"some.anonymous.123456@email.com\")&page=1"},"page":{"href":"https://api.helpscout.net/v2/customers?query=(email:\"some.anonymous.123456@email.com\"){&page}","templated":true}},"page":{"size":50,"totalElements":0,"totalPages":0,"number":1}}'
+    http_version:
+  recorded_at: Tue, 15 Dec 2020 10:53:49 GMT
+recorded_with: VCR 5.1.0

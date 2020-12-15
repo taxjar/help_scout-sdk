@@ -50,7 +50,7 @@ module HelpScout
       end
 
       def invalid?
-        !!invalid # rubocop:disable Style/DoubleNegation
+        !!invalid
       end
 
       def invalidate!

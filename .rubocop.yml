@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.4
 
 Layout:
   DotPosition:
@@ -33,4 +33,10 @@ Naming/MemoizedInstanceVariableName:
     EnforcedStyleForLeadingUnderscores: required
 
 Style/Documentation:
+  Enabled: False
+
+Metrics/CyclomaticComplexity:
+  Enabled: False
+
+Gemspec/RequiredRubyVersion:
   Enabled: False

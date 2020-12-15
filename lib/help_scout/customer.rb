@@ -47,5 +47,11 @@ module HelpScout
 
       @hrefs = HelpScout::Util.map_links(params[:_links])
     end
+
+    def update_email(email_id, new_email, type: :other)
+      email_path = "#{URI.parse(hrefs[:self]).path}/emails/#{email_id}"
+      HelpScout.api.put(email_path, { type: type, value: new_email })
+      true
+    end
   end
 end
