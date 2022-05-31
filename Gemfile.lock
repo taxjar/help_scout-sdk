@@ -3,7 +3,7 @@ PATH
   specs:
     help_scout-sdk (2.0.0)
       activesupport
-      faraday (~> 0.10)
+      faraday (~> 1.0.0)
       faraday_middleware (>= 0.10.1, < 1.0)
 
 GEM
@@ -28,10 +28,10 @@ GEM
       rexml
     diff-lcs (1.5.0)
     dotenv (2.7.6)
-    faraday (0.17.5)
+    faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
-    faraday_middleware (0.14.0)
-      faraday (>= 0.7.4, < 1.0)
+    faraday_middleware (1.0.0.rc1)
+      faraday (~> 1.0)
     hashdiff (1.0.1)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
