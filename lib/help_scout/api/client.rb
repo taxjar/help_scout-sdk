@@ -13,7 +13,7 @@ module HelpScout
         @_connection ||= build_connection.tap do |conn|
           if authorize?
             HelpScout::API::AccessToken.refresh!
-            conn.authorization(:Bearer, access_token) if access_token
+            conn.request(:authorization, :Bearer, access_token) if access_token
           end
         end
       end
