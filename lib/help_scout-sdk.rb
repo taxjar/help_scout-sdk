@@ -4,7 +4,7 @@ require 'active_support'
 require 'active_support/core_ext'
 require 'json'
 require 'faraday'
-require 'faraday_middleware'
+# require 'faraday_middleware'
 
 require 'help_scout/version'
 
