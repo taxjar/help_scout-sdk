@@ -31,8 +31,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'activesupport'
-  spec.add_dependency 'faraday', '1.7.2'
-  spec.add_dependency 'faraday_middleware', '1.1.0'
+  spec.add_dependency 'faraday', '2.9.0'
   spec.required_ruby_version = '>= 2.3'
 
   spec.add_development_dependency 'awesome_print', '~> 1.8'
