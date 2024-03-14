@@ -1,5 +1,13 @@
 ### master (unreleased)
 
+## 3.0.0 / 2024-03-14
+
+Breaking Changes:
+
+* Upgrades Faraday dependency to 2.9 which makes it compatible with Ruby 3.x
+  However, Faraday does not support Ruby 2.x on this version.
+    ([#30](https://github.com/taxjar/help_scout-sdk/pull/30))
+
 ### 2.0.0 / 2019-07-19
 
 Breaking Changes:
